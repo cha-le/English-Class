@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English with Charlie | Online ESL Classes for Chinese Students</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sun: #FFD23F;
+      --coral: #FF6B6B;
+      --sky: #4FC3F7;
+      --mint: #43D9A2;
+      --navy: #1A2B4A;
+      --navy-soft: #2C3F63;
+      --white: #FFFFFF;
+      --off: #F7F9FC;
+      --muted: #7A8BAA;
+      --text: #1A2B4A;
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(79,195,247,0.15);
+    }
+    .nav-logo {
+      font-size: 1.35rem; font-weight: 900; color: var(--navy);
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .nav-logo .bubble {
+      background: var(--sun); border-radius: 50%;
+      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy-soft); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--coral); }
+    .nav-cta {
+      background: var(--coral); color: var(--white);
+      padding: 10px 24px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
+      text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(255,107,107,0.35);
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,107,0.45); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #E8F7FF 0%, #FFF8E1 55%, #FFE8E8 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    /* Floating blobs */
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; left: -80px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,195,247,0.18) 0%, transparent 70%);
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -60px; right: -60px;
+      width: 350px; height: 350px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,210,63,0.2) 0%, transparent 70%);
+      animation: drift 10s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes drift { from { transform: translate(0,0); } to { transform: translate(30px, 20px); } }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 820px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.85); border: 2px solid var(--sun);
+      border-radius: 999px; padding: 8px 20px;
+      font-weight: 800; font-size: 0.85rem; color: var(--navy);
+      margin-bottom: 28px;
+    }
+    .hero-badge span { font-size: 1rem; }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 900; line-height: 1.1;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--coral), #FF9A3C);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub-cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.1rem; color: var(--muted); font-weight: 500;
+      margin-bottom: 24px; letter-spacing: 0.02em;
+    }
+
+    .hero p {
+      font-size: 1.15rem; color: var(--navy-soft); line-height: 1.7;
+      max-width: 580px; margin: 0 auto 40px;
+    }
+
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--coral); color: white;
+      padding: 16px 36px; border-radius: 999px;
+      font-weight: 800; font-size: 1rem; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(255,107,107,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,107,107,0.5); }
+
+    .btn-secondary {
+      background: white; color: var(--navy);
+      padding: 16px 36px; border-radius: 999px;
+      font-weight: 800; font-size: 1rem; text-decoration: none;
+      border: 2.5px solid var(--sky);
+      transition: background 0.15s;
+    }
+    .btn-secondary:hover { background: #E8F7FF; }
+
+    .hero-stats {
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+      margin-top: 56px; padding-top: 40px;
+      border-top: 2px dashed rgba(79,195,247,0.3);
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; color: var(--navy); }
+    .stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 700; margin-top: 2px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 24px; }
+    .section-label {
+      display: inline-block;
+      background: var(--sun); color: var(--navy);
+      border-radius: 999px; padding: 6px 18px;
+      font-weight: 800; font-size: 0.8rem; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900;
+      color: var(--navy); line-height: 1.2; margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--muted); max-width: 540px;
+      margin: 0 auto; line-height: 1.7;
+    }
+    .section-head { text-align: center; margin-bottom: 56px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--off); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; max-width: 1100px; margin: 0 auto;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, #4FC3F7 0%, #43D9A2 100%);
+      border-radius: var(--radius);
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem;
+      box-shadow: 0 20px 60px rgba(79,195,247,0.3);
+      position: relative; overflow: hidden;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute; bottom: -30px; right: -30px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+    .about-text .section-label { display: inline-block; }
+    .about-text .section-title { text-align: left; }
+    .about-text p {
+      font-size: 1rem; color: var(--navy-soft); line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-text p .cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--muted); font-size: 0.9rem;
+    }
+    .about-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .chip {
+      background: white; border: 2px solid var(--sky);
+      border-radius: 999px; padding: 7px 16px;
+      font-weight: 700; font-size: 0.85rem; color: var(--navy-soft);
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how { background: var(--white); }
+    .steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; max-width: 1000px; margin: 0 auto;
+    }
+    .step {
+      background: var(--off); border-radius: var(--radius);
+      padding: 40px 32px; text-align: center;
+      border: 2.5px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .step:hover { border-color: var(--sky); transform: translateY(-4px); }
+    .step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 1.2rem; margin: 0 auto 20px;
+    }
+    .step:nth-child(1) .step-num { background: #FFE8E8; color: var(--coral); }
+    .step:nth-child(2) .step-num { background: #E3F8FF; color: #0098C8; }
+    .step:nth-child(3) .step-num { background: #E2FBF2; color: #1DAA74; }
+    .step h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--navy); }
+    .step p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── CLASS TIERS ── */
+    #classes { background: var(--off); }
+    .tiers {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 28px; max-width: 820px; margin: 0 auto;
+    }
+    .tier {
+      background: white; border-radius: var(--radius);
+      padding: 40px 36px;
+      border: 2.5px solid #E8EFF8;
+      position: relative; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tier:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,43,74,0.08); }
+    .tier.featured {
+      border-color: var(--coral);
+      box-shadow: 0 12px 40px rgba(255,107,107,0.18);
+    }
+    .tier-badge {
+      position: absolute; top: 20px; right: 20px;
+      background: var(--coral); color: white;
+      border-radius: 999px; padding: 4px 12px;
+      font-size: 0.75rem; font-weight: 800;
+    }
+    .tier-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .tier h3 { font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 4px; }
+    .tier .tier-cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 20px;
+    }
+    .tier-price { font-size: 2.2rem; font-weight: 900; color: var(--navy); }
+    .tier-price sub { font-size: 1rem; font-weight: 700; vertical-align: middle; }
+    .tier-price span { font-size: 0.9rem; font-weight: 600; color: var(--muted); }
+    .tier-features { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .tier-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--navy-soft); }
+    .tier-features li::before { content: '✓'; color: var(--mint); font-weight: 900; flex-shrink: 0; }
+    .tier-cta {
+      display: block; text-align: center; margin-top: 32px;
+      padding: 13px 0; border-radius: 999px; font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.15s;
+    }
+    .tier .tier-cta { background: var(--off); color: var(--navy); border: 2.5px solid #E8EFF8; }
+    .tier .tier-cta:hover { border-color: var(--sky); background: #E8F7FF; }
+    .tier.featured .tier-cta { background: var(--coral); color: white; border-color: var(--coral); box-shadow: 0 6px 20px rgba(255,107,107,0.35); }
+    .tier.featured .tier-cta:hover { box-shadow: 0 10px 30px rgba(255,107,107,0.5); transform: translateY(-2px); }
+
+    .discount-strip {
+      max-width: 820px; margin: 28px auto 0;
+      background: linear-gradient(120deg, #FFF8E1, #E8F7FF);
+      border-radius: var(--radius-sm);
+      border: 2px dashed var(--sun);
+      padding: 20px 32px;
+      display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; align-items: center;
+    }
+    .discount-item { text-align: center; }
+    .discount-item .d-label { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .discount-item .d-val { font-size: 1.4rem; font-weight: 900; color: var(--coral); }
+    .discount-item .d-desc { font-size: 0.85rem; color: var(--navy-soft); font-weight: 600; }
+    .discount-sep { width: 2px; height: 56px; background: rgba(79,195,247,0.25); border-radius: 2px; }
+
+    /* ── TESTIMONIALS ── */
+    #reviews { background: var(--navy); }
+    #reviews .section-label { background: var(--sun); }
+    #reviews .section-title { color: white; }
+    #reviews .section-sub { color: rgba(255,255,255,0.55); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .review {
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius); padding: 32px 28px;
+    }
+    .review-stars { color: var(--sun); font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .review-text {
+      font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.82);
+      margin-bottom: 20px;
+    }
+    .review-text .cn-text {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.88rem; color: rgba(255,255,255,0.5); display: block; margin-top: 8px;
+    }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .reviewer-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .reviewer-name { font-weight: 800; font-size: 0.9rem; color: white; }
+    .reviewer-detail { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+    /* ── FAQ ── */
+    #faq { background: var(--white); }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item {
+      border: 2.5px solid #E8EFF8; border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 28px; font-family: 'Nunito', sans-serif;
+      font-size: 1rem; font-weight: 800; color: var(--navy); text-align: left;
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: var(--off); }
+    .faq-arrow { color: var(--coral); font-size: 1.2rem; transition: transform 0.25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s;
+      font-size: 0.95rem; color: var(--muted); line-height: 1.75;
+      padding: 0 28px;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 28px 22px; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, #E8F7FF 0%, #FFF8E1 100%);
+      text-align: center;
+    }
+    .contact-card {
+      max-width: 560px; margin: 0 auto;
+      background: white; border-radius: var(--radius);
+      padding: 52px 48px;
+      box-shadow: 0 20px 60px rgba(26,43,74,0.1);
+      border: 2.5px solid rgba(79,195,247,0.2);
+    }
+    .wechat-icon {
+      width: 72px; height: 72px; border-radius: 20px;
+      background: #07C160; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 2.2rem;
+    }
+    .contact-card h3 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+    .contact-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+    .wechat-id {
+      background: var(--off); border-radius: var(--radius-sm);
+      padding: 16px 24px; font-size: 1.1rem; font-weight: 800; color: var(--navy);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-bottom: 24px; border: 2px dashed rgba(7,193,96,0.4);
+      cursor: pointer; transition: background 0.15s;
+    }
+    .wechat-id:hover { background: #e8fbef; }
+    .wechat-id .copy-hint { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
+    .contact-note {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.45);
+      text-align: center; padding: 32px 24px;
+      font-size: 0.85rem; font-weight: 600;
+    }
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { aspect-ratio: 16/9; font-size: 5rem; }
+      .steps { grid-template-columns: 1fr; }
+      .tiers { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 36px 24px; }
+      .discount-sep { display: none; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="bubble">✏️</div>
+    English with Charlie
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#course">Course</a></li>
+    <li><a href="#classes">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Add on WeChat 💬</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span>🌟</span> Online English Classes — Now Enrolling!</div>
+    <h1>Learn English with<br><em>Confidence & Fun</em></h1>
+    <div class="hero-sub-cn">为中国中小学生打造的在线英语课程</div>
+    <p>
+      Live, one-on-one style online classes with a native English speaker. 
+      Built for Chinese elementary and high school students who want to speak, 
+      read, and write English with real confidence.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start Classes Today 🚀</a>
+      <a href="#classes" class="btn-secondary">See Pricing →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">5×</div>
+        <div class="stat-label">Classes per Week</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Live & Interactive</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Age Groups</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Native</div>
+        <div class="stat-label">English Teacher</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">🎓</div>
+    <div class="about-text fade-up">
+      <span class="section-label">About Charlie</span>
+      <h2 class="section-title">Hi, I'm Charlie!<br>Your English Teacher</h2>
+      <p>
+        I'm a native English speaker passionate about helping Chinese students unlock their English potential. My classes are warm, structured, and — most importantly — <strong>fun</strong>.
+        <br><span class="cn">我是一位以英语为母语的老师，专注于帮助中国学生自信地学习英语。</span>
+      </p>
+      <p>
+        Whether your child is just starting out or preparing for exams, I tailor every lesson to their level and goals. Classes run Monday to Friday so students build a daily habit that really sticks.
+      </p>
+      <div class="about-chips">
+        <div class="chip">📚 Grammar & Writing</div>
+        <div class="chip">🗣️ Speaking Practice</div>
+        <div class="chip">🎧 Listening Skills</div>
+        <div class="chip">📖 Reading Comprehension</div>
+        <div class="chip">✍️ Exam Prep</div>
+        <div class="chip">🌍 Everyday English</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-head fade-up">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">Simple & Stress-Free</h2>
+    <p class="section-sub">From signing up to your first class — it only takes minutes to get started.</p>
+  </div>
+  <div class="steps">
+    <div class="step fade-up">
+      <div class="step-num">1</div>
+      <h3>Add Charlie on WeChat</h3>
+      <p>Send a message with your child's grade and current English level. I'll reply quickly to say hi and answer any questions.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">2</div>
+      <h3>Choose Your Plan</h3>
+      <p>Pick between the Elementary or High School program. Classes run Monday–Friday in your local timezone, so routines are easy to build.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">3</div>
+      <h3>Start Learning!</h3>
+      <p>Join live online classes, get personalised feedback, and watch your English improve week by week. It's that simple.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE PDF -->
+<section id="course" style="background: var(--white); padding: 80px 24px;">
+  <div class="section-head fade-up">
+    <span class="section-label">Course Outline</span>
+    <h2 class="section-title">See What We Cover</h2>
+    <p class="section-sub">Download the full course guide to see topics, structure, and what your child will learn.</p>
+  </div>
+  <div class="fade-up" style="max-width: 560px; margin: 0 auto; background: var(--off); border-radius: var(--radius); border: 2.5px dashed rgba(79,195,247,0.4); padding: 40px 36px; text-align: center;">
+    <div style="font-size: 3.5rem; margin-bottom: 16px;">📄</div>
+    <h3 style="font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 8px;">English with Charlie — Course Guide</h3>
+    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6;">
+      Full breakdown of lesson topics, learning goals, and what to expect each week.<br>
+      <span style="font-family: 'Noto Sans SC', sans-serif;">包含课程主题、学习目标和每周课程安排。</span>
+    </p>
+    <!-- Replace "course-guide.pdf" with your actual PDF filename when ready -->
+    <a href="course-guide.pdf" download
+       style="display: inline-flex; align-items: center; gap: 10px; background: var(--navy); color: white; padding: 14px 32px; border-radius: 999px; font-weight: 800; font-size: 0.95rem; text-decoration: none; box-shadow: 0 6px 20px rgba(26,43,74,0.2); transition: transform 0.15s, box-shadow 0.15s;"
+       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 28px rgba(26,43,74,0.28)'"
+       onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 20px rgba(26,43,74,0.2)'">
+      ⬇ Download PDF
+    </a>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="classes">
+  <div class="section-head fade-up">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Clear, Simple Pricing</h2>
+    <p class="section-sub">5 live classes a week, Monday to Friday, scheduled in your timezone.</p>
+  </div>
+  <div class="tiers fade-up">
+    <div class="tier">
+      <div class="tier-icon">🎒</div>
+      <h3>Elementary</h3>
+      <div class="tier-cn">小学英语班 · Ages 6–12</div>
+      <div class="tier-price"><sub>¥</sub>100 <span>/ class</span></div>
+      <ul class="tier-features">
+        <li>5 live classes per week (Mon–Fri)</li>
+        <li>Fun, story-based lessons</li>
+        <li>Grammar & vocabulary building</li>
+        <li>Reading & listening activities</li>
+        <li>Progress updates via WeChat</li>
+      </ul>
+      <a href="#contact" class="tier-cta">Enquire Now</a>
+    </div>
+    <div class="tier featured">
+      <div class="tier-badge">Most Popular</div>
+      <div class="tier-icon">🏫</div>
+      <h3>High School</h3>
+      <div class="tier-cn">高中英语班 · Ages 13–18</div>
+      <div class="tier-price"><sub>¥</sub>100 <span>/ class</span></div>
+      <ul class="tier-features">
+        <li>5 live classes per week (Mon–Fri)</li>
+        <li>Academic writing & essay skills</li>
+        <li>Exam preparation support</li>
+        <li>Speaking & debate practice</li>
+        <li>Progress updates via WeChat</li>
+      </ul>
+      <a href="#contact" class="tier-cta">Enquire Now</a>
+    </div>
+  </div>
+
+  <div class="discount-strip fade-up">
+    <div class="discount-item">
+      <div class="d-label">Per Class</div>
+      <div class="d-val">¥100</div>
+      <div class="d-desc">Drop-in rate</div>
+    </div>
+    <div class="discount-sep"></div>
+    <div class="discount-item">
+      <div class="d-label">Full Week Bundle</div>
+      <div class="d-val">10% OFF</div>
+      <div class="d-desc">Sign up for a full week (5 classes)</div>
+    </div>
+    <div class="discount-sep"></div>
+    <div class="discount-item">
+      <div class="d-label">Summer Package 🌞</div>
+      <div class="d-val">20% OFF</div>
+      <div class="d-desc">Sign up for the entire summer</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-head fade-up">
+    <span class="section-label">Reviews</span>
+    <h2 class="section-title">What Students & Parents Say</h2>
+    <p class="section-sub">Hear from families who've seen the difference.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">
+        My daughter used to be so nervous speaking English. After just a month with Charlie, she's volunteering to answer questions in school. The daily classes really make a difference!
+        <span class="cn-text">我女儿以前很怕开口说英语，跟Charlie上了一个月课之后，已经主动在课堂上举手回答问题了！</span>
+      </p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#FFE8E8;">👩</div>
+        <div>
+          <div class="reviewer-name">Liu Fang</div>
+          <div class="reviewer-detail">Mother of Xiaomei, Grade 5 · Beijing</div>
+        </div>
+      </div>
+    </div>
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">
+        Charlie is patient, encouraging, and makes grammar actually make sense. My son went from failing English tests to scoring in the top of his class. I can't recommend it enough.
+        <span class="cn-text">Charlie非常耐心，让我儿子从英语不及格变成了班级前几名，真心推荐！</span>
+      </p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#E3F8FF;">👨</div>
+        <div>
+          <div class="reviewer-name">Wang Hao</div>
+          <div class="reviewer-detail">Father of Mingze, Grade 9 · Shanghai</div>
+        </div>
+      </div>
+    </div>
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">
+        The summer package was the best investment for my child's education. She had class every weekday, and by the end of summer her reading and writing improved so much. Great value!
+        <span class="cn-text">暑假套餐太值了！每天上课，孩子的阅读和写作进步非常明显，性价比超高。</span>
+      </p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#E2FBF2;">👩</div>
+        <div>
+          <div class="reviewer-name">Chen Li</div>
+          <div class="reviewer-detail">Mother of Yiyi, Grade 7 · Chengdu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-head fade-up">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">Common Questions</h2>
+    <p class="section-sub">Everything parents want to know before enrolling.</p>
+  </div>
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <button class="faq-q">What platform are the classes held on? <span class="faq-arrow">+</span></button>
+      <div class="faq-a">Classes are held online via <strong>Tencent Meeting (腾讯会议)</strong>. Once you contact me on WeChat, I'll send you the meeting link and help you get set up — it only takes a minute!</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What time are the classes? <span class="faq-arrow">+</span></button>
+      <div class="faq-a">Classes run Monday to Friday, scheduled in <strong>your child's local timezone</strong> so the times always work for your family. We'll agree on a consistent daily time when you sign up.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do I pay? <span class="faq-arrow">+</span></button>
+      <div class="faq-a">Payment details will be discussed over WeChat. I accept common methods convenient for Chinese families. For weekly and summer packages, discounts are applied automatically.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What if my child misses a class? <span class="faq-arrow">+</span></button>
+      <div class="faq-a">Life happens! Please message me on WeChat as early as possible if your child can't attend. We'll do our best to reschedule or find a make-up arrangement.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Are classes one-on-one or group? <span class="faq-arrow">+</span></button>
+      <div class="faq-a">Classes are kept small and focused so every student gets plenty of attention and speaking time. Contact me on WeChat to find out current availability and class sizes.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What level does my child need to start? <span class="faq-arrow">+</span></button>
+      <div class="faq-a">All levels are welcome — from complete beginners to students preparing for advanced exams. I'll assess your child's level at the start and tailor lessons accordingly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-card fade-up">
+    <div class="wechat-icon">💬</div>
+    <h3>Ready to Get Started?</h3>
+    <p>Add me on WeChat and send a quick message about your child's grade and English level. I'll get back to you within 24 hours!</p>
+    <div class="wechat-id" onclick="copyWechat(this)">
+      <span>📱 WeChat ID: <strong>EnglishWithCharlie</strong></span>
+      <span class="copy-hint">tap to copy</span>
+    </div>
+    <div class="contact-note">
+      也可以直接发消息给我 — 我会用中文回复家长的问题！<br>
+      (Parents are welcome to message me in Chinese!)
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>English with Charlie</strong> · Online ESL Classes for Chinese Students · All rights reserved</p>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Copy WeChat ID
+  function copyWechat(el) {
+    navigator.clipboard.writeText('EnglishWithCharlie').then(() => {
+      const hint = el.querySelector('.copy-hint');
+      hint.textContent = '✓ copied!';
+      setTimeout(() => hint.textContent = 'tap to copy', 2000);
+    });
+  }
+</script>
+</body>
+</html>
