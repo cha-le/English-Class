@@ -3,464 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English with Charlie | Online ESL Classes for Chinese Students</title>
+  <title>ClearVoice | English Tutoring for Chinese Students</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --sun: #FFD23F;
-      --coral: #FF6B6B;
-      --sky: #4FC3F7;
-      --mint: #43D9A2;
-      --navy: #1A2B4A;
-      --navy-soft: #2C3F63;
-      --white: #FFFFFF;
-      --off: #F7F9FC;
-      --muted: #7A8BAA;
-      --text: #1A2B4A;
-      --radius: 20px;
-      --radius-sm: 12px;
+      --sun: #FFD23F; --coral: #FF6B6B; --sky: #4FC3F7; --mint: #43D9A2;
+      --navy: #1A2B4A; --navy-soft: #2C3F63; --white: #FFFFFF;
+      --off: #F7F9FC; --muted: #7A8BAA; --radius: 20px; --radius-sm: 12px;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
+    body.zh { font-family: 'Noto Sans SC', sans-serif; }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      color: var(--text);
-      background: var(--white);
-      overflow-x: hidden;
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      display: flex; align-items: center;
+      background: var(--off); border-radius: 999px;
+      border: 2px solid #E8EFF8;
+      padding: 4px; gap: 2px;
     }
+    .lang-btn {
+      padding: 6px 16px; border-radius: 999px; border: none; cursor: pointer;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem;
+      background: none; color: var(--muted); transition: all 0.18s;
+    }
+    .lang-btn.active {
+      background: var(--navy); color: white;
+      box-shadow: 0 2px 8px rgba(26,43,74,0.18);
+    }
+
+    /* ── LOGO ── */
+    .logo-svg { width: 44px; height: 44px; flex-shrink: 0; }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 48px;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid rgba(79,195,247,0.15);
+      padding: 14px 48px;
+      background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(255,210,63,0.2);
+      gap: 16px;
     }
-    .nav-logo {
-      font-size: 1.35rem; font-weight: 900; color: var(--navy);
-      display: flex; align-items: center; gap: 10px; text-decoration: none;
-    }
-    .nav-logo .bubble {
-      background: var(--sun); border-radius: 50%;
-      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-    }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--navy-soft); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-left { display: flex; align-items: center; gap: 32px; }
+    .nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--navy); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo .wordmark span { color: var(--sun); -webkit-text-stroke: 0.5px #c9a800; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy-soft); font-weight: 700; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--coral); }
-    .nav-cta {
-      background: var(--coral); color: var(--white);
-      padding: 10px 24px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
-      text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 14px rgba(255,107,107,0.35);
-    }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-cta { background: var(--coral); color: white; padding: 10px 22px; border-radius: 999px; font-weight: 800; font-size: 0.88rem; text-decoration: none; box-shadow: 0 4px 14px rgba(255,107,107,0.35); transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; }
     .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,107,0.45); }
 
     /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(145deg, #E8F7FF 0%, #FFF8E1 55%, #FFE8E8 100%);
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      position: relative; overflow: hidden;
-    }
-    /* Floating blobs */
-    .hero::before {
-      content: '';
-      position: absolute; top: -80px; left: -80px;
-      width: 400px; height: 400px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(79,195,247,0.18) 0%, transparent 70%);
-      animation: drift 8s ease-in-out infinite alternate;
-    }
-    .hero::after {
-      content: '';
-      position: absolute; bottom: -60px; right: -60px;
-      width: 350px; height: 350px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,210,63,0.2) 0%, transparent 70%);
-      animation: drift 10s ease-in-out infinite alternate-reverse;
-    }
-    @keyframes drift { from { transform: translate(0,0); } to { transform: translate(30px, 20px); } }
-
-    .hero-inner { position: relative; z-index: 1; max-width: 820px; }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.85); border: 2px solid var(--sun);
-      border-radius: 999px; padding: 8px 20px;
-      font-weight: 800; font-size: 0.85rem; color: var(--navy);
-      margin-bottom: 28px;
-    }
-    .hero-badge span { font-size: 1rem; }
-
-    .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
-      font-weight: 900; line-height: 1.1;
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(120deg, var(--coral), #FF9A3C);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-
-    .hero-sub-cn {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: 1.1rem; color: var(--muted); font-weight: 500;
-      margin-bottom: 24px; letter-spacing: 0.02em;
-    }
-
-    .hero p {
-      font-size: 1.15rem; color: var(--navy-soft); line-height: 1.7;
-      max-width: 580px; margin: 0 auto 40px;
-    }
-
-    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-    .btn-primary {
-      background: var(--coral); color: white;
-      padding: 16px 36px; border-radius: 999px;
-      font-weight: 800; font-size: 1rem; text-decoration: none;
-      box-shadow: 0 6px 24px rgba(255,107,107,0.4);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,107,107,0.5); }
-
-    .btn-secondary {
-      background: white; color: var(--navy);
-      padding: 16px 36px; border-radius: 999px;
-      font-weight: 800; font-size: 1rem; text-decoration: none;
-      border: 2.5px solid var(--sky);
-      transition: background 0.15s;
-    }
-    .btn-secondary:hover { background: #E8F7FF; }
-
-    .hero-stats {
-      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-      margin-top: 56px; padding-top: 40px;
-      border-top: 2px dashed rgba(79,195,247,0.3);
-    }
-    .stat { text-align: center; }
-    .stat-num { font-size: 2rem; font-weight: 900; color: var(--navy); }
-    .stat-label { font-size: 0.85rem; color: var(--muted); font-weight: 700; margin-top: 2px; }
+    .hero { min-height: 100vh; background: linear-gradient(145deg,#E8F7FF 0%,#FFF8E1 55%,#FFE8E8 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative; overflow: hidden; }
+    .hero::before { content:''; position:absolute; top:-80px; left:-80px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(79,195,247,.18) 0%,transparent 70%); animation:drift 8s ease-in-out infinite alternate; }
+    .hero::after { content:''; position:absolute; bottom:-60px; right:-60px; width:350px; height:350px; border-radius:50%; background:radial-gradient(circle,rgba(255,210,63,.2) 0%,transparent 70%); animation:drift 10s ease-in-out infinite alternate-reverse; }
+    @keyframes drift { from{transform:translate(0,0)} to{transform:translate(30px,20px)} }
+    .hero-inner { position:relative; z-index:1; max-width:820px; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.85); border:2px solid var(--sun); border-radius:999px; padding:8px 20px; font-weight:800; font-size:.85rem; color:var(--navy); margin-bottom:28px; }
+    .hero h1 { font-size:clamp(2.6rem,6vw,4.2rem); font-weight:900; line-height:1.1; color:var(--navy); margin-bottom:20px; }
+    .hero h1 em { font-style:normal; background:linear-gradient(120deg,var(--coral),#FF9A3C); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero p { font-size:1.15rem; color:var(--navy-soft); line-height:1.7; max-width:580px; margin:0 auto 40px; }
+    .hero-actions { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+    .btn-primary { background:var(--coral); color:white; padding:16px 36px; border-radius:999px; font-weight:800; font-size:1rem; text-decoration:none; box-shadow:0 6px 24px rgba(255,107,107,.4); transition:transform .15s,box-shadow .15s; }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(255,107,107,.5); }
+    .btn-secondary { background:white; color:var(--navy); padding:16px 36px; border-radius:999px; font-weight:800; font-size:1rem; text-decoration:none; border:2.5px solid var(--sky); transition:background .15s; }
+    .btn-secondary:hover { background:#E8F7FF; }
+    .hero-stats { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:56px; padding-top:40px; border-top:2px dashed rgba(79,195,247,.3); }
+    .stat { text-align:center; }
+    .stat-num { font-size:2rem; font-weight:900; color:var(--navy); }
+    .stat-label { font-size:.85rem; color:var(--muted); font-weight:700; margin-top:2px; }
 
     /* ── SECTIONS ── */
-    section { padding: 96px 24px; }
-    .section-label {
-      display: inline-block;
-      background: var(--sun); color: var(--navy);
-      border-radius: 999px; padding: 6px 18px;
-      font-weight: 800; font-size: 0.8rem; letter-spacing: 0.06em;
-      text-transform: uppercase; margin-bottom: 16px;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900;
-      color: var(--navy); line-height: 1.2; margin-bottom: 14px;
-    }
-    .section-sub {
-      font-size: 1.05rem; color: var(--muted); max-width: 540px;
-      margin: 0 auto; line-height: 1.7;
-    }
-    .section-head { text-align: center; margin-bottom: 56px; }
+    section { padding:96px 24px; }
+    .section-label { display:inline-block; background:var(--sun); color:var(--navy); border-radius:999px; padding:6px 18px; font-weight:800; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; }
+    .section-title { font-size:clamp(1.8rem,4vw,2.6rem); font-weight:900; color:var(--navy); line-height:1.2; margin-bottom:14px; }
+    .section-sub { font-size:1.05rem; color:var(--muted); max-width:540px; margin:0 auto; line-height:1.7; }
+    .section-head { text-align:center; margin-bottom:56px; }
 
     /* ── ABOUT ── */
-    #about { background: var(--off); }
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center; max-width: 1100px; margin: 0 auto;
-    }
-    .about-visual {
-      background: linear-gradient(135deg, #4FC3F7 0%, #43D9A2 100%);
-      border-radius: var(--radius);
-      aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 7rem;
-      box-shadow: 0 20px 60px rgba(79,195,247,0.3);
-      position: relative; overflow: hidden;
-    }
-    .about-visual::after {
-      content: '';
-      position: absolute; bottom: -30px; right: -30px;
-      width: 160px; height: 160px; border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-    }
-    .about-text .section-label { display: inline-block; }
-    .about-text .section-title { text-align: left; }
-    .about-text p {
-      font-size: 1rem; color: var(--navy-soft); line-height: 1.8;
-      margin-bottom: 16px;
-    }
-    .about-text p .cn {
-      font-family: 'Noto Sans SC', sans-serif;
-      color: var(--muted); font-size: 0.9rem;
-    }
-    .about-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-    .chip {
-      background: white; border: 2px solid var(--sky);
-      border-radius: 999px; padding: 7px 16px;
-      font-weight: 700; font-size: 0.85rem; color: var(--navy-soft);
-    }
+    #about { background:var(--off); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; max-width:1100px; margin:0 auto; }
+    .about-visual { background:linear-gradient(135deg,#4FC3F7 0%,#43D9A2 100%); border-radius:var(--radius); aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:7rem; box-shadow:0 20px 60px rgba(79,195,247,.3); position:relative; overflow:hidden; }
+    .about-visual::after { content:''; position:absolute; bottom:-30px; right:-30px; width:160px; height:160px; border-radius:50%; background:rgba(255,255,255,.15); }
+    .about-text .section-title { text-align:left; }
+    .about-text p { font-size:1rem; color:var(--navy-soft); line-height:1.8; margin-bottom:16px; }
+    .about-chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .chip { background:white; border:2px solid var(--sky); border-radius:999px; padding:7px 16px; font-weight:700; font-size:.85rem; color:var(--navy-soft); }
 
-    /* ── HOW IT WORKS ── */
-    #how { background: var(--white); }
-    .steps {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 32px; max-width: 1000px; margin: 0 auto;
-    }
-    .step {
-      background: var(--off); border-radius: var(--radius);
-      padding: 40px 32px; text-align: center;
-      border: 2.5px solid transparent;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .step:hover { border-color: var(--sky); transform: translateY(-4px); }
-    .step-num {
-      width: 52px; height: 52px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 1.2rem; margin: 0 auto 20px;
-    }
-    .step:nth-child(1) .step-num { background: #FFE8E8; color: var(--coral); }
-    .step:nth-child(2) .step-num { background: #E3F8FF; color: #0098C8; }
-    .step:nth-child(3) .step-num { background: #E2FBF2; color: #1DAA74; }
-    .step h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--navy); }
-    .step p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+    /* ── HOW ── */
+    #how { background:var(--white); }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:1000px; margin:0 auto; }
+    .step { background:var(--off); border-radius:var(--radius); padding:40px 32px; text-align:center; border:2.5px solid transparent; transition:border-color .2s,transform .2s; }
+    .step:hover { border-color:var(--sky); transform:translateY(-4px); }
+    .step-num { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.2rem; margin:0 auto 20px; }
+    .step:nth-child(1) .step-num { background:#FFE8E8; color:var(--coral); }
+    .step:nth-child(2) .step-num { background:#E3F8FF; color:#0098C8; }
+    .step:nth-child(3) .step-num { background:#E2FBF2; color:#1DAA74; }
+    .step h3 { font-size:1.1rem; font-weight:800; margin-bottom:10px; color:var(--navy); }
+    .step p { font-size:.95rem; color:var(--muted); line-height:1.7; }
 
-    /* ── CLASS TIERS ── */
-    #classes { background: var(--off); }
-    .tiers {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 28px; max-width: 820px; margin: 0 auto;
-    }
-    .tier {
-      background: white; border-radius: var(--radius);
-      padding: 40px 36px;
-      border: 2.5px solid #E8EFF8;
-      position: relative; overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .tier:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,43,74,0.08); }
-    .tier.featured {
-      border-color: var(--coral);
-      box-shadow: 0 12px 40px rgba(255,107,107,0.18);
-    }
-    .tier-badge {
-      position: absolute; top: 20px; right: 20px;
-      background: var(--coral); color: white;
-      border-radius: 999px; padding: 4px 12px;
-      font-size: 0.75rem; font-weight: 800;
-    }
-    .tier-icon { font-size: 2.4rem; margin-bottom: 16px; }
-    .tier h3 { font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 4px; }
-    .tier .tier-cn {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: 0.85rem; color: var(--muted); margin-bottom: 20px;
-    }
-    .tier-price { font-size: 2.2rem; font-weight: 900; color: var(--navy); }
-    .tier-price sub { font-size: 1rem; font-weight: 700; vertical-align: middle; }
-    .tier-price span { font-size: 0.9rem; font-weight: 600; color: var(--muted); }
-    .tier-features { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
-    .tier-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--navy-soft); }
-    .tier-features li::before { content: '✓'; color: var(--mint); font-weight: 900; flex-shrink: 0; }
-    .tier-cta {
-      display: block; text-align: center; margin-top: 32px;
-      padding: 13px 0; border-radius: 999px; font-weight: 800; font-size: 0.95rem;
-      text-decoration: none; transition: all 0.15s;
-    }
-    .tier .tier-cta { background: var(--off); color: var(--navy); border: 2.5px solid #E8EFF8; }
-    .tier .tier-cta:hover { border-color: var(--sky); background: #E8F7FF; }
-    .tier.featured .tier-cta { background: var(--coral); color: white; border-color: var(--coral); box-shadow: 0 6px 20px rgba(255,107,107,0.35); }
-    .tier.featured .tier-cta:hover { box-shadow: 0 10px 30px rgba(255,107,107,0.5); transform: translateY(-2px); }
+    /* ── COURSE ── */
+    #course { background:var(--white); padding:80px 24px; }
 
-    .discount-strip {
-      max-width: 820px; margin: 28px auto 0;
-      background: linear-gradient(120deg, #FFF8E1, #E8F7FF);
-      border-radius: var(--radius-sm);
-      border: 2px dashed var(--sun);
-      padding: 20px 32px;
-      display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; align-items: center;
-    }
-    .discount-item { text-align: center; }
-    .discount-item .d-label { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .discount-item .d-val { font-size: 1.4rem; font-weight: 900; color: var(--coral); }
-    .discount-item .d-desc { font-size: 0.85rem; color: var(--navy-soft); font-weight: 600; }
-    .discount-sep { width: 2px; height: 56px; background: rgba(79,195,247,0.25); border-radius: 2px; }
+    /* ── PRICING ── */
+    #classes { background:var(--off); }
+    .tiers { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; max-width:820px; margin:0 auto; }
+    .tier { background:white; border-radius:var(--radius); padding:40px 36px; border:2.5px solid #E8EFF8; position:relative; overflow:hidden; transition:transform .2s,box-shadow .2s; }
+    .tier:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(26,43,74,.08); }
+    .tier.featured { border-color:var(--coral); box-shadow:0 12px 40px rgba(255,107,107,.18); }
+    .tier-badge { position:absolute; top:20px; right:20px; background:var(--coral); color:white; border-radius:999px; padding:4px 12px; font-size:.75rem; font-weight:800; }
+    .tier-icon { font-size:2.4rem; margin-bottom:16px; }
+    .tier h3 { font-size:1.2rem; font-weight:900; color:var(--navy); margin-bottom:20px; }
+    .tier-price { font-size:2.2rem; font-weight:900; color:var(--navy); }
+    .tier-price sub { font-size:1rem; font-weight:700; vertical-align:middle; }
+    .tier-price span { font-size:.9rem; font-weight:600; color:var(--muted); }
+    .tier-features { list-style:none; margin-top:24px; display:flex; flex-direction:column; gap:12px; }
+    .tier-features li { display:flex; align-items:flex-start; gap:10px; font-size:.95rem; color:var(--navy-soft); }
+    .tier-features li::before { content:'✓'; color:var(--mint); font-weight:900; flex-shrink:0; }
+    .tier-cta { display:block; text-align:center; margin-top:32px; padding:13px 0; border-radius:999px; font-weight:800; font-size:.95rem; text-decoration:none; transition:all .15s; }
+    .tier .tier-cta { background:var(--off); color:var(--navy); border:2.5px solid #E8EFF8; }
+    .tier .tier-cta:hover { border-color:var(--sky); background:#E8F7FF; }
+    .tier.featured .tier-cta { background:var(--coral); color:white; border-color:var(--coral); box-shadow:0 6px 20px rgba(255,107,107,.35); }
+    .tier.featured .tier-cta:hover { box-shadow:0 10px 30px rgba(255,107,107,.5); transform:translateY(-2px); }
+    .discount-strip { max-width:820px; margin:28px auto 0; background:linear-gradient(120deg,#FFF8E1,#E8F7FF); border-radius:var(--radius-sm); border:2px dashed var(--sun); padding:20px 32px; display:flex; gap:24px; flex-wrap:wrap; justify-content:center; align-items:center; }
+    .discount-item { text-align:center; }
+    .d-label { font-size:.8rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+    .d-val { font-size:1.4rem; font-weight:900; color:var(--coral); }
+    .d-desc { font-size:.85rem; color:var(--navy-soft); font-weight:600; }
+    .discount-sep { width:2px; height:56px; background:rgba(79,195,247,.25); border-radius:2px; }
 
-    /* ── TESTIMONIALS ── */
-    #reviews { background: var(--navy); }
-    #reviews .section-label { background: var(--sun); }
-    #reviews .section-title { color: white; }
-    #reviews .section-sub { color: rgba(255,255,255,0.55); }
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 24px; max-width: 1100px; margin: 0 auto;
-    }
-    .review {
-      background: rgba(255,255,255,0.07);
-      border: 1.5px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius); padding: 32px 28px;
-    }
-    .review-stars { color: var(--sun); font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
-    .review-text {
-      font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.82);
-      margin-bottom: 20px;
-    }
-    .review-text .cn-text {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: 0.88rem; color: rgba(255,255,255,0.5); display: block; margin-top: 8px;
-    }
-    .reviewer { display: flex; align-items: center; gap: 12px; }
-    .reviewer-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; flex-shrink: 0;
-    }
-    .reviewer-name { font-weight: 800; font-size: 0.9rem; color: white; }
-    .reviewer-detail { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    /* ── REVIEWS ── */
+    #reviews { background:var(--navy); }
+    #reviews .section-label { background:var(--sun); }
+    #reviews .section-title { color:white; }
+    #reviews .section-sub { color:rgba(255,255,255,.55); }
+    .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
+    .review { background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:32px 28px; }
+    .review-stars { color:var(--sun); font-size:1rem; margin-bottom:14px; letter-spacing:2px; }
+    .review-text { font-size:.95rem; line-height:1.75; color:rgba(255,255,255,.82); margin-bottom:20px; }
+    .reviewer { display:flex; align-items:center; gap:12px; }
+    .reviewer-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+    .reviewer-name { font-weight:800; font-size:.9rem; color:white; }
+    .reviewer-detail { font-size:.8rem; color:rgba(255,255,255,.45); margin-top:2px; }
 
     /* ── FAQ ── */
-    #faq { background: var(--white); }
-    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-    .faq-item {
-      border: 2.5px solid #E8EFF8; border-radius: var(--radius-sm);
-      overflow: hidden;
-    }
-    .faq-q {
-      width: 100%; background: none; border: none; cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 28px; font-family: 'Nunito', sans-serif;
-      font-size: 1rem; font-weight: 800; color: var(--navy); text-align: left;
-      transition: background 0.15s;
-    }
-    .faq-q:hover { background: var(--off); }
-    .faq-arrow { color: var(--coral); font-size: 1.2rem; transition: transform 0.25s; flex-shrink: 0; }
-    .faq-item.open .faq-arrow { transform: rotate(45deg); }
-    .faq-a {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s;
-      font-size: 0.95rem; color: var(--muted); line-height: 1.75;
-      padding: 0 28px;
-    }
-    .faq-item.open .faq-a { max-height: 300px; padding: 0 28px 22px; }
+    #faq { background:var(--white); }
+    .faq-list { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:16px; }
+    .faq-item { border:2.5px solid #E8EFF8; border-radius:var(--radius-sm); overflow:hidden; }
+    .faq-q { width:100%; background:none; border:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; padding:22px 28px; font-family:inherit; font-size:1rem; font-weight:800; color:var(--navy); text-align:left; transition:background .15s; }
+    .faq-q:hover { background:var(--off); }
+    .faq-arrow { color:var(--coral); font-size:1.2rem; transition:transform .25s; flex-shrink:0; }
+    .faq-item.open .faq-arrow { transform:rotate(45deg); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .3s ease,padding .3s; font-size:.95rem; color:var(--muted); line-height:1.75; padding:0 28px; }
+    .faq-item.open .faq-a { max-height:300px; padding:0 28px 22px; }
 
     /* ── CONTACT ── */
-    #contact {
-      background: linear-gradient(135deg, #E8F7FF 0%, #FFF8E1 100%);
-      text-align: center;
-    }
-    .contact-card {
-      max-width: 560px; margin: 0 auto;
-      background: white; border-radius: var(--radius);
-      padding: 52px 48px;
-      box-shadow: 0 20px 60px rgba(26,43,74,0.1);
-      border: 2.5px solid rgba(79,195,247,0.2);
-    }
-    .wechat-icon {
-      width: 72px; height: 72px; border-radius: 20px;
-      background: #07C160; display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 20px; font-size: 2.2rem;
-    }
-    .contact-card h3 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
-    .contact-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
-    .wechat-id {
-      background: var(--off); border-radius: var(--radius-sm);
-      padding: 16px 24px; font-size: 1.1rem; font-weight: 800; color: var(--navy);
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      margin-bottom: 24px; border: 2px dashed rgba(7,193,96,0.4);
-      cursor: pointer; transition: background 0.15s;
-    }
-    .wechat-id:hover { background: #e8fbef; }
-    .wechat-id .copy-hint { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
-    .contact-note {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
-    }
+    #contact { background:linear-gradient(135deg,#E8F7FF 0%,#FFF8E1 100%); text-align:center; }
+    .contact-card { max-width:560px; margin:0 auto; background:white; border-radius:var(--radius); padding:52px 48px; box-shadow:0 20px 60px rgba(26,43,74,.1); border:2.5px solid rgba(79,195,247,.2); }
+    .wechat-icon { width:72px; height:72px; border-radius:20px; background:#07C160; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:2.2rem; }
+    .contact-card h3 { font-size:1.5rem; font-weight:900; color:var(--navy); margin-bottom:10px; }
+    .contact-card p { font-size:.95rem; color:var(--muted); line-height:1.7; margin-bottom:28px; }
+    .wechat-id { background:var(--off); border-radius:var(--radius-sm); padding:16px 24px; font-size:1.1rem; font-weight:800; color:var(--navy); display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:24px; border:2px dashed rgba(7,193,96,.4); cursor:pointer; transition:background .15s; }
+    .wechat-id:hover { background:#e8fbef; }
+    .copy-hint { font-size:.75rem; color:var(--muted); font-weight:600; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--navy); color: rgba(255,255,255,0.45);
-      text-align: center; padding: 32px 24px;
-      font-size: 0.85rem; font-weight: 600;
-    }
-    footer strong { color: rgba(255,255,255,0.7); }
+    footer { background:var(--navy); color:rgba(255,255,255,.45); text-align:center; padding:32px 24px; font-size:.85rem; font-weight:600; }
+    footer strong { color:rgba(255,255,255,.7); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-visual { aspect-ratio: 16/9; font-size: 5rem; }
-      .steps { grid-template-columns: 1fr; }
-      .tiers { grid-template-columns: 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
-      .contact-card { padding: 36px 24px; }
-      .discount-sep { display: none; }
-    }
+    /* ── FADE ── */
+    .fade-up { opacity:0; transform:translateY(28px); transition:opacity .6s ease,transform .6s ease; }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
 
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    @media(max-width:768px){
+      nav { padding:14px 16px; flex-wrap:wrap; }
+      .nav-links { display:none; }
+      .about-grid { grid-template-columns:1fr; }
+      .about-visual { aspect-ratio:16/9; font-size:5rem; }
+      .steps { grid-template-columns:1fr; }
+      .tiers { grid-template-columns:1fr; }
+      .reviews-grid { grid-template-columns:1fr; }
+      .contact-card { padding:36px 24px; }
+      .discount-sep { display:none; }
     }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-    <div class="bubble">✏️</div>
-    English with Charlie
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#course">Course</a></li>
-    <li><a href="#classes">Pricing</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Add on WeChat 💬</a>
+  <div class="nav-left">
+    <a href="#" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark">Clear<span>Voice</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="#how" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="#course" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="#classes" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="#reviews" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="#faq" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge"><span>🌟</span> Online English Classes — Now Enrolling!</div>
-    <h1>Learn English with<br><em>Confidence & Fun</em></h1>
-    <div class="hero-sub-cn">为中国中小学生打造的在线英语课程</div>
-    <p>
-      Live, one-on-one style online classes with a native English speaker. 
-      Built for Chinese elementary and high school students who want to speak, 
-      read, and write English with real confidence.
-    </p>
+    <div class="hero-badge"><span>🌟</span> <span data-en="Online English Tutoring — Now Enrolling!" data-zh="在线英语辅导 — 现在招生！">Online English Tutoring — Now Enrolling!</span></div>
+    <h1 data-en="Learn English with<br><em>Confidence & Fun</em>" data-zh="自信开口<br><em>快乐学英语</em>">Learn English with<br><em>Confidence & Fun</em></h1>
+    <p data-en="Live online tutoring with a native English speaker, built for Chinese elementary and high school students who want to speak, read, and write English with real confidence." data-zh="与英语母语教师进行在线一对一辅导，专为希望自信开口、阅读和写作的中国中小学生打造。">Live online tutoring with a native English speaker, built for Chinese elementary and high school students who want to speak, read, and write English with real confidence.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Start Classes Today 🚀</a>
-      <a href="#classes" class="btn-secondary">See Pricing →</a>
+      <a href="#contact" class="btn-primary" data-en="Start Tutoring Today 🚀" data-zh="立即开始学习 🚀">Start Tutoring Today 🚀</a>
+      <a href="#classes" class="btn-secondary" data-en="See Pricing →" data-zh="查看价格 →">See Pricing →</a>
     </div>
     <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">5×</div>
-        <div class="stat-label">Classes per Week</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Live & Interactive</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">2</div>
-        <div class="stat-label">Age Groups</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">Native</div>
-        <div class="stat-label">English Teacher</div>
-      </div>
+      <div class="stat"><div class="stat-num">5×</div><div class="stat-label" data-en="Sessions per Week" data-zh="每周课程次数">Sessions per Week</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-en="Live & Interactive" data-zh="全程在线互动">Live & Interactive</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label" data-en="Age Groups" data-zh="适合年龄段">Age Groups</div></div>
+      <div class="stat"><div class="stat-num" data-en="Native" data-zh="母语">Native</div><div class="stat-label" data-en="English Tutor" data-zh="英语教师">English Tutor</div></div>
     </div>
   </div>
 </section>
@@ -470,22 +241,17 @@
   <div class="about-grid">
     <div class="about-visual">🎓</div>
     <div class="about-text fade-up">
-      <span class="section-label">About Charlie</span>
-      <h2 class="section-title">Hi, I'm Charlie!<br>Your English Teacher</h2>
-      <p>
-        I'm a native English speaker passionate about helping Chinese students unlock their English potential. My classes are warm, structured, and — most importantly — <strong>fun</strong>.
-        <br><span class="cn">我是一位以英语为母语的老师，专注于帮助中国学生自信地学习英语。</span>
-      </p>
-      <p>
-        Whether your child is just starting out or preparing for exams, I tailor every lesson to their level and goals. Classes run Monday to Friday so students build a daily habit that really sticks.
-      </p>
+      <span class="section-label" data-en="About Charlie" data-zh="关于 Charlie">About Charlie</span>
+      <h2 class="section-title" data-en="Hi, I'm Charlie!<br>Your English Tutor" data-zh="你好，我是 Charlie！<br>你的英语辅导老师">Hi, I'm Charlie!<br>Your English Tutor</h2>
+      <p data-en="I'm a native English speaker passionate about helping Chinese students unlock their English potential. My sessions are warm, structured, and — most importantly — <strong>fun</strong>." data-zh="我是一位热爱教学的英语母语教师，致力于帮助中国学生发挥英语潜能。我的课程温暖、有条理，最重要的是——<strong>有趣</strong>！">I'm a native English speaker passionate about helping Chinese students unlock their English potential. My sessions are warm, structured, and — most importantly — <strong>fun</strong>.</p>
+      <p data-en="Whether your child is just starting out or preparing for exams, I tailor every lesson to their level and goals. Sessions run Monday to Friday so students build a daily habit that really sticks." data-zh="无论您的孩子是刚刚起步还是备考阶段，我都会根据他们的水平和目标定制每节课。课程从周一到周五每天进行，帮助学生养成良好的学习习惯。">Whether your child is just starting out or preparing for exams, I tailor every lesson to their level and goals. Sessions run Monday to Friday so students build a daily habit that really sticks.</p>
       <div class="about-chips">
-        <div class="chip">📚 Grammar & Writing</div>
-        <div class="chip">🗣️ Speaking Practice</div>
-        <div class="chip">🎧 Listening Skills</div>
-        <div class="chip">📖 Reading Comprehension</div>
-        <div class="chip">✍️ Exam Prep</div>
-        <div class="chip">🌍 Everyday English</div>
+        <div class="chip" data-en="📚 Grammar & Writing" data-zh="📚 语法与写作">📚 Grammar & Writing</div>
+        <div class="chip" data-en="🗣️ Speaking Practice" data-zh="🗣️ 口语练习">🗣️ Speaking Practice</div>
+        <div class="chip" data-en="🎧 Listening Skills" data-zh="🎧 听力训练">🎧 Listening Skills</div>
+        <div class="chip" data-en="📖 Reading Comprehension" data-zh="📖 阅读理解">📖 Reading Comprehension</div>
+        <div class="chip" data-en="✍️ Exam Prep" data-zh="✍️ 考试备考">✍️ Exam Prep</div>
+        <div class="chip" data-en="🌍 Everyday English" data-zh="🌍 日常英语">🌍 Everyday English</div>
       </div>
     </div>
   </div>
@@ -494,109 +260,97 @@
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="section-head fade-up">
-    <span class="section-label">How It Works</span>
-    <h2 class="section-title">Simple & Stress-Free</h2>
-    <p class="section-sub">From signing up to your first class — it only takes minutes to get started.</p>
+    <span class="section-label" data-en="How It Works" data-zh="如何开始">How It Works</span>
+    <h2 class="section-title" data-en="Simple & Stress-Free" data-zh="简单轻松，快速开始">Simple & Stress-Free</h2>
+    <p class="section-sub" data-en="From signing up to your first session — it only takes minutes to get started." data-zh="从报名到第一节课，只需几分钟即可开始。">From signing up to your first session — it only takes minutes to get started.</p>
   </div>
   <div class="steps">
     <div class="step fade-up">
       <div class="step-num">1</div>
-      <h3>Add Charlie on WeChat</h3>
-      <p>Send a message with your child's grade and current English level. I'll reply quickly to say hi and answer any questions.</p>
+      <h3 data-en="Add Charlie on WeChat" data-zh="微信添加 Charlie">Add Charlie on WeChat</h3>
+      <p data-en="Send a message with your child's grade and current English level. I'll reply quickly to say hi and answer any questions." data-zh="发消息告诉我孩子的年级和英语水平，我会尽快回复并解答您的问题。">Send a message with your child's grade and current English level. I'll reply quickly to say hi and answer any questions.</p>
     </div>
     <div class="step fade-up">
       <div class="step-num">2</div>
-      <h3>Choose Your Plan</h3>
-      <p>Pick between the Elementary or High School program. Classes run Monday–Friday in your local timezone, so routines are easy to build.</p>
+      <h3 data-en="Choose Your Plan" data-zh="选择课程方案">Choose Your Plan</h3>
+      <p data-en="Pick between the Elementary or High School program. Sessions run Monday–Friday in your local timezone, so routines are easy to build." data-zh="选择小学或高中课程，课程按您所在时区安排，周一至周五进行，轻松建立学习规律。">Pick between the Elementary or High School program. Sessions run Monday–Friday in your local timezone, so routines are easy to build.</p>
     </div>
     <div class="step fade-up">
       <div class="step-num">3</div>
-      <h3>Start Learning!</h3>
-      <p>Join live online classes, get personalised feedback, and watch your English improve week by week. It's that simple.</p>
+      <h3 data-en="Start Learning!" data-zh="开始学习！">Start Learning!</h3>
+      <p data-en="Join live sessions on Tencent Meeting, get personalised feedback, and watch your English improve week by week." data-zh="通过腾讯会议参加直播课程，获得个性化反馈，每周见证英语进步。">Join live sessions on Tencent Meeting, get personalised feedback, and watch your English improve week by week.</p>
     </div>
   </div>
 </section>
 
-<!-- COURSE PDF -->
-<section id="course" style="background: var(--white); padding: 80px 24px;">
+<!-- COURSE OUTLINE -->
+<section id="course">
   <div class="section-head fade-up">
-    <span class="section-label">Course Outline</span>
-    <h2 class="section-title">See What We Cover</h2>
-    <p class="section-sub">Download the full course guide to see topics, structure, and what your child will learn.</p>
+    <span class="section-label" data-en="Course Outline" data-zh="课程大纲">Course Outline</span>
+    <h2 class="section-title" data-en="See What We Cover" data-zh="了解课程内容">See What We Cover</h2>
+    <p class="section-sub" data-en="A structured program for both elementary and high school students, tailored to each child's level and goals." data-zh="专为中小学生设计的系统课程，根据每位学生的水平和目标量身定制。">A structured program for both elementary and high school students, tailored to each child's level and goals.</p>
   </div>
-  <div class="fade-up" style="max-width: 560px; margin: 0 auto; background: var(--off); border-radius: var(--radius); border: 2.5px dashed rgba(79,195,247,0.4); padding: 40px 36px; text-align: center;">
-    <div style="font-size: 3.5rem; margin-bottom: 16px;">📄</div>
-    <h3 style="font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 8px;">English with Charlie — Course Guide</h3>
-    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6;">
-      Full breakdown of lesson topics, learning goals, and what to expect each week.<br>
-      <span style="font-family: 'Noto Sans SC', sans-serif;">包含课程主题、学习目标和每周课程安排。</span>
-    </p>
-    <!-- Replace "course-guide.pdf" with your actual PDF filename when ready -->
-    <a href="course-guide.pdf" download
-       style="display: inline-flex; align-items: center; gap: 10px; background: var(--navy); color: white; padding: 14px 32px; border-radius: 999px; font-weight: 800; font-size: 0.95rem; text-decoration: none; box-shadow: 0 6px 20px rgba(26,43,74,0.2); transition: transform 0.15s, box-shadow 0.15s;"
-       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 28px rgba(26,43,74,0.28)'"
-       onmouseout="this.style.transform=''; this.style.boxShadow='0 6px 20px rgba(26,43,74,0.2)'">
-      ⬇ Download PDF
-    </a>
+  <div class="fade-up" style="max-width:560px;margin:0 auto;background:var(--off);border-radius:var(--radius);border:2.5px solid #E8EFF8;padding:40px 36px;text-align:center;">
+    <div style="font-size:3.5rem;margin-bottom:16px;">📋</div>
+    <h3 style="font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:8px;" data-en="ClearVoice Course Guide" data-zh="ClearVoice 课程指南">ClearVoice Course Guide</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:24px;line-height:1.6;" data-en="Topics, weekly structure, and learning goals for both the Elementary and High School programs." data-zh="涵盖小学和高中两个阶段的课程主题、每周安排与学习目标。">Topics, weekly structure, and learning goals for both the Elementary and High School programs.</p>
+    <a href="course-outline.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;padding:13px 28px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(26,43,74,.2);" data-en="View Course Outline →" data-zh="查看课程大纲 →">View Course Outline →</a>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="classes">
   <div class="section-head fade-up">
-    <span class="section-label">Pricing</span>
-    <h2 class="section-title">Clear, Simple Pricing</h2>
-    <p class="section-sub">5 live classes a week, Monday to Friday, scheduled in your timezone.</p>
+    <span class="section-label" data-en="Pricing" data-zh="价格">Pricing</span>
+    <h2 class="section-title" data-en="Clear, Simple Pricing" data-zh="透明简单的定价">Clear, Simple Pricing</h2>
+    <p class="section-sub" data-en="5 live sessions a week, Monday to Friday, scheduled in your timezone." data-zh="每周五节课，周一至周五，按您所在时区安排。">5 live sessions a week, Monday to Friday, scheduled in your timezone.</p>
   </div>
   <div class="tiers fade-up">
     <div class="tier">
       <div class="tier-icon">🎒</div>
-      <h3>Elementary</h3>
-      <div class="tier-cn">小学英语班 · Ages 6–12</div>
-      <div class="tier-price"><sub>¥</sub>100 <span>/ class</span></div>
+      <h3 data-en="Elementary" data-zh="小学英语班">Elementary</h3>
+      <div class="tier-price"><sub>¥</sub>100 <span data-en="/ session" data-zh="/ 节课">/ session</span></div>
       <ul class="tier-features">
-        <li>5 live classes per week (Mon–Fri)</li>
-        <li>Fun, story-based lessons</li>
-        <li>Grammar & vocabulary building</li>
-        <li>Reading & listening activities</li>
-        <li>Progress updates via WeChat</li>
+        <li data-en="5 live sessions per week (Mon–Fri)" data-zh="每周5节直播课（周一至周五）">5 live sessions per week (Mon–Fri)</li>
+        <li data-en="Fun, story-based lessons" data-zh="趣味故事式教学">Fun, story-based lessons</li>
+        <li data-en="Grammar & vocabulary building" data-zh="语法与词汇积累">Grammar & vocabulary building</li>
+        <li data-en="Reading & listening activities" data-zh="阅读与听力训练">Reading & listening activities</li>
+        <li data-en="Progress updates via WeChat" data-zh="微信发送学习进度反馈">Progress updates via WeChat</li>
       </ul>
-      <a href="#contact" class="tier-cta">Enquire Now</a>
+      <a href="#contact" class="tier-cta" data-en="Enquire Now" data-zh="立即咨询">Enquire Now</a>
     </div>
     <div class="tier featured">
-      <div class="tier-badge">Most Popular</div>
+      <div class="tier-badge" data-en="Most Popular" data-zh="最受欢迎">Most Popular</div>
       <div class="tier-icon">🏫</div>
-      <h3>High School</h3>
-      <div class="tier-cn">高中英语班 · Ages 13–18</div>
-      <div class="tier-price"><sub>¥</sub>100 <span>/ class</span></div>
+      <h3 data-en="High School" data-zh="高中英语班">High School</h3>
+      <div class="tier-price"><sub>¥</sub>100 <span data-en="/ session" data-zh="/ 节课">/ session</span></div>
       <ul class="tier-features">
-        <li>5 live classes per week (Mon–Fri)</li>
-        <li>Academic writing & essay skills</li>
-        <li>Exam preparation support</li>
-        <li>Speaking & debate practice</li>
-        <li>Progress updates via WeChat</li>
+        <li data-en="5 live sessions per week (Mon–Fri)" data-zh="每周5节直播课（周一至周五）">5 live sessions per week (Mon–Fri)</li>
+        <li data-en="Academic writing & essay skills" data-zh="学术写作与议论文技巧">Academic writing & essay skills</li>
+        <li data-en="Exam preparation support" data-zh="考试备考专项辅导">Exam preparation support</li>
+        <li data-en="Speaking & debate practice" data-zh="口语与辩论练习">Speaking & debate practice</li>
+        <li data-en="Progress updates via WeChat" data-zh="微信发送学习进度反馈">Progress updates via WeChat</li>
       </ul>
-      <a href="#contact" class="tier-cta">Enquire Now</a>
+      <a href="#contact" class="tier-cta" data-en="Enquire Now" data-zh="立即咨询">Enquire Now</a>
     </div>
   </div>
-
   <div class="discount-strip fade-up">
     <div class="discount-item">
-      <div class="d-label">Per Class</div>
+      <div class="d-label" data-en="Per Session" data-zh="单节课">Per Session</div>
       <div class="d-val">¥100</div>
-      <div class="d-desc">Drop-in rate</div>
+      <div class="d-desc" data-en="Drop-in rate" data-zh="随堂价格">Drop-in rate</div>
     </div>
     <div class="discount-sep"></div>
     <div class="discount-item">
-      <div class="d-label">Full Week Bundle</div>
+      <div class="d-label" data-en="Full Week Bundle" data-zh="整周套餐">Full Week Bundle</div>
       <div class="d-val">10% OFF</div>
-      <div class="d-desc">Sign up for a full week (5 classes)</div>
+      <div class="d-desc" data-en="Sign up for a full week (5 sessions)" data-zh="报名整周课程（5节）">Sign up for a full week (5 sessions)</div>
     </div>
     <div class="discount-sep"></div>
     <div class="discount-item">
-      <div class="d-label">Summer Package 🌞</div>
+      <div class="d-label" data-en="Summer Package 🌞" data-zh="暑假套餐 🌞">Summer Package 🌞</div>
       <div class="d-val">20% OFF</div>
-      <div class="d-desc">Sign up for the entire summer</div>
+      <div class="d-desc" data-en="Sign up for the entire summer" data-zh="报名整个暑假课程">Sign up for the entire summer</div>
     </div>
   </div>
 </section>
@@ -604,52 +358,25 @@
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="section-head fade-up">
-    <span class="section-label">Reviews</span>
-    <h2 class="section-title">What Students & Parents Say</h2>
-    <p class="section-sub">Hear from families who've seen the difference.</p>
+    <span class="section-label" data-en="Reviews" data-zh="家长评价">Reviews</span>
+    <h2 class="section-title" data-en="What Students & Parents Say" data-zh="学生与家长怎么说">What Students & Parents Say</h2>
+    <p class="section-sub" data-en="Hear from families who've seen the difference." data-zh="听听亲历变化的家庭怎么说。">Hear from families who've seen the difference.</p>
   </div>
   <div class="reviews-grid">
     <div class="review fade-up">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">
-        My daughter used to be so nervous speaking English. After just a month with Charlie, she's volunteering to answer questions in school. The daily classes really make a difference!
-        <span class="cn-text">我女儿以前很怕开口说英语，跟Charlie上了一个月课之后，已经主动在课堂上举手回答问题了！</span>
-      </p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#FFE8E8;">👩</div>
-        <div>
-          <div class="reviewer-name">Liu Fang</div>
-          <div class="reviewer-detail">Mother of Xiaomei, Grade 5 · Beijing</div>
-        </div>
-      </div>
+      <p class="review-text" data-en="My daughter used to be so nervous speaking English. After just a month with ClearVoice, she's volunteering to answer questions in school. The daily sessions really make a difference!" data-zh="我女儿以前很怕开口说英语，跟 ClearVoice 上了一个月课之后，已经主动在课堂上举手回答问题了！每天上课真的很有效果！">My daughter used to be so nervous speaking English. After just a month with ClearVoice, she's volunteering to answer questions in school. The daily sessions really make a difference!</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#FFE8E8">👩</div><div><div class="reviewer-name">Liu Fang</div><div class="reviewer-detail" data-en="Mother of Xiaomei, Grade 5 · Beijing" data-zh="晓梅的妈妈，五年级 · 北京">Mother of Xiaomei, Grade 5 · Beijing</div></div></div>
     </div>
     <div class="review fade-up">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">
-        Charlie is patient, encouraging, and makes grammar actually make sense. My son went from failing English tests to scoring in the top of his class. I can't recommend it enough.
-        <span class="cn-text">Charlie非常耐心，让我儿子从英语不及格变成了班级前几名，真心推荐！</span>
-      </p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#E3F8FF;">👨</div>
-        <div>
-          <div class="reviewer-name">Wang Hao</div>
-          <div class="reviewer-detail">Father of Mingze, Grade 9 · Shanghai</div>
-        </div>
-      </div>
+      <p class="review-text" data-en="The tutor is patient, encouraging, and makes grammar actually make sense. My son went from failing English tests to scoring in the top of his class." data-zh="老师非常耐心，讲解语法深入浅出。我儿子从英语不及格变成了班级前几名，真心推荐！">The tutor is patient, encouraging, and makes grammar actually make sense. My son went from failing English tests to scoring in the top of his class.</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#E3F8FF">👨</div><div><div class="reviewer-name">Wang Hao</div><div class="reviewer-detail" data-en="Father of Mingze, Grade 9 · Shanghai" data-zh="明泽的爸爸，九年级 · 上海">Father of Mingze, Grade 9 · Shanghai</div></div></div>
     </div>
     <div class="review fade-up">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">
-        The summer package was the best investment for my child's education. She had class every weekday, and by the end of summer her reading and writing improved so much. Great value!
-        <span class="cn-text">暑假套餐太值了！每天上课，孩子的阅读和写作进步非常明显，性价比超高。</span>
-      </p>
-      <div class="reviewer">
-        <div class="reviewer-avatar" style="background:#E2FBF2;">👩</div>
-        <div>
-          <div class="reviewer-name">Chen Li</div>
-          <div class="reviewer-detail">Mother of Yiyi, Grade 7 · Chengdu</div>
-        </div>
-      </div>
+      <p class="review-text" data-en="The summer package was the best investment for my child's education. Every weekday session, and by the end of summer her reading and writing improved so much. Great value!" data-zh="暑假套餐是我为孩子教育做的最值得的投资。每个工作日都有课，暑假结束时她的阅读和写作进步非常明显，性价比超高！">The summer package was the best investment for my child's education. Every weekday session, and by the end of summer her reading and writing improved so much. Great value!</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#E2FBF2">👩</div><div><div class="reviewer-name">Chen Li</div><div class="reviewer-detail" data-en="Mother of Yiyi, Grade 7 · Chengdu" data-zh="依依的妈妈，七年级 · 成都">Mother of Yiyi, Grade 7 · Chengdu</div></div></div>
     </div>
   </div>
 </section>
@@ -657,34 +384,34 @@
 <!-- FAQ -->
 <section id="faq">
   <div class="section-head fade-up">
-    <span class="section-label">FAQ</span>
-    <h2 class="section-title">Common Questions</h2>
-    <p class="section-sub">Everything parents want to know before enrolling.</p>
+    <span class="section-label" data-en="FAQ" data-zh="常见问题">FAQ</span>
+    <h2 class="section-title" data-en="Common Questions" data-zh="家长常见问题">Common Questions</h2>
+    <p class="section-sub" data-en="Everything parents want to know before enrolling." data-zh="报名前家长最想了解的问题。">Everything parents want to know before enrolling.</p>
   </div>
   <div class="faq-list fade-up">
     <div class="faq-item">
-      <button class="faq-q">What platform are the classes held on? <span class="faq-arrow">+</span></button>
-      <div class="faq-a">Classes are held online via <strong>Tencent Meeting (腾讯会议)</strong>. Once you contact me on WeChat, I'll send you the meeting link and help you get set up — it only takes a minute!</div>
+      <button class="faq-q"><span data-en="What platform are the sessions held on?" data-zh="课程在哪个平台上课？">What platform are the sessions held on?</span> <span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Sessions are held online via <strong>Tencent Meeting (腾讯会议)</strong>. Once you contact me on WeChat, I'll send you the meeting link and help you get set up — it only takes a minute!" data-zh="课程通过<strong>腾讯会议</strong>在线进行。添加微信后，我会发给您会议链接并协助安装，只需一分钟即可完成！">Sessions are held online via <strong>Tencent Meeting (腾讯会议)</strong>. Once you contact me on WeChat, I'll send you the meeting link and help you get set up — it only takes a minute!</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">What time are the classes? <span class="faq-arrow">+</span></button>
-      <div class="faq-a">Classes run Monday to Friday, scheduled in <strong>your child's local timezone</strong> so the times always work for your family. We'll agree on a consistent daily time when you sign up.</div>
+      <button class="faq-q"><span data-en="What time are the sessions?" data-zh="课程是什么时间上课？">What time are the sessions?</span> <span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Sessions run Monday to Friday, scheduled in <strong>your child's local timezone</strong> so the times always work for your family. We'll agree on a consistent daily time when you sign up." data-zh="课程周一至周五进行，按照<strong>您孩子所在时区</strong>安排，确保时间对您的家庭始终方便。报名时我们会协商好每天固定的上课时间。">Sessions run Monday to Friday, scheduled in <strong>your child's local timezone</strong> so the times always work for your family. We'll agree on a consistent daily time when you sign up.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">How do I pay? <span class="faq-arrow">+</span></button>
-      <div class="faq-a">Payment details will be discussed over WeChat. I accept common methods convenient for Chinese families. For weekly and summer packages, discounts are applied automatically.</div>
+      <button class="faq-q"><span data-en="How do I pay?" data-zh="如何付款？">How do I pay?</span> <span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Payment details will be discussed over WeChat. I accept common methods convenient for Chinese families. Discounts for weekly and summer packages are applied automatically." data-zh="付款方式将通过微信协商，支持中国家庭常用的支付方式。整周和暑假套餐的折扣会自动计算。">Payment details will be discussed over WeChat. I accept common methods convenient for Chinese families. Discounts for weekly and summer packages are applied automatically.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">What if my child misses a class? <span class="faq-arrow">+</span></button>
-      <div class="faq-a">Life happens! Please message me on WeChat as early as possible if your child can't attend. We'll do our best to reschedule or find a make-up arrangement.</div>
+      <button class="faq-q"><span data-en="What if my child misses a session?" data-zh="如果孩子缺课怎么办？">What if my child misses a session?</span> <span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Life happens! Please message me on WeChat as early as possible if your child can't attend. We'll do our best to reschedule or find a make-up arrangement." data-zh="生活难免有意外！如果孩子无法上课，请尽早通过微信告知我，我们会尽力安排补课。">Life happens! Please message me on WeChat as early as possible if your child can't attend. We'll do our best to reschedule or find a make-up arrangement.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">Are classes one-on-one or group? <span class="faq-arrow">+</span></button>
-      <div class="faq-a">Classes are kept small and focused so every student gets plenty of attention and speaking time. Contact me on WeChat to find out current availability and class sizes.</div>
+      <button class="faq-q"><span data-en="Are sessions one-on-one or group?" data-zh="课程是一对一还是小班制？">Are sessions one-on-one or group?</span> <span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Sessions are kept small and focused so every student gets plenty of attention and speaking time. Contact me on WeChat to find out current availability and class sizes." data-zh="课程保持小班规模，确保每位学生都能得到充分关注和开口练习机会。请通过微信联系我了解当前名额和班级人数。">Sessions are kept small and focused so every student gets plenty of attention and speaking time. Contact me on WeChat to find out current availability and class sizes.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q">What level does my child need to start? <span class="faq-arrow">+</span></button>
-      <div class="faq-a">All levels are welcome — from complete beginners to students preparing for advanced exams. I'll assess your child's level at the start and tailor lessons accordingly.</div>
+      <button class="faq-q"><span data-en="What level does my child need to start?" data-zh="孩子需要什么英语基础才能报名？">What level does my child need to start?</span> <span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="All levels are welcome — from complete beginners to students preparing for advanced exams. I'll assess your child's level at the start and tailor sessions accordingly." data-zh="欢迎所有水平的学生，从零基础到备考高级考试均可。开课前我会评估孩子的英语水平，并据此定制课程。">All levels are welcome — from complete beginners to students preparing for advanced exams. I'll assess your child's level at the start and tailor sessions accordingly.</div>
     </div>
   </div>
 </section>
@@ -693,26 +420,47 @@
 <section id="contact">
   <div class="contact-card fade-up">
     <div class="wechat-icon">💬</div>
-    <h3>Ready to Get Started?</h3>
-    <p>Add me on WeChat and send a quick message about your child's grade and English level. I'll get back to you within 24 hours!</p>
+    <h3 data-en="Ready to Get Started?" data-zh="准备好开始了吗？">Ready to Get Started?</h3>
+    <p data-en="Add me on WeChat and send a quick message about your child's grade and English level. I'll get back to you within 24 hours!" data-zh="添加我的微信，发一条简短消息告诉我孩子的年级和英语水平，我会在24小时内回复您！">Add me on WeChat and send a quick message about your child's grade and English level. I'll get back to you within 24 hours!</p>
     <div class="wechat-id" onclick="copyWechat(this)">
       <span>📱 WeChat ID: <strong>EnglishWithCharlie</strong></span>
-      <span class="copy-hint">tap to copy</span>
-    </div>
-    <div class="contact-note">
-      也可以直接发消息给我 — 我会用中文回复家长的问题！<br>
-      (Parents are welcome to message me in Chinese!)
+      <span class="copy-hint" data-en="tap to copy" data-zh="点击复制">tap to copy</span>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 <strong>English with Charlie</strong> · Online ESL Classes for Chinese Students · All rights reserved</p>
+  <p>© 2025 <strong>ClearVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p>
 </footer>
 
 <script>
-  // FAQ accordion
+  // ── LANGUAGE TOGGLE ──
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.classList.toggle('zh', lang === 'zh');
+
+    // update all toggle buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'EN' : '中文'));
+    });
+
+    // swap every element that has data-en / data-zh
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (!val) return;
+      // use innerHTML so <em>, <strong> etc. render
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.value = val;
+      } else {
+        el.innerHTML = val;
+      }
+    });
+  }
+
+  // ── FAQ ──
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
@@ -722,18 +470,19 @@
     });
   });
 
-  // Scroll fade-in
+  // ── SCROLL FADE ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // Copy WeChat ID
+  // ── COPY WECHAT ──
   function copyWechat(el) {
     navigator.clipboard.writeText('EnglishWithCharlie').then(() => {
       const hint = el.querySelector('.copy-hint');
-      hint.textContent = '✓ copied!';
-      setTimeout(() => hint.textContent = 'tap to copy', 2000);
+      hint.textContent = currentLang === 'zh' ? '✓ 已复制！' : '✓ copied!';
+      setTimeout(() => hint.setAttribute('data-' + currentLang, currentLang === 'zh' ? '点击复制' : 'tap to copy'), 2000);
+      setTimeout(() => { hint.textContent = hint.getAttribute('data-' + currentLang); }, 2000);
     });
   }
 </script>
