@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Outline | ClearVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sun: #FFD23F; --coral: #FF6B6B; --sky: #4FC3F7; --mint: #43D9A2;
+      --navy: #1A2B4A; --navy-soft: #2C3F63; --white: #FFFFFF;
+      --off: #F7F9FC; --muted: #7A8BAA; --radius: 20px; --radius-sm: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 48px;
+      background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(255,210,63,0.2);
+    }
+    .nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--navy); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo .wordmark span { color: var(--sun); -webkit-text-stroke: 0.5px #c9a800; }
+    .logo-svg { width: 44px; height: 44px; }
+    .nav-back { background: var(--off); color: var(--navy); padding: 10px 22px; border-radius: 999px; font-weight: 800; font-size: 0.88rem; text-decoration: none; border: 2px solid #E8EFF8; transition: background 0.15s; }
+    .nav-back:hover { background: #E8F7FF; border-color: var(--sky); }
+    .nav-cta { background: var(--coral); color: white; padding: 10px 22px; border-radius: 999px; font-weight: 800; font-size: 0.88rem; text-decoration: none; box-shadow: 0 4px 14px rgba(255,107,107,0.35); }
+
+    /* HERO */
+    .page-hero {
+      background: linear-gradient(145deg, #E8F7FF 0%, #FFF8E1 60%, #FFE8E8 100%);
+      padding: 140px 24px 80px; text-align: center;
+    }
+    .page-hero .pill { display: inline-block; background: rgba(255,255,255,0.85); border: 2px solid var(--sun); border-radius: 999px; padding: 7px 20px; font-weight: 800; font-size: 0.82rem; color: var(--navy); margin-bottom: 20px; }
+    .page-hero h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 900; color: var(--navy); margin-bottom: 12px; }
+    .page-hero h1 span { color: var(--coral); }
+    .page-hero p { font-size: 1.05rem; color: var(--navy-soft); max-width: 560px; margin: 0 auto 8px; line-height: 1.7; }
+    .page-hero .cn { font-family: 'Noto Sans SC', sans-serif; font-size: 0.9rem; color: var(--muted); }
+
+    /* MAIN */
+    main { max-width: 900px; margin: 0 auto; padding: 64px 24px 96px; }
+
+    /* SECTION HEADERS */
+    .outline-section { margin-bottom: 52px; }
+    .outline-section-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px; padding-bottom: 16px;
+      border-bottom: 2.5px solid #E8EFF8;
+    }
+    .section-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .outline-section-header h2 { font-size: 1.35rem; font-weight: 900; color: var(--navy); }
+    .outline-section-header .cn-sub { font-family: 'Noto Sans SC', sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+
+    /* MODULE CARDS */
+    .modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .module {
+      background: var(--off); border-radius: var(--radius-sm);
+      padding: 24px 22px; border: 2px solid transparent;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .module:hover { border-color: var(--sky); transform: translateY(-2px); }
+    .module-week { font-size: 0.75rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .module h4 { font-size: 1rem; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+    .module ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .module ul li { font-size: 0.88rem; color: var(--navy-soft); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+    .module ul li::before { content: '·'; color: var(--coral); font-weight: 900; flex-shrink: 0; font-size: 1.1rem; line-height: 1.3; }
+
+    /* GOALS */
+    .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .goal-card { background: var(--off); border-radius: var(--radius-sm); padding: 22px 18px; text-align: center; }
+    .goal-card .goal-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .goal-card h4 { font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .goal-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* NOTE */
+    .outline-note {
+      background: linear-gradient(120deg, #FFF8E1, #E8F7FF);
+      border-radius: var(--radius-sm); border: 2px dashed var(--sun);
+      padding: 24px 28px; margin-top: 48px; text-align: center;
+    }
+    .outline-note p { font-size: 0.92rem; color: var(--navy-soft); line-height: 1.7; }
+    .outline-note .cn { font-family: 'Noto Sans SC', sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+    .outline-note a { color: var(--coral); font-weight: 800; text-decoration: none; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.45); text-align: center; padding: 28px 24px; font-size: 0.82rem; font-weight: 600; }
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 700px) {
+      nav { padding: 12px 16px; }
+      .modules { grid-template-columns: 1fr; }
+      .goals-grid { grid-template-columns: 1fr 1fr; }
+      .pdf-banner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="22" fill="#FFD23F"/>
+      <path d="M22 6 L25.5 18.5 L38 22 L25.5 25.5 L22 38 L18.5 25.5 L6 22 L18.5 18.5 Z" fill="#1A2B4A"/>
+    </svg>
+    <div class="wordmark">Clear<span>Voice</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+  <a href="index.html#contact" class="nav-cta">Add on WeChat 💬</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="pill">📋 Course Outline</div>
+  <h1>What You'll <span>Learn</span></h1>
+  <p>A structured, week-by-week breakdown of topics covered in ClearVoice tutoring sessions.</p>
+  <p class="cn">每周课程安排与学习内容详解</p>
+</div>
+
+<main>
+
+  <!-- LEARNING GOALS -->
+  <div class="outline-section">
+    <div class="outline-section-header">
+      <div class="section-icon" style="background:#E3F8FF;">🎯</div>
+      <div>
+        <h2>Learning Goals</h2>
+        <div class="cn-sub">学习目标</div>
+      </div>
+    </div>
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-icon">🗣️</div>
+        <h4>Confident Speaking</h4>
+        <p>Express ideas clearly in everyday and academic English</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">✍️</div>
+        <h4>Strong Writing</h4>
+        <p>Write well-structured sentences, paragraphs, and essays</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">📖</div>
+        <h4>Reading Fluency</h4>
+        <p>Understand and analyse a wide range of English texts</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">🎧</div>
+        <h4>Listening Skills</h4>
+        <p>Comprehend native-speed speech and varied accents</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">📚</div>
+        <h4>Grammar Mastery</h4>
+        <p>Build a solid foundation of English grammar rules</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">🌍</div>
+        <h4>Cultural Context</h4>
+        <p>Understand natural English in real-world situations</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ELEMENTARY -->
+  <div class="outline-section">
+    <div class="outline-section-header">
+      <div class="section-icon" style="background:#FFE8E8;">🎒</div>
+      <div>
+        <h2>Elementary Program</h2>
+        <div class="cn-sub">小学英语班 · Ages 6–12</div>
+      </div>
+    </div>
+    <div class="modules">
+      <div class="module">
+        <div class="module-week">Weeks 1–2</div>
+        <h4>Foundations & Greetings</h4>
+        <ul>
+          <li>Alphabet, phonics, and basic sounds</li>
+          <li>Introductions and everyday greetings</li>
+          <li>Numbers, colours, and simple nouns</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 3–4</div>
+        <h4>My World — Family & Home</h4>
+        <ul>
+          <li>Family members and relationships</li>
+          <li>Describing where you live</li>
+          <li>Simple present tense practice</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 5–6</div>
+        <h4>School & Daily Routines</h4>
+        <ul>
+          <li>Classroom vocabulary and commands</li>
+          <li>Talking about school subjects</li>
+          <li>Time expressions and daily schedules</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 7–8</div>
+        <h4>Animals, Nature & the World</h4>
+        <ul>
+          <li>Animal names and habitats</li>
+          <li>Describing size, colour, and behaviour</li>
+          <li>Simple reading passages</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 9–10</div>
+        <h4>Food, Shopping & Places</h4>
+        <ul>
+          <li>Food vocabulary and mealtimes</li>
+          <li>Ordering and shopping dialogues</li>
+          <li>Asking for and giving directions</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 11–12</div>
+        <h4>Stories & Creative Writing</h4>
+        <ul>
+          <li>Reading and retelling short stories</li>
+          <li>Writing simple sentences and captions</li>
+          <li>Speaking confidence activities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH SCHOOL -->
+  <div class="outline-section">
+    <div class="outline-section-header">
+      <div class="section-icon" style="background:#E2FBF2;">🏫</div>
+      <div>
+        <h2>High School Program</h2>
+        <div class="cn-sub">高中英语班 · Ages 13–18</div>
+      </div>
+    </div>
+    <div class="modules">
+      <div class="module">
+        <div class="module-week">Weeks 1–2</div>
+        <h4>Grammar Deep Dive</h4>
+        <ul>
+          <li>Tenses: past, present, future, and perfect</li>
+          <li>Conditionals and modal verbs</li>
+          <li>Common grammar mistakes and how to fix them</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 3–4</div>
+        <h4>Academic Reading</h4>
+        <ul>
+          <li>Skimming, scanning, and close reading</li>
+          <li>Identifying main ideas and supporting details</li>
+          <li>Vocabulary in context strategies</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 5–6</div>
+        <h4>Essay Writing Skills</h4>
+        <ul>
+          <li>Paragraph structure: topic, evidence, analysis</li>
+          <li>Opinion, argumentative, and descriptive essays</li>
+          <li>Introduction and conclusion techniques</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 7–8</div>
+        <h4>Speaking & Debate</h4>
+        <ul>
+          <li>Presenting ideas clearly and confidently</li>
+          <li>Discussion strategies and turn-taking</li>
+          <li>Mock debate and opinion exercises</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 9–10</div>
+        <h4>Listening & Comprehension</h4>
+        <ul>
+          <li>Note-taking from spoken English</li>
+          <li>Accent awareness and natural speech patterns</li>
+          <li>Podcast and video-based exercises</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-week">Weeks 11–12</div>
+        <h4>Exam Preparation</h4>
+        <ul>
+          <li>Practice papers and timed exercises</li>
+          <li>Common exam question types</li>
+          <li>Review, feedback, and personalised study plan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="outline-note">
+    <p>This is a sample outline. Every student's program is tailored to their level and goals. <a href="index.html#contact">Get in touch on WeChat</a> to discuss what's right for your child.</p>
+    <p class="cn">以上为示范课程大纲，实际课程将根据学生水平和学习目标个性化调整。</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 <strong>ClearVoice</strong> · English Tutoring for Chinese Students · All rights reserved</p>
+</footer>
+
+</body>
+</html>
