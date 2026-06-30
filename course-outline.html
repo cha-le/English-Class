@@ -1,316 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Course Outline | ClearVoice English Tutoring</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Outline | CAVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --sun: #FFD23F; --coral: #FF6B6B; --sky: #4FC3F7; --mint: #43D9A2;
-      --navy: #1A2B4A; --navy-soft: #2C3F63; --white: #FFFFFF;
-      --off: #F7F9FC; --muted: #7A8BAA; --radius: 20px; --radius-sm: 12px;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Nunito', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--sun:#FFD23F;--coral:#FF6B6B;--sky:#4FC3F7;--mint:#43D9A2;--navy:#1A2B4A;--navy-soft:#2C3F63;--white:#FFFFFF;--off:#F7F9FC;--muted:#7A8BAA;--radius:20px;--radius-sm:12px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+    body.zh{font-family:'Noto Sans SC',sans-serif}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 48px;
-      background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
-      border-bottom: 2px solid rgba(255,210,63,0.2);
-    }
-    .nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--navy); display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo .wordmark span { color: var(--sun); -webkit-text-stroke: 0.5px #c9a800; }
-    .logo-svg { width: 44px; height: 44px; }
-    .nav-back { background: var(--off); color: var(--navy); padding: 10px 22px; border-radius: 999px; font-weight: 800; font-size: 0.88rem; text-decoration: none; border: 2px solid #E8EFF8; transition: background 0.15s; }
-    .nav-back:hover { background: #E8F7FF; border-color: var(--sky); }
-    .nav-cta { background: var(--coral); color: white; padding: 10px 22px; border-radius: 999px; font-weight: 800; font-size: 0.88rem; text-decoration: none; box-shadow: 0 4px 14px rgba(255,107,107,0.35); }
+    .lang-toggle{display:flex;align-items:center;background:var(--off);border-radius:999px;border:2px solid #E8EFF8;padding:4px;gap:2px}
+    .lang-btn{padding:6px 16px;border-radius:999px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;background:none;color:var(--muted);transition:all .18s}
+    .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
 
-    /* HERO */
-    .page-hero {
-      background: linear-gradient(145deg, #E8F7FF 0%, #FFF8E1 60%, #FFE8E8 100%);
-      padding: 140px 24px 80px; text-align: center;
-    }
-    .page-hero .pill { display: inline-block; background: rgba(255,255,255,0.85); border: 2px solid var(--sun); border-radius: 999px; padding: 7px 20px; font-weight: 800; font-size: 0.82rem; color: var(--navy); margin-bottom: 20px; }
-    .page-hero h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 900; color: var(--navy); margin-bottom: 12px; }
-    .page-hero h1 span { color: var(--coral); }
-    .page-hero p { font-size: 1.05rem; color: var(--navy-soft); max-width: 560px; margin: 0 auto 8px; line-height: 1.7; }
-    .page-hero .cn { font-family: 'Noto Sans SC', sans-serif; font-size: 0.9rem; color: var(--muted); }
+    .logo-svg{width:44px;height:44px;flex-shrink:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo .wordmark{color:var(--sun);font-weight:900} .nav-logo .wordmark .ca{color:var(--navy);-webkit-text-stroke:0}
+    .nav-left{display:flex;align-items:center;gap:32px}
+    .nav-links{display:flex;gap:24px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s}
+    .nav-links a:hover,.nav-links a.current{color:var(--coral)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35)}
 
-    /* MAIN */
-    main { max-width: 900px; margin: 0 auto; padding: 64px 24px 96px; }
+    .page-hero{background:linear-gradient(145deg,#E8F7FF 0%,#FFF8E1 60%,#FFE8E8 100%);padding:140px 24px 80px;text-align:center}
+    .page-hero .pill{display:inline-block;background:rgba(255,255,255,.85);border:2px solid var(--sun);border-radius:999px;padding:7px 20px;font-weight:800;font-size:.82rem;color:var(--navy);margin-bottom:20px}
+    .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--navy);margin-bottom:12px}
+    .page-hero h1 span{color:var(--coral)}
+    .page-hero p{font-size:1.05rem;color:var(--navy-soft);max-width:600px;margin:0 auto 8px;line-height:1.7}
 
-    /* SECTION HEADERS */
-    .outline-section { margin-bottom: 52px; }
-    .outline-section-header {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 24px; padding-bottom: 16px;
-      border-bottom: 2.5px solid #E8EFF8;
-    }
-    .section-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-    .outline-section-header h2 { font-size: 1.35rem; font-weight: 900; color: var(--navy); }
-    .outline-section-header .cn-sub { font-family: 'Noto Sans SC', sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+    main{max-width:960px;margin:0 auto;padding:64px 24px 96px}
 
-    /* MODULE CARDS */
-    .modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .module {
-      background: var(--off); border-radius: var(--radius-sm);
-      padding: 24px 22px; border: 2px solid transparent;
-      transition: border-color 0.2s, transform 0.15s;
-    }
-    .module:hover { border-color: var(--sky); transform: translateY(-2px); }
-    .module-week { font-size: 0.75rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-    .module h4 { font-size: 1rem; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
-    .module ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .module ul li { font-size: 0.88rem; color: var(--navy-soft); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
-    .module ul li::before { content: '·'; color: var(--coral); font-weight: 900; flex-shrink: 0; font-size: 1.1rem; line-height: 1.3; }
+    /* TAB SWITCHER */
+    .tab-bar{display:flex;gap:8px;background:var(--off);border-radius:999px;padding:6px;max-width:420px;margin:0 auto 56px;border:2px solid #E8EFF8}
+    .tab-btn{flex:1;padding:12px 0;border-radius:999px;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:.9rem;background:none;color:var(--muted);transition:all .2s}
+    .tab-btn.active{background:var(--navy);color:white;box-shadow:0 4px 14px rgba(26,43,74,.2)}
 
-    /* GOALS */
-    .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .goal-card { background: var(--off); border-radius: var(--radius-sm); padding: 22px 18px; text-align: center; }
-    .goal-card .goal-icon { font-size: 1.8rem; margin-bottom: 10px; }
-    .goal-card h4 { font-size: 0.92rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-    .goal-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+
+    /* STRUCTURE STRIP */
+    .structure-strip{background:var(--navy);border-radius:var(--radius);padding:28px 36px;display:flex;gap:32px;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:48px}
+    .s-item{text-align:center;color:white}
+    .s-num{font-size:1.8rem;font-weight:900;color:var(--sun)}
+    .s-label{font-size:.8rem;color:rgba(255,255,255,.6);font-weight:700;margin-top:2px}
+    .s-sep{width:1px;height:40px;background:rgba(255,255,255,.15)}
+
+    /* LESSON FLOW */
+    .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+    .flow-card{background:var(--off);border-radius:var(--radius-sm);padding:20px 16px;text-align:center;border-top:3px solid var(--sky)}
+    .flow-card:nth-child(1){border-color:#FF6B6B}
+    .flow-card:nth-child(2){border-color:#4FC3F7}
+    .flow-card:nth-child(3){border-color:#43D9A2}
+    .flow-card:nth-child(4){border-color:#FFD23F}
+    .flow-time{font-size:.75rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+    .flow-name{font-size:.95rem;font-weight:900;color:var(--navy);margin-bottom:6px}
+    .flow-desc{font-size:.8rem;color:var(--muted);line-height:1.5}
+
+    /* MODULE */
+    .outline-section{margin-bottom:48px}
+    .module-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2.5px solid #E8EFF8}
+    .module-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+    .module-header h2{font-size:1.2rem;font-weight:900;color:var(--navy)}
+    .module-header .mod-sub{font-size:.8rem;color:var(--muted);margin-top:2px}
+    .lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .lesson{background:var(--off);border-radius:var(--radius-sm);padding:20px 20px;border:2px solid transparent;transition:border-color .2s,transform .15s}
+    .lesson:hover{border-color:var(--sky);transform:translateY(-2px)}
+    .lesson-num{font-size:.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+    .lesson h4{font-size:.95rem;font-weight:900;color:var(--navy);margin-bottom:7px}
+    .lesson p{font-size:.82rem;color:var(--muted);line-height:1.55}
 
     /* NOTE */
-    .outline-note {
-      background: linear-gradient(120deg, #FFF8E1, #E8F7FF);
-      border-radius: var(--radius-sm); border: 2px dashed var(--sun);
-      padding: 24px 28px; margin-top: 48px; text-align: center;
-    }
-    .outline-note p { font-size: 0.92rem; color: var(--navy-soft); line-height: 1.7; }
-    .outline-note .cn { font-family: 'Noto Sans SC', sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
-    .outline-note a { color: var(--coral); font-weight: 800; text-decoration: none; }
+    .outline-note{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:24px 28px;margin-top:48px;text-align:center}
+    .outline-note p{font-size:.92rem;color:var(--navy-soft);line-height:1.7}
+    .outline-note a{color:var(--coral);font-weight:800;text-decoration:none}
 
-    /* FOOTER */
-    footer { background: var(--navy); color: rgba(255,255,255,0.45); text-align: center; padding: 28px 24px; font-size: 0.82rem; font-weight: 600; }
-    footer strong { color: rgba(255,255,255,0.7); }
+    footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:28px 24px;font-size:.82rem;font-weight:600}
+    footer strong{color:rgba(255,255,255,.7)}
 
-    @media (max-width: 700px) {
-      nav { padding: 12px 16px; }
-      .modules { grid-template-columns: 1fr; }
-      .goals-grid { grid-template-columns: 1fr 1fr; }
-      .pdf-banner { flex-direction: column; }
+    .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:700px){
+      nav{padding:12px 16px}
+      .flow-grid{grid-template-columns:repeat(2,1fr)}
+      .lessons{grid-template-columns:1fr}
+      .structure-strip{gap:16px}
+      .s-sep{display:none}
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">
-    <svg class="logo-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="22" cy="22" r="22" fill="#FFD23F"/>
-      <path d="M22 6 L25.5 18.5 L38 22 L25.5 25.5 L22 38 L18.5 25.5 L6 22 L18.5 18.5 Z" fill="#1A2B4A"/>
-    </svg>
-    <div class="wordmark">Clear<span>Voice</span></div>
-  </a>
-  <a href="index.html" class="nav-back">← Back to Home</a>
-  <a href="index.html#contact" class="nav-cta">Add on WeChat 💬</a>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark"><span class="ca">CA</span>Voice</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="course-outline.html" class="current" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="reviews.html" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="index.html#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
 </nav>
 
-<!-- HERO -->
 <div class="page-hero">
-  <div class="pill">📋 Course Outline</div>
-  <h1>What You'll <span>Learn</span></h1>
-  <p>A structured, week-by-week breakdown of topics covered in ClearVoice tutoring sessions.</p>
-  <p class="cn">每周课程安排与学习内容详解</p>
+  <div class="pill" data-en="📋 Summer Camp Curriculum" data-zh="📋 暑期课程大纲">📋 Summer Camp Curriculum</div>
+  <h1 data-en="加拿大英语口语<br><span>夏令营</span>" data-zh="加拿大英语口语<br><span>夏令营</span>">加拿大英语口语<br><span>夏令营</span></h1>
+  <p data-en="20 lessons · 1 hour each · International classroom experience · English mindset upgrade" data-zh="20节课 · 每节1小时 · 国际化课堂体验 · 英语思维升级">20 lessons · 1 hour each · International classroom experience · English mindset upgrade</p>
 </div>
 
 <main>
 
-  <!-- LEARNING GOALS -->
-  <div class="outline-section">
-    <div class="outline-section-header">
-      <div class="section-icon" style="background:#E3F8FF;">🎯</div>
-      <div>
-        <h2>Learning Goals</h2>
-        <div class="cn-sub">学习目标</div>
-      </div>
-    </div>
-    <div class="goals-grid">
-      <div class="goal-card">
-        <div class="goal-icon">🗣️</div>
-        <h4>Confident Speaking</h4>
-        <p>Express ideas clearly in everyday and academic English</p>
-      </div>
-      <div class="goal-card">
-        <div class="goal-icon">✍️</div>
-        <h4>Strong Writing</h4>
-        <p>Write well-structured sentences, paragraphs, and essays</p>
-      </div>
-      <div class="goal-card">
-        <div class="goal-icon">📖</div>
-        <h4>Reading Fluency</h4>
-        <p>Understand and analyse a wide range of English texts</p>
-      </div>
-      <div class="goal-card">
-        <div class="goal-icon">🎧</div>
-        <h4>Listening Skills</h4>
-        <p>Comprehend native-speed speech and varied accents</p>
-      </div>
-      <div class="goal-card">
-        <div class="goal-icon">📚</div>
-        <h4>Grammar Mastery</h4>
-        <p>Build a solid foundation of English grammar rules</p>
-      </div>
-      <div class="goal-card">
-        <div class="goal-icon">🌍</div>
-        <h4>Cultural Context</h4>
-        <p>Understand natural English in real-world situations</p>
-      </div>
-    </div>
+  <!-- TAB SWITCHER -->
+  <div class="tab-bar fade-up">
+    <button class="tab-btn active" onclick="switchTab('beginner')" data-en-inner="🎒 Beginner (Ages 9–12)" data-zh-inner="🎒 基础班（9–12岁）">🎒 Beginner (Ages 9–12)</button>
+    <button class="tab-btn" onclick="switchTab('advanced')" data-en-inner="🏫 Advanced (Ages 13–16)" data-zh-inner="🏫 高阶班（13–16岁）">🏫 Advanced (Ages 13–16)</button>
   </div>
 
-  <!-- ELEMENTARY -->
-  <div class="outline-section">
-    <div class="outline-section-header">
-      <div class="section-icon" style="background:#FFE8E8;">🎒</div>
-      <div>
-        <h2>Elementary Program</h2>
-        <div class="cn-sub">小学英语班 · Ages 6–12</div>
-      </div>
-    </div>
-    <div class="modules">
-      <div class="module">
-        <div class="module-week">Weeks 1–2</div>
-        <h4>Foundations & Greetings</h4>
-        <ul>
-          <li>Alphabet, phonics, and basic sounds</li>
-          <li>Introductions and everyday greetings</li>
-          <li>Numbers, colours, and simple nouns</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 3–4</div>
-        <h4>My World — Family & Home</h4>
-        <ul>
-          <li>Family members and relationships</li>
-          <li>Describing where you live</li>
-          <li>Simple present tense practice</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 5–6</div>
-        <h4>School & Daily Routines</h4>
-        <ul>
-          <li>Classroom vocabulary and commands</li>
-          <li>Talking about school subjects</li>
-          <li>Time expressions and daily schedules</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 7–8</div>
-        <h4>Animals, Nature & the World</h4>
-        <ul>
-          <li>Animal names and habitats</li>
-          <li>Describing size, colour, and behaviour</li>
-          <li>Simple reading passages</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 9–10</div>
-        <h4>Food, Shopping & Places</h4>
-        <ul>
-          <li>Food vocabulary and mealtimes</li>
-          <li>Ordering and shopping dialogues</li>
-          <li>Asking for and giving directions</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 11–12</div>
-        <h4>Stories & Creative Writing</h4>
-        <ul>
-          <li>Reading and retelling short stories</li>
-          <li>Writing simple sentences and captions</li>
-          <li>Speaking confidence activities</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <!-- ══════════ BEGINNER ══════════ -->
+  <div id="tab-beginner" class="tab-content active">
 
-  <!-- HIGH SCHOOL -->
-  <div class="outline-section">
-    <div class="outline-section-header">
-      <div class="section-icon" style="background:#E2FBF2;">🏫</div>
-      <div>
-        <h2>High School Program</h2>
-        <div class="cn-sub">高中英语班 · Ages 13–18</div>
-      </div>
+    <div class="structure-strip fade-up">
+      <div class="s-item"><div class="s-num">20</div><div class="s-label" data-en="Total Lessons" data-zh="课程总节数">Total Lessons</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num">4</div><div class="s-label" data-en="Modules" data-zh="模块数">Modules</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num">60<span style="font-size:1rem">min</span></div><div class="s-label" data-en="Per Lesson" data-zh="每节课时长">Per Lesson</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num" style="font-size:1.1rem;padding-top:4px" data-en="Ages 9–12" data-zh="9–12岁">Ages 9–12</div><div class="s-label" data-en="Target Group" data-zh="适合年龄段">Target Group</div></div>
     </div>
-    <div class="modules">
-      <div class="module">
-        <div class="module-week">Weeks 1–2</div>
-        <h4>Grammar Deep Dive</h4>
-        <ul>
-          <li>Tenses: past, present, future, and perfect</li>
-          <li>Conditionals and modal verbs</li>
-          <li>Common grammar mistakes and how to fix them</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 3–4</div>
-        <h4>Academic Reading</h4>
-        <ul>
-          <li>Skimming, scanning, and close reading</li>
-          <li>Identifying main ideas and supporting details</li>
-          <li>Vocabulary in context strategies</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 5–6</div>
-        <h4>Essay Writing Skills</h4>
-        <ul>
-          <li>Paragraph structure: topic, evidence, analysis</li>
-          <li>Opinion, argumentative, and descriptive essays</li>
-          <li>Introduction and conclusion techniques</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 7–8</div>
-        <h4>Speaking & Debate</h4>
-        <ul>
-          <li>Presenting ideas clearly and confidently</li>
-          <li>Discussion strategies and turn-taking</li>
-          <li>Mock debate and opinion exercises</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 9–10</div>
-        <h4>Listening & Comprehension</h4>
-        <ul>
-          <li>Note-taking from spoken English</li>
-          <li>Accent awareness and natural speech patterns</li>
-          <li>Podcast and video-based exercises</li>
-        </ul>
-      </div>
-      <div class="module">
-        <div class="module-week">Weeks 11–12</div>
-        <h4>Exam Preparation</h4>
-        <ul>
-          <li>Practice papers and timed exercises</li>
-          <li>Common exam question types</li>
-          <li>Review, feedback, and personalised study plan</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
-  <!-- NOTE -->
-  <div class="outline-note">
-    <p>This is a sample outline. Every student's program is tailored to their level and goals. <a href="index.html#contact">Get in touch on WeChat</a> to discuss what's right for your child.</p>
-    <p class="cn">以上为示范课程大纲，实际课程将根据学生水平和学习目标个性化调整。</p>
+    <!-- LESSON FLOW -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E3F8FF">⏱️</div>
+        <div><h2 data-en="Each 60-Minute Lesson" data-zh="每节60分钟课程安排">Each 60-Minute Lesson</h2></div>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-card">
+          <div class="flow-time">5 min</div>
+          <div class="flow-name" data-en="Warm-up" data-zh="热身讨论">Warm-up</div>
+          <div class="flow-desc" data-en="Daily greeting & topic intro" data-zh="日常问候；引出今日主题">Daily greeting & topic intro</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-time">20 min</div>
+          <div class="flow-name" data-en="Action Part 1" data-zh="核心知识讲解">Action Part 1</div>
+          <div class="flow-desc" data-en="Key vocab, sentences & teacher demo" data-zh="重点词汇、句型与老师示范">Key vocab, sentences & teacher demo</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-time">15 min</div>
+          <div class="flow-name" data-en="Action Part 2" data-zh="学生探究">Action Part 2</div>
+          <div class="flow-desc" data-en="Pair work, group discussion & role play" data-zh="两人对话、小组讨论与角色扮演">Pair work, group discussion & role play</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-time">15 + 5 min</div>
+          <div class="flow-name" data-en="Present & Wrap-up" data-zh="展示与总结">Present & Wrap-up</div>
+          <div class="flow-desc" data-en="Student presentations, peer feedback & recap" data-zh="学生展示、互评与课程总结">Student presentations, peer feedback & recap</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#FFE8E8">💬</div>
+        <div><h2 data-en="Module 1 · Daily Speaking" data-zh="模块1 · 日常口语">Module 1 · Daily Speaking</div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 1</div><h4 data-en="Getting to Know Each Other" data-zh="互相了解">Getting to Know Each Other</h4><p data-en="Self-introductions, hobbies, and a Canadian-style Circle Time to meet classmates." data-zh="自我介绍、兴趣爱好，模拟加拿大班级首日Circle Time。">Self-introductions, hobbies, and a Canadian-style Circle Time to meet classmates.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 2</div><h4 data-en="My Canadian School Classroom" data-zh="走入加国课堂">My Canadian School Classroom</h4><p data-en="Canadian school daily schedule, polite classroom phrases, role-play: first day of school." data-zh="加拿大学校一日流程、课堂高频礼貌用语，角色扮演"第一天上学"。">Canadian school daily schedule, polite classroom phrases, role-play: first day of school.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 3</div><h4 data-en="Canadian School Life" data-zh="加拿大学校生活">Canadian School Life</h4><p data-en="School subjects, clubs, and activities in Canadian elementary schools." data-zh="加拿大小学的学校科目、校园社团和课外活动。">School subjects, clubs, and activities in Canadian elementary schools.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 4</div><h4 data-en="Daily Conversations & Small Talk" data-zh="日常对话和闲聊">Daily Conversations & Small Talk</h4><p data-en="Weather, weekend plans, and the Canadian Morning Meeting format." data-zh="天气、周末计划，模拟加拿大课堂Morning Meeting分享。">Weather, weekend plans, and the Canadian Morning Meeting format.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 5</div><h4 data-en="Exploring the Local Community" data-zh="探索当地社区">Exploring the Local Community</h4><p data-en="Role-play shopping at a Canadian supermarket and ordering at Tim Hortons." data-zh="模拟在加拿大超市购物及在Tim Hortons点餐的真实场景对话。">Role-play shopping at a Canadian supermarket and ordering at Tim Hortons.</p></div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E3F8FF">🏫</div>
+        <div><h2 data-en="Module 2 · Real Canadian Classroom" data-zh="模块2 · 真实加拿大课堂">Module 2 · Real Canadian Classroom</h2></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 6</div><h4 data-en="Show and Tell" data-zh="展示与讲述">Show and Tell</h4><p data-en="A classic Canadian activity: present an object and tell its story." data-zh="加拿大小学最经典的课堂活动：展示一件物品并讲述背后的故事。">A classic Canadian activity: present an object and tell its story.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 7</div><h4 data-en="How-to Speech" data-zh="教别人做一件事">How-to Speech</h4><p data-en="Learn to describe a process in English — e.g. how to make a sandwich or play a game." data-zh="学习如何用英语描述做一件事，例如：如何做三明治/玩游戏。">Learn to describe a process in English — e.g. how to make a sandwich or play a game.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 8</div><h4 data-en="Group Project Part 1 — Poster Design" data-zh="小组项目 Part 1 — 海报设计">Group Project Part 1 — Poster Design</h4><p data-en="Simulate a Canadian classroom project: design the first half of an English poster." data-zh="模拟加拿大课堂合作项目，完成英语海报第一部分。">Simulate a Canadian classroom project: design the first half of an English poster.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 9</div><h4 data-en="Group Project Part 2 — Finish the Poster" data-zh="小组项目 Part 2 — 完成海报">Group Project Part 2 — Finish the Poster</h4><p data-en="Complete the poster and prepare the presentation." data-zh="完成海报剩余部分并准备演讲展示。">Complete the poster and prepare the presentation.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 10</div><h4 data-en="Mini Presentation" data-zh="项目成果展示">Mini Presentation</h4><p data-en="Present the finished poster to the class — first public speaking experience!" data-zh="用英语展示完成的海报，初次体验公开演讲！">Present the finished poster to the class — first public speaking experience!</p></div>
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E2FBF2">🍁</div>
+        <div><h2 data-en="Module 3 · Canadian Culture" data-zh="模块3 · 加拿大文化">Module 3 · Canadian Culture</h2></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 11</div><h4 data-en="Canadian Holidays & Traditions" data-zh="加拿大传统节日">Canadian Holidays & Traditions</h4><p data-en="Christmas, Halloween, Thanksgiving — what they mean and how Canadians celebrate." data-zh="介绍圣诞节、万圣节、感恩节及其庆祝方式。">Christmas, Halloween, Thanksgiving — what they mean and how Canadians celebrate.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 12</div><h4 data-en="Canadian Animals" data-zh="加拿大动物">Canadian Animals</h4><p data-en="Moose, beaver, bear and other iconic Canadian wildlife." data-zh="驼鹿、海狸、熊等加拿大代表性动物。">Moose, beaver, bear and other iconic Canadian wildlife.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 13</div><h4 data-en="Canadian Food" data-zh="加拿大食物">Canadian Food</h4><p data-en="Poutine, maple syrup, pizza — the foods Canadians love most." data-zh="肉汁奶酪薯条、枫糖浆、披萨——加拿大人最爱的食物。">Poutine, maple syrup, pizza — the foods Canadians love most.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 14</div><h4 data-en="Sports in Canada" data-zh="在加拿大的体育活动">Sports in Canada</h4><p data-en="Hockey, skating, pickleball and Canadian sporting culture." data-zh="冰球、滑冰、匹克球及加拿大体育文化。">Hockey, skating, pickleball and Canadian sporting culture.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 15</div><h4 data-en="Canadian Spirit & Culture" data-zh="加拿大精神与文化">Canadian Spirit & Culture</h4><p data-en="Kindness, politeness, and the welcoming national spirit of Canada." data-zh="介绍加拿大人友好、礼貌、乐于助人的国民精神和文化。">Kindness, politeness, and the welcoming national spirit of Canada.</p></div>
+      </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#FFF3D0">🎤</div>
+        <div><h2 data-en="Module 4 · Public Speaking Basics" data-zh="模块4 · 演讲基础">Module 4 · Public Speaking Basics</h2></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 16</div><h4 data-en="How to Speak Clearly" data-zh="怎样清晰地表达">How to Speak Clearly</h4><p data-en="Pronunciation, intonation, and linking sounds for natural English speech." data-zh="发音、语调、连读技巧，打造自然流利的英语表达。">Pronunciation, intonation, and linking sounds for natural English speech.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 17</div><h4 data-en="Storytelling" data-zh="讲故事">Storytelling</h4><p data-en="How to tell an engaging story in English with a clear beginning, middle, and end." data-zh="学习如何用英语讲述一个有头有尾、引人入胜的故事。">How to tell an engaging story in English with a clear beginning, middle, and end.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 18</div><h4 data-en="Expressing Opinions" data-zh="表达自己的观点">Expressing Opinions</h4><p data-en="Phrases and strategies for sharing views clearly and confidently in English." data-zh="学习如何用英语精准表达自己的观点，自信说出自己的想法。">Phrases and strategies for sharing views clearly and confidently in English.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 19</div><h4 data-en="Presentation Skills" data-zh="演讲技巧">Presentation Skills</h4><p data-en="Eye contact, voice control, and body language — the three pillars of great presenting." data-zh="眼神交流、声音控制、肢体语言——优秀演讲的三大支柱。">Eye contact, voice control, and body language — the three pillars of great presenting.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 20</div><h4 data-en="Final Speech Showcase + Farewell" data-zh="最终演讲展示 + 告别">Final Speech Showcase + Farewell</h4><p data-en="2–3 minute individual speech, graduation celebration, and farewell." data-zh="2-3分钟个人演讲结业展示，课程结业庆典与告别。">2–3 minute individual speech, graduation celebration, and farewell.</p></div>
+      </div>
+    </div>
+
+  </div><!-- end beginner -->
+
+  <!-- ══════════ ADVANCED ══════════ -->
+  <div id="tab-advanced" class="tab-content">
+
+    <div class="structure-strip fade-up">
+      <div class="s-item"><div class="s-num">20</div><div class="s-label" data-en="Total Lessons" data-zh="课程总节数">Total Lessons</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num">4</div><div class="s-label" data-en="Modules" data-zh="模块数">Modules</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num">60<span style="font-size:1rem">min</span></div><div class="s-label" data-en="Per Lesson" data-zh="每节课时长">Per Lesson</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num" style="font-size:1.1rem;padding-top:4px" data-en="Ages 13–16" data-zh="13–16岁">Ages 13–16</div><div class="s-label" data-en="Target Group" data-zh="适合年龄段">Target Group</div></div>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#FFE8E8">🗣️</div>
+        <div><h2 data-en="Module 1 · Natural English Speaking" data-zh="模块1 · 自然英语表达">Module 1 · Natural English Speaking</h2></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 1</div><h4 data-en="Think in English" data-zh="用英语思考">Think in English</h4><p data-en="Break free from Chinese-translation thinking and learn to process ideas directly in English." data-zh="打破中文翻译式思维定式，学习直接用英文思考表达。">Break free from Chinese-translation thinking and learn to process ideas directly in English.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 2</div><h4 data-en="Sound More Natural" data-zh="听起来更自然">Sound More Natural</h4><p data-en="Linking, stress, intonation — the techniques that make English sound fluent and native." data-zh="连读、重音、语调——让英语听起来流利地道的技巧。">Linking, stress, intonation — the techniques that make English sound fluent and native.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 3</div><h4 data-en="Everyday Expressions" data-zh="日常表达">Everyday Expressions</h4><p data-en="Authentic slang and everyday phrases that Canadian teenagers actually use." data-zh="加拿大青少年实际使用的地道日常口语与流行表达。">Authentic slang and everyday phrases that Canadian teenagers actually use.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 4</div><h4 data-en="Small Talk Like Canadians" data-zh="像加拿大人一样聊天">Small Talk Like Canadians</h4><p data-en="Master the art of small talk to blend in naturally with local social circles." data-zh="掌握加拿大本地人的闲聊艺术，更快速融入本地社交圈。">Master the art of small talk to blend in naturally with local social circles.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 5</div><h4 data-en="Conversation Challenge" data-zh="对话挑战">Conversation Challenge</h4><p data-en="High-intensity impromptu speaking and real-time conversation drills." data-zh="高强度的即兴聊天与实战对话训练。">High-intensity impromptu speaking and real-time conversation drills.</p></div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E3F8FF">🏫</div>
+        <div><h2 data-en="Module 2 · Canadian Classroom Experience" data-zh="模块2 · 加拿大课堂体验">Module 2 · Canadian Classroom Experience</h2></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 6</div><h4 data-en="Informal Class Debate" data-zh="非正式课堂辩论">Informal Class Debate</h4><p data-en="Debate hot topics — homework, school uniforms — to spark expressive confidence." data-zh="就热门话题（家庭作业、校服等）进行非正式辩论，激发表达欲。">Debate hot topics — homework, school uniforms — to spark expressive confidence.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 7</div><h4 data-en="Critical Thinking" data-zh="批判性思维">Critical Thinking</h4><p data-en="Analyse complex problems from multiple angles and express views clearly in English." data-zh="学习如何运用英语思维多角度分析复杂问题并清晰表达观点。">Analyse complex problems from multiple angles and express views clearly in English.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 8</div><h4 data-en="Group Discussion" data-zh="小组讨论">Group Discussion</h4><p data-en="Simulate a Canadian classroom discussion on climate change or AI in human life." data-zh="模拟加拿大课堂小组讨论，主题：气候变化、人工智能与人类生活。">Simulate a Canadian classroom discussion on climate change or AI in human life.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 9</div><h4 data-en="Classroom Project — Build a City" data-zh="课堂项目 — 设计一座城市">Classroom Project — Build a City</h4><p data-en="Team collaboration to design and pitch a city project, Canadian classroom style." data-zh="模拟加拿大课堂团队合作，共同设计并展示一个城市建设项目。">Team collaboration to design and pitch a city project, Canadian classroom style.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 10</div><h4 data-en="Being a High School Teacher" data-zh="体验做高中老师">Being a High School Teacher</h4><p data-en="Role reversal: students become teachers, setting class rules, homework, and schedules." data-zh="角色互换，学生模拟扮演高中老师，制定班规、作业要求和学校作息。">Role reversal: students become teachers, setting class rules, homework, and schedules.</p></div>
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E2FBF2">🍁</div>
+        <div><h2 data-en="Module 3 · Canadian Culture & Student Life" data-zh="模块3 · 加拿大文化与学生生活">Module 3 · Canadian Culture & Student Life</h2></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 11</div><h4 data-en="High School Life in Canada" data-zh="加拿大的高中生活">High School Life in Canada</h4><p data-en="Real school life: course selection, clubs, volunteer hours, and extracurriculars." data-zh="真实校园生活分享：选课、社团、义工小时数等。">Real school life: course selection, clubs, volunteer hours, and extracurriculars.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 12</div><h4 data-en="Canadian High School Course Selection" data-zh="加拿大高中选课">Canadian High School Course Selection</h4><p data-en="Simulate meeting a Guidance Counsellor to plan your academic path: University vs. College." data-zh="模拟与升学顾问会面，规划学术路径（大学本科 vs 学院）。">Simulate meeting a Guidance Counsellor to plan your academic path: University vs. College.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 13</div><h4 data-en="Canadian Social Culture" data-zh="加拿大社交文化">Canadian Social Culture</h4><p data-en="Politeness, personal space, and respecting different opinions — the Canadian way." data-zh="礼貌、尊重个人空间、尊重不同观点——加拿大核心社交文化。">Politeness, personal space, and respecting different opinions — the Canadian way.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 14</div><h4 data-en="Diversity in Canada" data-zh="加拿大的多元文化">Diversity in Canada</h4><p data-en="Canada's multicultural policy, inclusivity, and social integration in depth." data-zh="深度了解加拿大的多元文化政策、包容性与社会融合。">Canada's multicultural policy, inclusivity, and social integration in depth.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 15</div><h4 data-en="Green Canada — Environmental Debate" data-zh="绿色加拿大 — 环保辩论">Green Canada — Environmental Debate</h4><p data-en="Simulate a Toronto Town Hall: debate whether to ban plastic bags as mayor, activist, or business owner." data-zh="模拟多伦多市政会议：学生化身市长、环保主义者、企业主，辩论是否禁用塑料袋。">Simulate a Toronto Town Hall: debate whether to ban plastic bags as mayor, activist, or business owner.</p></div>
+      </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#FFF3D0">🎤</div>
+        <div><h2 data-en="Module 4 · Public Speaking & Leadership" data-zh="模块4 · 演讲与领导力">Module 4 · Public Speaking & Leadership</h2></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 16</div><h4 data-en="How Great Speakers Speak" data-zh="优秀演讲者如何演讲">How Great Speakers Speak</h4><p data-en="Study the logic and classic structures used by world-class public speakers." data-zh="学习和运用优秀公开演讲者的演讲逻辑与经典结构。">Study the logic and classic structures used by world-class public speakers.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 17</div><h4 data-en="Persuasive Speaking" data-zh="说服型演讲">Persuasive Speaking</h4><p data-en="Master Aristotle's three pillars: Logos (logic), Pathos (emotion), Ethos (credibility)." data-zh="掌握亚里士多德演讲三要素：Logos（逻辑）、Pathos（情感）、Ethos（信誉）。">Master Aristotle's three pillars: Logos (logic), Pathos (emotion), Ethos (credibility).</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 18</div><h4 data-en="Debate Rules & Etiquette" data-zh="辩论规则与礼仪">Debate Rules & Etiquette</h4><p data-en="Learn the formal rules and on-stage etiquette of English debate — prep for the final round." data-zh="学习英语正式辩论的规则与场上礼仪，为下节课实战做全方位准备。">Learn the formal rules and on-stage etiquette of English debate — prep for the final round.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 19</div><h4 data-en="Formal Debate" data-zh="正式辩论">Formal Debate</h4><p data-en="Team debate on a current hot topic — e.g. should social media be allowed in schools?" data-zh="用英语进行正式团队辩论，激辩当前热点话题，如：校园是否应允许社交媒体？">Team debate on a current hot topic — e.g. should social media be allowed in schools?</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 20</div><h4 data-en="Reflection, Evaluation & Closing" data-zh="课程反思、评估与未来规划">Reflection, Evaluation & Closing</h4><p data-en="Detailed rubric feedback, discussion of next steps for English learning or study abroad planning." data-zh="老师给出详尽Rubric评分反馈，讨论如何将所学延伸到未来英语学习或留学规划。">Detailed rubric feedback, discussion of next steps for English learning or study abroad planning.</p></div>
+      </div>
+    </div>
+
+  </div><!-- end advanced -->
+
+  <div class="outline-note fade-up">
+    <p data-en="Lesson topics may be adjusted to suit student needs and interests. <a href='index.html#contact'>Contact Charlie on WeChat</a> to discuss the right program for your child." data-zh="课程主题可根据学生需求和兴趣灵活调整。<a href='index.html#contact'>通过微信联系 Charlie</a>，了解适合您孩子的课程方案。">Lesson topics may be adjusted to suit student needs and interests. <a href='index.html#contact'>Contact Charlie on WeChat</a> to discuss the right program for your child.</p>
   </div>
 
 </main>
 
 <footer>
-  <p>© 2025 <strong>ClearVoice</strong> · English Tutoring for Chinese Students · All rights reserved</p>
+  <p>© 2025 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p>
 </footer>
 
+<script>
+  let currentLang = 'en';
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.classList.toggle('zh', lang === 'zh');
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'EN' : '中文'));
+    });
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (!val) return;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = val;
+      else el.innerHTML = val;
+    });
+    // update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      const key = lang === 'en' ? 'data-en-inner' : 'data-zh-inner';
+      const val = btn.getAttribute(key);
+      if (val) btn.textContent = val;
+    });
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing | CAVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--sun:#FFD23F;--coral:#FF6B6B;--sky:#4FC3F7;--mint:#43D9A2;--navy:#1A2B4A;--navy-soft:#2C3F63;--white:#FFFFFF;--off:#F7F9FC;--muted:#7A8BAA;--radius:20px;--radius-sm:12px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+    body.zh{font-family:'Noto Sans SC',sans-serif}
+    .lang-toggle{display:flex;align-items:center;background:var(--off);border-radius:999px;border:2px solid #E8EFF8;padding:4px;gap:2px}
+    .lang-btn{padding:6px 16px;border-radius:999px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;background:none;color:var(--muted);transition:all .18s}
+    .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
+    .logo-svg{width:44px;height:44px;flex-shrink:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
+    .nav-left{display:flex;align-items:center;gap:32px}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo .wordmark span{color:var(--sun);-webkit-text-stroke:0.5px #c9a800}
+    .nav-links{display:flex;gap:24px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s}
+    .nav-links a:hover,.nav-links a.current{color:var(--coral)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35);white-space:nowrap}
+    .page-hero{background:linear-gradient(145deg,#E8F7FF 0%,#FFF8E1 60%,#FFE8E8 100%);padding:140px 24px 80px;text-align:center}
+    .page-hero .pill{display:inline-block;background:rgba(255,255,255,.85);border:2px solid var(--sun);border-radius:999px;padding:7px 20px;font-weight:800;font-size:.82rem;color:var(--navy);margin-bottom:20px}
+    .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--navy);margin-bottom:12px}
+    .page-hero h1 span{color:var(--coral)}
+    .page-hero p{font-size:1.05rem;color:var(--navy-soft);max-width:600px;margin:0 auto;line-height:1.7}
+    main{max-width:900px;margin:0 auto;padding:64px 24px 96px}
+    .tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-bottom:36px}
+    .tier{background:var(--off);border-radius:var(--radius);padding:40px 36px;border:2.5px solid #E8EFF8;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+    .tier:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,43,74,.08)}
+    .tier.featured{background:white;border-color:var(--coral);box-shadow:0 12px 40px rgba(255,107,107,.18)}
+    .tier-badge{position:absolute;top:20px;right:20px;background:var(--coral);color:white;border-radius:999px;padding:4px 12px;font-size:.75rem;font-weight:800}
+    .tier-icon{font-size:2.4rem;margin-bottom:16px}
+    .tier h3{font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:20px}
+    .tier-price{font-size:2.4rem;font-weight:900;color:var(--navy)}
+    .tier-price sub{font-size:1rem;font-weight:700;vertical-align:middle}
+    .tier-price span{font-size:.9rem;font-weight:600;color:var(--muted)}
+    .tier-features{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:12px}
+    .tier-features li{display:flex;align-items:flex-start;gap:10px;font-size:.95rem;color:var(--navy-soft)}
+    .tier-features li::before{content:'✓';color:var(--mint);font-weight:900;flex-shrink:0}
+    .tier-cta{display:block;text-align:center;margin-top:32px;padding:13px 0;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;transition:all .15s}
+    .tier .tier-cta{background:white;color:var(--navy);border:2.5px solid #E8EFF8}
+    .tier .tier-cta:hover{border-color:var(--sky);background:#E8F7FF}
+    .tier.featured .tier-cta{background:var(--coral);color:white;border-color:var(--coral);box-shadow:0 6px 20px rgba(255,107,107,.35)}
+    .tier.featured .tier-cta:hover{box-shadow:0 10px 30px rgba(255,107,107,.5);transform:translateY(-2px)}
+    .discount-strip{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:28px 32px;display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:48px}
+    .discount-item{text-align:center}
+    .d-label{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+    .d-val{font-size:1.5rem;font-weight:900;color:var(--coral)}
+    .d-desc{font-size:.85rem;color:var(--navy-soft);font-weight:600}
+    .discount-sep{width:2px;height:56px;background:rgba(79,195,247,.25);border-radius:2px}
+    .detail-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:16px;border-bottom:2.5px solid #E8EFF8}
+    .detail-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+    .detail-header h2{font-size:1.25rem;font-weight:900;color:var(--navy)}
+    .faq-list{display:flex;flex-direction:column;gap:14px;margin-bottom:48px}
+    .faq-item{border:2.5px solid #E8EFF8;border-radius:var(--radius-sm);overflow:hidden}
+    .faq-q{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;font-family:inherit;font-size:.97rem;font-weight:800;color:var(--navy);text-align:left;transition:background .15s}
+    .faq-q:hover{background:var(--off)}
+    .faq-arrow{color:var(--coral);font-size:1.1rem;transition:transform .25s;flex-shrink:0}
+    .faq-item.open .faq-arrow{transform:rotate(45deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;font-size:.92rem;color:var(--muted);line-height:1.75;padding:0 26px}
+    .faq-item.open .faq-a{max-height:200px;padding:0 26px 20px}
+    .cta-box{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:36px 40px;text-align:center}
+    .cta-box h3{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:10px}
+    .cta-box p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .btn-primary{background:var(--coral);color:white;padding:14px 32px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(255,107,107,.35);display:inline-block}
+    footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:28px 24px;font-size:.82rem;font-weight:600}
+    footer strong{color:rgba(255,255,255,.7)}
+    .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:768px){nav{padding:14px 16px}.nav-links{display:none}.tiers{grid-template-columns:1fr}.discount-sep{display:none}}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark"><span class="ca">CA</span>Voice</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="pricing.html" class="current" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="reviews.html" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="index.html#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="pill" data-en="💰 Pricing" data-zh="💰 价格">💰 Pricing</div>
+  <h1 data-en="Clear, Simple <span>Pricing</span>" data-zh="透明简单的<span>定价</span>">Clear, Simple <span>Pricing</span></h1>
+  <p data-en="5 live sessions a week, Monday to Friday, scheduled in your timezone. No hidden fees." data-zh="每周五节课，周一至周五，按您所在时区安排。无隐藏收费。">5 live sessions a week, Monday to Friday, scheduled in your timezone. No hidden fees.</p>
+</div>
+
+<main>
+  <div class="tiers fade-up">
+    <div class="tier">
+      <div class="tier-icon">🎒</div>
+      <h3 data-en="Beginner Program" data-zh="基础班">Beginner Program</h3>
+      <div class="tier-price"><sub>¥</sub>100 <span data-en="/ session" data-zh="/ 节课">/ session</span></div>
+      <ul class="tier-features">
+        <li data-en="Ages 9–12 · foundational level" data-zh="适合 9–12 岁 · 基础水平">Ages 9–12 · foundational level</li>
+        <li data-en="Daily speaking & confidence building" data-zh="每日口语与自信心培养">Daily speaking & confidence building</li>
+        <li data-en="Canadian classroom experience" data-zh="加拿大课堂体验">Canadian classroom experience</li>
+        <li data-en="Culture, stories & group projects" data-zh="文化、故事与小组项目">Culture, stories & group projects</li>
+        <li data-en="Progress updates via WeChat" data-zh="微信发送学习进度反馈">Progress updates via WeChat</li>
+      </ul>
+      <a href="index.html#contact" class="tier-cta" data-en="Enquire Now" data-zh="立即咨询">Enquire Now</a>
+    </div>
+    <div class="tier featured">
+      <div class="tier-badge" data-en="Most Popular" data-zh="最受欢迎">Most Popular</div>
+      <div class="tier-icon">🏫</div>
+      <h3 data-en="Advanced Program" data-zh="高阶班">Advanced Program</h3>
+      <div class="tier-price"><sub>¥</sub>100 <span data-en="/ session" data-zh="/ 节课">/ session</span></div>
+      <ul class="tier-features">
+        <li data-en="Ages 13–16 · intermediate+ level" data-zh="适合 13–16 岁 · 中级以上水平">Ages 13–16 · intermediate+ level</li>
+        <li data-en="Natural expression & critical thinking" data-zh="地道表达与批判性思维">Natural expression & critical thinking</li>
+        <li data-en="Debate, discussion & leadership" data-zh="辩论、讨论与领导力培养">Debate, discussion & leadership</li>
+        <li data-en="North American classroom mindset" data-zh="北美课堂思维训练">North American classroom mindset</li>
+        <li data-en="Progress updates via WeChat" data-zh="微信发送学习进度反馈">Progress updates via WeChat</li>
+      </ul>
+      <a href="index.html#contact" class="tier-cta" data-en="Enquire Now" data-zh="立即咨询">Enquire Now</a>
+    </div>
+  </div>
+
+  <div class="discount-strip fade-up">
+    <div class="discount-item">
+      <div class="d-label" data-en="Per Session" data-zh="单节课">Per Session</div>
+      <div class="d-val">¥100</div>
+      <div class="d-desc" data-en="Drop-in rate" data-zh="随堂价格">Drop-in rate</div>
+    </div>
+    <div class="discount-sep"></div>
+    <div class="discount-item">
+      <div class="d-label" data-en="Full Week Bundle" data-zh="整周套餐">Full Week Bundle</div>
+      <div class="d-val">10% OFF</div>
+      <div class="d-desc" data-en="5 sessions, paid together" data-zh="5节课一起付款">5 sessions, paid together</div>
+    </div>
+    <div class="discount-sep"></div>
+    <div class="discount-item">
+      <div class="d-label" data-en="Summer Package 🌞" data-zh="暑假套餐 🌞">Summer Package 🌞</div>
+      <div class="d-val">20% OFF</div>
+      <div class="d-desc" data-en="Full summer enrolment" data-zh="报名整个暑假">Full summer enrolment</div>
+    </div>
+  </div>
+
+  <div class="detail-header fade-up">
+    <div class="detail-icon" style="background:#FFF3D0">❓</div>
+    <h2 data-en="Pricing Questions" data-zh="关于价格的常见问题">Pricing Questions</h2>
+  </div>
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <button class="faq-q"><span data-en="How do I pay?" data-zh="如何付款？">How do I pay?</span><span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Payment is arranged over WeChat and supports methods common in China. I'll share the details when you sign up." data-zh="通过微信协商付款，支持中国常用支付方式，报名时我会提供详情。">Payment is arranged over WeChat and supports methods common in China. I'll share the details when you sign up.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span data-en="When is payment due?" data-zh="什么时候需要付款？">When is payment due?</span><span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Payment is due before sessions begin. For weekly or summer packages, the full amount is paid upfront to secure the discount." data-zh="课程开始前需完成付款。整周或暑假套餐需一次性付清全款以享受折扣。">Payment is due before sessions begin. For weekly or summer packages, the full amount is paid upfront to secure the discount.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span data-en="What if I need to cancel?" data-zh="如果我需要取消怎么办？">What if I need to cancel?</span><span class="faq-arrow">+</span></button>
+      <div class="faq-a" data-en="Please message me on WeChat as soon as possible. I'll do my best to reschedule or arrange a credit for missed sessions." data-zh="请尽早通过微信告知我，我会尽力安排补课或积分抵扣。">Please message me on WeChat as soon as possible. I'll do my best to reschedule or arrange a credit for missed sessions.</div>
+    </div>
+  </div>
+
+  <div class="cta-box fade-up">
+    <h3 data-en="Ready to Enrol?" data-zh="准备报名了吗？">Ready to Enrol?</h3>
+    <p data-en="Add me on WeChat to get started. I'll help you pick the right plan and get your child booked in." data-zh="添加我的微信即可开始，我会帮您选择合适的方案并为孩子预约课程。">Add me on WeChat to get started. I'll help you pick the right plan and get your child booked in.</p>
+    <a href="index.html#contact" class="btn-primary" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</main>
+
+<footer><p>© 2026 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p></footer>
+
+<script>
+  let currentLang='en';
+  function setLang(lang){currentLang=lang;document.body.classList.toggle('zh',lang==='zh');document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(lang==='en'?'EN':'中文')));document.querySelectorAll('[data-en]').forEach(el=>{const v=el.getAttribute('data-'+lang);if(!v)return;if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')el.value=v;else el.innerHTML=v;})}
+  document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');});});
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

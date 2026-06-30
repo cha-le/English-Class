@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Charlie | CAVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--sun:#FFD23F;--coral:#FF6B6B;--sky:#4FC3F7;--mint:#43D9A2;--navy:#1A2B4A;--navy-soft:#2C3F63;--white:#FFFFFF;--off:#F7F9FC;--muted:#7A8BAA;--radius:20px;--radius-sm:12px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+    body.zh{font-family:'Noto Sans SC',sans-serif}
+
+    .lang-toggle{display:flex;align-items:center;background:var(--off);border-radius:999px;border:2px solid #E8EFF8;padding:4px;gap:2px}
+    .lang-btn{padding:6px 16px;border-radius:999px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;background:none;color:var(--muted);transition:all .18s}
+    .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
+
+    .logo-svg{width:44px;height:44px;flex-shrink:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo .wordmark{color:var(--sun);font-weight:900} .nav-logo .wordmark .ca{color:var(--navy);-webkit-text-stroke:0}
+    .nav-left{display:flex;align-items:center;gap:32px}
+    .nav-links{display:flex;gap:24px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s}
+    .nav-links a:hover,.nav-links a.current{color:var(--coral)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35)}
+
+    
+    .page-hero{background:linear-gradient(145deg,#E8F7FF 0%,#FFF8E1 60%,#FFE8E8 100%);padding:140px 24px 80px;text-align:center}
+    .page-hero .pill{display:inline-block;background:rgba(255,255,255,.85);border:2px solid var(--sun);border-radius:999px;padding:7px 20px;font-weight:800;font-size:.82rem;color:var(--navy);margin-bottom:20px}
+    .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--navy);margin-bottom:12px}
+    .page-hero h1 span{color:var(--coral)}
+    .page-hero p{font-size:1.05rem;color:var(--navy-soft);max-width:560px;margin:0 auto;line-height:1.7}
+
+    main{max-width:900px;margin:0 auto;padding:64px 24px 96px}
+
+    
+    .profile-card{background:var(--off);border-radius:var(--radius);padding:48px;display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;margin-bottom:56px;border:2.5px solid #E8EFF8}
+    .profile-avatar{width:200px;height:200px;border-radius:var(--radius);background:linear-gradient(135deg,#4FC3F7,#43D9A2);display:flex;align-items:center;justify-content:center;font-size:5.5rem;box-shadow:0 12px 40px rgba(79,195,247,.3);flex-shrink:0}
+    .profile-info h2{font-size:1.8rem;font-weight:900;color:var(--navy);margin-bottom:6px}
+    .profile-title{font-size:1rem;color:var(--coral);font-weight:800;margin-bottom:20px}
+    .profile-info p{font-size:.97rem;color:var(--navy-soft);line-height:1.8;margin-bottom:14px}
+    .profile-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+    .chip{background:white;border:2px solid var(--sky);border-radius:999px;padding:7px 16px;font-weight:700;font-size:.85rem;color:var(--navy-soft)}
+
+    
+    .about-section{margin-bottom:52px}
+    .about-section-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:16px;border-bottom:2.5px solid #E8EFF8}
+    .section-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+    .about-section-header h2{font-size:1.25rem;font-weight:900;color:var(--navy)}
+
+    
+    .approach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .approach-card{background:var(--off);border-radius:var(--radius-sm);padding:28px 24px;border:2px solid transparent;transition:border-color .2s,transform .15s}
+    .approach-card:hover{border-color:var(--sky);transform:translateY(-2px)}
+    .approach-card .a-icon{font-size:1.8rem;margin-bottom:12px}
+    .approach-card h4{font-size:1rem;font-weight:900;color:var(--navy);margin-bottom:8px}
+    .approach-card p{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+    
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:52px}
+    .stat-card{background:var(--off);border-radius:var(--radius-sm);padding:24px 16px;text-align:center}
+    .stat-card .s-num{font-size:2rem;font-weight:900;color:var(--navy);margin-bottom:4px}
+    .stat-card .s-label{font-size:.82rem;color:var(--muted);font-weight:700}
+
+    
+    .philosophy-block{background:var(--navy);border-radius:var(--radius);padding:44px 48px;color:white}
+    .philosophy-block h3{font-size:1.3rem;font-weight:900;margin-bottom:16px}
+    .philosophy-block p{font-size:.97rem;line-height:1.8;color:rgba(255,255,255,.75);margin-bottom:14px}
+    .philosophy-block p:last-child{margin-bottom:0}
+
+    
+    .about-cta{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:36px 40px;margin-top:48px;text-align:center}
+    .about-cta h3{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:10px}
+    .about-cta p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--coral);color:white;padding:14px 32px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(255,107,107,.35);transition:transform .15s}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-outline{background:white;color:var(--navy);padding:14px 32px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;border:2.5px solid var(--sky);transition:background .15s}
+    .btn-outline:hover{background:#E8F7FF}
+
+    footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:28px 24px;font-size:.82rem;font-weight:600}
+    footer strong{color:rgba(255,255,255,.7)}
+
+    .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:700px){
+      nav{padding:12px 16px}
+      .profile-card{grid-template-columns:1fr}
+      .profile-avatar{width:140px;height:140px;font-size:4rem}
+      .approach-grid{grid-template-columns:1fr}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .philosophy-block{padding:32px 24px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark"><span class="ca">CA</span>Voice</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html" class="current" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="reviews.html" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="index.html#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="pill" data-en="👨‍🏫 About the Teacher" data-zh="👨‍🏫 关于老师">👨‍🏫 About the Teacher</div>
+  <h1 data-en="Meet <span>Charlie</span>" data-zh="认识 <span>Charlie</span>">Meet <span>Charlie</span></h1>
+  <p data-en="Native English speaker, Canadian educator, and passionate language tutor." data-zh="英语母语教师，来自加拿大，热爱语言教育。">Native English speaker, Canadian educator, and passionate language tutor.</p>
+</div>
+
+<main>
+
+  
+  <div class="profile-card fade-up">
+    <img src="QRcode.jpg" alt="A descriptive summary of the image" width="200">
+    <div class="profile-info">
+      <h2 data-en="Charlie" data-zh="Charlie 老师">Charlie</h2>
+      <div class="profile-title" data-en="Native English Tutor · Canadian Educator" data-zh="英语母语教师 · 加拿大教育工作者">Native English Tutor · Canadian Educator</div>
+      <p data-en="Hi! I'm Charlie — a native English speaker from Canada with a genuine passion for helping young learners find their voice in English. I've designed this program to reflect the real Canadian classroom experience: interactive, student-centred, and genuinely fun." data-zh="你好！我是 Charlie，来自加拿大的英语母语教师。我热爱帮助年轻学生用英语找到自己的声音。我设计的课程真实还原加拿大课堂体验：互动式、以学生为中心，而且真的很有趣。">Hi! I'm Charlie — a native English speaker from Canada with a genuine passion for helping young learners find their voice in English. I've designed this program to reflect the real Canadian classroom experience: interactive, student-centred, and genuinely fun.</p>
+      <p data-en="I believe the best way to learn a language is to use it — every single lesson. That's why my classes are built around speaking, discussion, and real communication, not just textbook exercises." data-zh="我相信学语言最好的方式就是使用它——每一节课都是如此。所以我的课程围绕口语、讨论和真实交流构建，而不仅仅是教材练习。">I believe the best way to learn a language is to use it — every single lesson. That's why my classes are built around speaking, discussion, and real communication, not just textbook exercises.</p>
+      <div class="profile-chips">
+        <div class="chip" data-en="🇨🇦 From Canada" data-zh="🇨🇦 来自加拿大">🇨🇦 From Canada</div>
+        <div class="chip" data-en="🗣️ Native English Speaker" data-zh="🗣️ 英语母语者">🗣️ Native English Speaker</div>
+        <div class="chip" data-en="📚 ESL Specialist" data-zh="📚 英语教学专家">📚 ESL Specialist</div>
+        <div class="chip" data-en="🎓 Student-Centred Teaching" data-zh="🎓 以学生为中心">🎓 Student-Centred Teaching</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row fade-up">
+    <div class="stat-card">
+      <div class="s-num">20</div>
+      <div class="s-label" data-en="Lessons per Program" data-zh="每期课程节数">Lessons per Program</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">2</div>
+      <div class="s-label" data-en="Programs (Beginner & Advanced)" data-zh="课程类型（基础 & 高阶）">Programs (Beginner & Advanced)</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">4</div>
+      <div class="s-label" data-en="Core Modules per Program" data-zh="每期核心模块数">Core Modules per Program</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">100%</div>
+      <div class="s-label" data-en="Live & Interactive" data-zh="全程直播互动">Live & Interactive</div>
+    </div>
+  </div>
+
+  <!-- TEACHING APPROACH -->
+  <div class="about-section fade-up">
+    <div class="about-section-header">
+      <div class="section-icon" style="background:#E3F8FF">🎯</div>
+      <h2 data-en="Teaching Approach" data-zh="教学方式">Teaching Approach</h2>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="a-icon">🗣️</div>
+        <h4 data-en="Speaking-First" data-zh="口语优先">Speaking-First</h4>
+        <p data-en="Every lesson centres on getting students to actually speak. I model natural English, then immediately put it into practice through pair work, discussion, and presentations." data-zh="每节课的核心都是让学生真正开口说话。我示范地道英语后，立即通过两人对话、讨论和演讲将其付诸实践。">Every lesson centres on getting students to actually speak. I model natural English, then immediately put it into practice through pair work, discussion, and presentations.</p>
+      </div>
+      <div class="approach-card">
+        <div class="a-icon">🍁</div>
+        <h4 data-en="Canadian Classroom Style" data-zh="加拿大课堂模式">Canadian Classroom Style</h4>
+        <p data-en="My classes simulate a real Canadian school environment — collaborative, encouraging, and focused on critical thinking. Students experience what it's actually like to learn in North America." data-zh="我的课程模拟真实的加拿大学校环境——协作、鼓励、注重批判性思维。学生能真实体验北美学习氛围。">My classes simulate a real Canadian school environment — collaborative, encouraging, and focused on critical thinking. Students experience what it's actually like to learn in North America.</p>
+      </div>
+      <div class="approach-card">
+        <div class="a-icon">🔄</div>
+        <h4 data-en="Listen → Speak → Discuss → Present" data-zh="听 → 说 → 讨论 → 展示">Listen → Speak → Discuss → Present</h4>
+        <p data-en="Every session follows a proven cycle: warm-up, core instruction, group practice, and a final presentation. No passive listening — students are active every minute." data-zh="每节课遵循经过验证的循环：热身、核心讲解、小组练习、最终展示。没有被动听讲——学生每分钟都在积极参与。">Every session follows a proven cycle: warm-up, core instruction, group practice, and a final presentation. No passive listening — students are active every minute.</p>
+      </div>
+      <div class="approach-card">
+        <div class="a-icon">💬</div>
+        <h4 data-en="Personalised Feedback" data-zh="个性化反馈">Personalised Feedback</h4>
+        <p data-en="I give detailed, constructive feedback to every student after each session — and keep parents updated via WeChat so you always know how your child is progressing." data-zh="我在每节课后给每位学生提供详细、有建设性的反馈，并通过微信让家长随时了解孩子的学习进度。">I give detailed, constructive feedback to every student after each session — and keep parents updated via WeChat so you always know how your child is progressing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <div class="about-section fade-up">
+    <div class="about-section-header">
+      <div class="section-icon" style="background:#FFE8E8">💡</div>
+      <h2 data-en="My Teaching Philosophy" data-zh="我的教学理念">My Teaching Philosophy</h2>
+    </div>
+    <div class="philosophy-block">
+      <h3 data-en="Refuse rote learning. Embrace real communication." data-zh="拒绝死记硬背。拥抱真实交流。">Refuse rote learning. Embrace real communication.</h3>
+      <p data-en="Traditional English teaching in China often focuses on grammar rules, translation, and memorisation. My approach is different. I designed this program to feel like a Canadian classroom — where students are expected to think, share opinions, work in groups, and present ideas out loud." data-zh="中国传统英语教学往往侧重于语法规则、翻译和记忆。我的方式截然不同。我设计的课程就像加拿大课堂——学生要思考、分享观点、小组合作，并大声展示想法。">Traditional English teaching in China often focuses on grammar rules, translation, and memorisation. My approach is different. I designed this program to feel like a Canadian classroom — where students are expected to think, share opinions, work in groups, and present ideas out loud.</p>
+      <p data-en="The goal isn't just to pass an exam. It's to build the kind of English fluency and confidence that lasts — the ability to walk into any English-speaking room and hold your own." data-zh="目标不只是通过考试，而是建立持久的英语流利度和自信心——能够走进任何英语环境并自信应对。">The goal isn't just to pass an exam. It's to build the kind of English fluency and confidence that lasts — the ability to walk into any English-speaking room and hold your own.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta fade-up">
+    <h3 data-en="Want to Learn More?" data-zh="想了解更多？">Want to Learn More?</h3>
+    <p data-en="Browse the full curriculum or get in touch on WeChat — I'm happy to answer any questions about the program, teaching style, or how to get your child started." data-zh="浏览完整课程大纲，或通过微信联系我——我很乐意解答关于课程、教学方式或如何为孩子报名的任何问题。">Browse the full curriculum or get in touch on WeChat — I'm happy to answer any questions about the program, teaching style, or how to get your child started.</p>
+    <div class="cta-btns">
+      <a href="course-outline.html" class="btn-outline" data-en="View Curriculum →" data-zh="查看课程大纲 →">View Curriculum →</a>
+      <a href="index.html#contact" class="btn-primary" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p>
+</footer>
+
+<script>
+  let currentLang = 'en';
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.classList.toggle('zh', lang === 'zh');
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'EN' : '中文'));
+    });
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (!val) return;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = val;
+      else el.innerHTML = val;
+    });
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

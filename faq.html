@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ | CAVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--sun:#FFD23F;--coral:#FF6B6B;--sky:#4FC3F7;--mint:#43D9A2;--navy:#1A2B4A;--navy-soft:#2C3F63;--white:#FFFFFF;--off:#F7F9FC;--muted:#7A8BAA;--radius:20px;--radius-sm:12px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+    body.zh{font-family:'Noto Sans SC',sans-serif}
+    .lang-toggle{display:flex;align-items:center;background:var(--off);border-radius:999px;border:2px solid #E8EFF8;padding:4px;gap:2px}
+    .lang-btn{padding:6px 16px;border-radius:999px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;background:none;color:var(--muted);transition:all .18s}
+    .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
+    .logo-svg{width:44px;height:44px;flex-shrink:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
+    .nav-left{display:flex;align-items:center;gap:32px}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo .wordmark span{color:var(--sun);-webkit-text-stroke:0.5px #c9a800}
+    .nav-links{display:flex;gap:24px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s}
+    .nav-links a:hover,.nav-links a.current{color:var(--coral)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35);white-space:nowrap}
+    .page-hero{background:linear-gradient(145deg,#E8F7FF 0%,#FFF8E1 60%,#FFE8E8 100%);padding:140px 24px 80px;text-align:center}
+    .page-hero .pill{display:inline-block;background:rgba(255,255,255,.85);border:2px solid var(--sun);border-radius:999px;padding:7px 20px;font-weight:800;font-size:.82rem;color:var(--navy);margin-bottom:20px}
+    .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--navy);margin-bottom:12px}
+    .page-hero h1 span{color:var(--coral)}
+    .page-hero p{font-size:1.05rem;color:var(--navy-soft);max-width:600px;margin:0 auto;line-height:1.7}
+    main{max-width:780px;margin:0 auto;padding:64px 24px 96px}
+    .faq-group{margin-bottom:48px}
+    .group-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:2.5px solid #E8EFF8}
+    .group-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+    .group-header h2{font-size:1.1rem;font-weight:900;color:var(--navy)}
+    .faq-list{display:flex;flex-direction:column;gap:12px}
+    .faq-item{border:2.5px solid #E8EFF8;border-radius:var(--radius-sm);overflow:hidden}
+    .faq-q{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;font-family:inherit;font-size:.97rem;font-weight:800;color:var(--navy);text-align:left;transition:background .15s}
+    .faq-q:hover{background:var(--off)}
+    .faq-arrow{color:var(--coral);font-size:1.1rem;transition:transform .25s;flex-shrink:0}
+    .faq-item.open .faq-arrow{transform:rotate(45deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s;font-size:.93rem;color:var(--muted);line-height:1.75;padding:0 26px}
+    .faq-item.open .faq-a{max-height:300px;padding:0 26px 20px}
+    .cta-box{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:36px 40px;margin-top:16px;text-align:center}
+    .cta-box h3{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:10px}
+    .cta-box p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .btn-primary{background:var(--coral);color:white;padding:14px 32px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(255,107,107,.35);display:inline-block}
+    footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:28px 24px;font-size:.82rem;font-weight:600}
+    footer strong{color:rgba(255,255,255,.7)}
+    .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:768px){nav{padding:14px 16px}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark"><span class="ca">CA</span>Voice</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="reviews.html" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="faq.html" class="current" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="index.html#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="pill" data-en="❓ FAQ" data-zh="❓ 常见问题">❓ FAQ</div>
+  <h1 data-en="Common <span>Questions</span>" data-zh="家长<span>常见问题</span>">Common <span>Questions</span></h1>
+  <p data-en="Everything parents want to know before enrolling — answered clearly." data-zh="报名前家长最想了解的问题，一一为您解答。">Everything parents want to know before enrolling — answered clearly.</p>
+</div>
+
+<main>
+
+  <!-- CLASSES -->
+  <div class="faq-group fade-up">
+    <div class="group-header">
+      <div class="group-icon" style="background:#E3F8FF">🏫</div>
+      <h2 data-en="About the Classes" data-zh="关于课程">About the Classes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="What platform are sessions held on?" data-zh="课程在哪个平台上课？">What platform are sessions held on?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="All sessions are held live on <strong>Tencent Meeting (腾讯会议)</strong>. I'll send you a link via WeChat before every class. It only takes a minute to set up." data-zh="所有课程均通过<strong>腾讯会议</strong>进行。每节课前我会通过微信发送链接，设置只需一分钟。">All sessions are held live on <strong>Tencent Meeting (腾讯会议)</strong>. I'll send you a link via WeChat before every class. It only takes a minute to set up.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="What time are the sessions?" data-zh="课程是什么时间上课？">What time are the sessions?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Sessions run Monday to Friday and are scheduled in <strong>your child's local timezone</strong>. We'll agree on a fixed daily time when you sign up." data-zh="课程周一至周五进行，按照<strong>您孩子所在时区</strong>安排。报名时我们会协商好每天固定的上课时间。">Sessions run Monday to Friday and are scheduled in <strong>your child's local timezone</strong>. We'll agree on a fixed daily time when you sign up.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="Are sessions one-on-one or group?" data-zh="课程是一对一还是小班制？">Are sessions one-on-one or group?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Sessions are kept small so every student gets plenty of speaking time and personal attention. Message me on WeChat to ask about current class sizes." data-zh="课程保持小班规模，确保每位学生都能得到充分的开口练习机会和个人关注。请通过微信询问当前班级人数。">Sessions are kept small so every student gets plenty of speaking time and personal attention. Message me on WeChat to ask about current class sizes.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="How long is each session?" data-zh="每节课多长时间？">How long is each session?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Each session is 60 minutes, following the Warm-up → Core Lesson → Group Practice → Presentation structure used in Canadian classrooms." data-zh="每节课60分钟，遵循加拿大课堂的热身→核心讲解→小组练习→展示结构。">Each session is 60 minutes, following the Warm-up → Core Lesson → Group Practice → Presentation structure used in Canadian classrooms.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENROLMENT -->
+  <div class="faq-group fade-up">
+    <div class="group-header">
+      <div class="group-icon" style="background:#E2FBF2">📋</div>
+      <h2 data-en="Enrolment & Level" data-zh="报名与水平">Enrolment & Level</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="What level does my child need to start?" data-zh="孩子需要什么英语基础才能报名？">What level does my child need to start?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="The Beginner program suits ages 9–12 with foundational English. The Advanced program suits ages 13–16 with some speaking experience. I'll assess your child's level at the start and place them in the right class." data-zh="基础班适合 9–12 岁有初步英语基础的学生，高阶班适合 13–16 岁有一定口语经验的学生。开课前我会评估孩子的英语水平并分配合适的班级。">The Beginner program suits ages 9–12 with foundational English. The Advanced program suits ages 13–16 with some speaking experience. I'll assess your child's level at the start and place them in the right class.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="How do I sign up?" data-zh="如何报名？">How do I sign up?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Just add me on WeChat and send a message with your child's age, grade, and current English level. I'll reply quickly with next steps." data-zh="添加我的微信，发一条消息告诉我孩子的年龄、年级和英语水平，我会尽快回复并告知下一步。">Just add me on WeChat and send a message with your child's age, grade, and current English level. I'll reply quickly with next steps.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="Can I try a class first?" data-zh="可以先试听一节课吗？">Can I try a class first?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Please reach out on WeChat to ask about trial options. I'm happy to discuss what works best for your family before committing." data-zh="请通过微信联系我咨询试听事宜，我很乐意在正式报名前与您讨论最适合您家庭的方案。">Please reach out on WeChat to ask about trial options. I'm happy to discuss what works best for your family before committing.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENT -->
+  <div class="faq-group fade-up">
+    <div class="group-header">
+      <div class="group-icon" style="background:#FFE8E8">💰</div>
+      <h2 data-en="Payment & Pricing" data-zh="付款与价格">Payment & Pricing</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="How do I pay?" data-zh="如何付款？">How do I pay?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Payment details are arranged over WeChat and support methods common in China. I'll walk you through everything when you sign up." data-zh="通过微信协商付款方式，支持中国常用支付方式。报名时我会为您详细说明。">Payment details are arranged over WeChat and support methods common in China. I'll walk you through everything when you sign up.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="How do the discounts work?" data-zh="折扣是如何计算的？">How do the discounts work?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Book a full week (5 sessions) together and get 10% off. Book the entire summer and get 20% off. These are applied automatically — just mention which package you want when you message me." data-zh="报名整周（5节课）享9折优惠，报名整个暑假享8折优惠，折扣自动计算——发消息时告知我您想要哪个套餐即可。">Book a full week (5 sessions) together and get 10% off. Book the entire summer and get 20% off. These are applied automatically — just mention which package you want when you message me.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="What if my child misses a session?" data-zh="如果孩子缺课怎么办？">What if my child misses a session?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Life happens! Message me on WeChat as early as possible and we'll do our best to reschedule or arrange a make-up session." data-zh="生活难免有意外！请尽早通过微信告知我，我们会尽力重新安排或补课。">Life happens! Message me on WeChat as early as possible and we'll do our best to reschedule or arrange a make-up session.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARENTS -->
+  <div class="faq-group fade-up">
+    <div class="group-header">
+      <div class="group-icon" style="background:#FFF3D0">👨‍👩‍👧</div>
+      <h2 data-en="For Parents" data-zh="给家长">For Parents</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="Will I get updates on my child's progress?" data-zh="我会收到孩子学习进度的更新吗？">Will I get updates on my child's progress?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Yes! I send regular progress updates via WeChat so parents are always in the loop. You'll know exactly how your child is developing." data-zh="当然！我会定期通过微信发送学习进度更新，让家长随时掌握孩子的学习情况。">Yes! I send regular progress updates via WeChat so parents are always in the loop. You'll know exactly how your child is developing.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="Can I message you in Chinese?" data-zh="我可以用中文给您发消息吗？">Can I message you in Chinese?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Absolutely! Parents are very welcome to message me in Chinese. I'll make sure everything is clear and comfortable for your family." data-zh="当然可以！非常欢迎家长用中文联系我，我会确保沟通清晰、让您的家庭感到轻松自在。">Absolutely! Parents are very welcome to message me in Chinese. I'll make sure everything is clear and comfortable for your family.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-en="Is the teaching style different from Chinese schools?" data-zh="教学方式与中国学校有什么不同？">Is the teaching style different from Chinese schools?</span><span class="faq-arrow">+</span></button>
+        <div class="faq-a" data-en="Yes — deliberately so! My classes simulate a real Canadian classroom: student-centred, speaking-focused, and built around discussion and presentation rather than rote memorisation. Students learn to think and communicate in English, not just translate." data-zh="是的，有意为之！我的课程模拟真实的加拿大课堂：以学生为中心，注重口语，围绕讨论和展示而非死记硬背。学生学会用英语思考和交流，而不只是翻译。">Yes — deliberately so! My classes simulate a real Canadian classroom: student-centred, speaking-focused, and built around discussion and presentation rather than rote memorisation. Students learn to think and communicate in English, not just translate.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-box fade-up">
+    <h3 data-en="Still Have Questions?" data-zh="还有其他问题？">Still Have Questions?</h3>
+    <p data-en="Just add me on WeChat and ask — I'm happy to chat through anything before you commit." data-zh="直接添加我的微信提问——在正式报名前我很乐意为您解答任何疑问。">Just add me on WeChat and ask — I'm happy to chat through anything before you commit.</p>
+    <a href="index.html#contact" class="btn-primary" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+
+</main>
+
+<footer><p>© 2026 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p></footer>
+
+<script>
+  let currentLang='en';
+  function setLang(lang){currentLang=lang;document.body.classList.toggle('zh',lang==='zh');document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(lang==='en'?'EN':'中文')));document.querySelectorAll('[data-en]').forEach(el=>{const v=el.getAttribute('data-'+lang);if(!v)return;if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')el.value=v;else el.innerHTML=v;})}
+  document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');});});
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

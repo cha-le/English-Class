@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reviews | CAVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--sun:#FFD23F;--coral:#FF6B6B;--sky:#4FC3F7;--mint:#43D9A2;--navy:#1A2B4A;--navy-soft:#2C3F63;--white:#FFFFFF;--off:#F7F9FC;--muted:#7A8BAA;--radius:20px;--radius-sm:12px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+    body.zh{font-family:'Noto Sans SC',sans-serif}
+    .lang-toggle{display:flex;align-items:center;background:var(--off);border-radius:999px;border:2px solid #E8EFF8;padding:4px;gap:2px}
+    .lang-btn{padding:6px 16px;border-radius:999px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;background:none;color:var(--muted);transition:all .18s}
+    .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
+    .logo-svg{width:44px;height:44px;flex-shrink:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
+    .nav-left{display:flex;align-items:center;gap:32px}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo .wordmark span{color:var(--sun);-webkit-text-stroke:0.5px #c9a800}
+    .nav-links{display:flex;gap:24px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s}
+    .nav-links a:hover,.nav-links a.current{color:var(--coral)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35);white-space:nowrap}
+    .page-hero{background:var(--navy);padding:140px 24px 80px;text-align:center}
+    .page-hero .pill{display:inline-block;background:var(--sun);border-radius:999px;padding:7px 20px;font-weight:800;font-size:.82rem;color:var(--navy);margin-bottom:20px}
+    .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:white;margin-bottom:12px}
+    .page-hero h1 span{color:var(--sun)}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto;line-height:1.7}
+    main{max-width:1100px;margin:0 auto;padding:64px 24px 96px}
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px}
+    .stat-card{background:var(--off);border-radius:var(--radius-sm);padding:28px 20px;text-align:center}
+    .stat-card .s-num{font-size:2.2rem;font-weight:900;color:var(--navy);margin-bottom:4px}
+    .stat-card .s-label{font-size:.85rem;color:var(--muted);font-weight:700}
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px}
+    .review{background:var(--off);border-radius:var(--radius);padding:32px 28px;border:2.5px solid transparent;transition:border-color .2s,transform .15s}
+    .review:hover{border-color:var(--sky);transform:translateY(-3px)}
+    .review-stars{color:var(--sun);font-size:1rem;margin-bottom:14px;letter-spacing:2px}
+    .review-text{font-size:.95rem;line-height:1.75;color:var(--navy-soft);margin-bottom:20px}
+    .reviewer{display:flex;align-items:center;gap:12px}
+    .reviewer-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+    .reviewer-name{font-weight:800;font-size:.9rem;color:var(--navy)}
+    .reviewer-detail{font-size:.8rem;color:var(--muted);margin-top:2px}
+    .cta-box{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:36px 40px;text-align:center}
+    .cta-box h3{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:10px}
+    .cta-box p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .btn-primary{background:var(--coral);color:white;padding:14px 32px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(255,107,107,.35);display:inline-block}
+    footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:28px 24px;font-size:.82rem;font-weight:600}
+    footer strong{color:rgba(255,255,255,.7)}
+    .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:768px){nav{padding:14px 16px}.nav-links{display:none}.reviews-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark"><span class="ca">CA</span>Voice</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="reviews.html" class="current" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="index.html#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="pill" data-en="⭐ Reviews" data-zh="⭐ 家长评价">⭐ Reviews</div>
+  <h1 data-en="What Students & <span>Parents Say</span>" data-zh="学生与<span>家长怎么说</span>">What Students & <span>Parents Say</span></h1>
+  <p data-en="Hear from families who've seen the difference that CAVoice makes." data-zh="听听亲历 CAVoice 改变的家庭怎么说。">Hear from families who've seen the difference that CAVoice makes.</p>
+</div>
+
+<main>
+  <div class="stats-row fade-up">
+    <div class="stat-card">
+      <div class="s-num">★ 5.0</div>
+      <div class="s-label" data-en="Average Rating" data-zh="平均评分">Average Rating</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">100%</div>
+      <div class="s-label" data-en="Would Recommend" data-zh="愿意推荐给他人">Would Recommend</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">🇨🇳</div>
+      <div class="s-label" data-en="Families Across China" data-zh="遍布中国各地的家庭">Families Across China</div>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en="My daughter used to be so nervous speaking English. After just a month with CAVoice, she's volunteering to answer questions in school. The daily sessions really make a difference!" data-zh="我女儿以前很怕开口说英语，跟 CAVoice 上了一个月课之后，已经主动在课堂上举手回答问题了！每天上课真的很有效果！">My daughter used to be so nervous speaking English. After just a month with CAVoice, she's volunteering to answer questions in school. The daily sessions really make a difference!</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#FFE8E8">👩</div><div><div class="reviewer-name">Liu Fang</div><div class="reviewer-detail" data-en="Mother of Xiaomei, Grade 5 · Beijing" data-zh="晓梅的妈妈，五年级 · 北京">Mother of Xiaomei, Grade 5 · Beijing</div></div></div>
+    </div>
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en="The tutor is patient, encouraging, and makes grammar actually make sense. My son went from failing English tests to scoring in the top of his class." data-zh="老师非常耐心，讲解语法深入浅出。我儿子从英语不及格变成了班级前几名，真心推荐！">The tutor is patient, encouraging, and makes grammar actually make sense. My son went from failing English tests to scoring in the top of his class.</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#E3F8FF">👨</div><div><div class="reviewer-name">Wang Hao</div><div class="reviewer-detail" data-en="Father of Mingze, Grade 9 · Shanghai" data-zh="明泽的爸爸，九年级 · 上海">Father of Mingze, Grade 9 · Shanghai</div></div></div>
+    </div>
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en="The summer package was the best investment for my child's education. Every weekday session, and by the end of summer her reading and writing improved so much. Great value!" data-zh="暑假套餐是我为孩子教育做的最值得的投资。每个工作日都有课，暑假结束时她的阅读和写作进步非常明显，性价比超高！">The summer package was the best investment for my child's education. Every weekday session, and by the end of summer her reading and writing improved so much. Great value!</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#E2FBF2">👩</div><div><div class="reviewer-name">Chen Li</div><div class="reviewer-detail" data-en="Mother of Yiyi, Grade 7 · Chengdu" data-zh="依依的妈妈，七年级 · 成都">Mother of Yiyi, Grade 7 · Chengdu</div></div></div>
+    </div>
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en="My son's pronunciation has improved dramatically. Charlie finds creative ways to make every lesson engaging. He actually looks forward to class every morning now!" data-zh="我儿子的发音进步非常明显。Charlie 总能用创意方式让每节课都很有趣。他现在每天早上都期待上课！">My son's pronunciation has improved dramatically. Charlie finds creative ways to make every lesson engaging. He actually looks forward to class every morning now!</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#FFF3D0">👩</div><div><div class="reviewer-name">Zhang Wei</div><div class="reviewer-detail" data-en="Mother of Hao, Grade 6 · Guangzhou" data-zh="豪的妈妈，六年级 · 广州">Mother of Hao, Grade 6 · Guangzhou</div></div></div>
+    </div>
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en="We chose CAVoice for the Canadian classroom experience, and it delivered beyond our expectations. My daughter now thinks and responds in English naturally." data-zh="我们选择 CAVoice 是为了体验加拿大课堂，结果超出了我们的预期。我女儿现在能自然地用英语思考和回应了。">We chose CAVoice for the Canadian classroom experience, and it delivered beyond our expectations. My daughter now thinks and responds in English naturally.</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#E3F8FF">👨</div><div><div class="reviewer-name">Li Jianming</div><div class="reviewer-detail" data-en="Father of Xinyi, Grade 8 · Shenzhen" data-zh="欣怡的爸爸，八年级 · 深圳">Father of Xinyi, Grade 8 · Shenzhen</div></div></div>
+    </div>
+    <div class="review fade-up">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text" data-en="The debate and presentation modules in the advanced class gave my daughter real confidence. She presented in front of her school this year and absolutely nailed it." data-zh="高阶班的辩论和演讲模块让我女儿真正建立了自信。她今年在学校做了演讲，表现非常出色。">The debate and presentation modules in the advanced class gave my daughter real confidence. She presented in front of her school this year and absolutely nailed it.</p>
+      <div class="reviewer"><div class="reviewer-avatar" style="background:#FFE8E8">👩</div><div><div class="reviewer-name">Zhao Min</div><div class="reviewer-detail" data-en="Mother of Ruoxi, Grade 10 · Hangzhou" data-zh="若曦的妈妈，高一 · 杭州">Mother of Ruoxi, Grade 10 · Hangzhou</div></div></div>
+    </div>
+  </div>
+
+  <div class="cta-box fade-up">
+    <h3 data-en="Join These Families" data-zh="加入这些家庭">Join These Families</h3>
+    <p data-en="Add Charlie on WeChat to get started — I'll get back to you within 24 hours." data-zh="添加 Charlie 的微信即可开始——我会在24小时内回复您。">Add Charlie on WeChat to get started — I'll get back to you within 24 hours.</p>
+    <a href="index.html#contact" class="btn-primary" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</main>
+
+<footer><p>© 2026 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p></footer>
+
+<script>
+  let currentLang='en';
+  function setLang(lang){currentLang=lang;document.body.classList.toggle('zh',lang==='zh');document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(lang==='en'?'EN':'中文')));document.querySelectorAll('[data-en]').forEach(el=>{const v=el.getAttribute('data-'+lang);if(!v)return;if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')el.value=v;else el.innerHTML=v;})}
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
