@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Videos | CAVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--sun:#FFD23F;--coral:#FF6B6B;--sky:#4FC3F7;--mint:#43D9A2;--navy:#1A2B4A;--navy-soft:#2C3F63;--white:#FFFFFF;--off:#F7F9FC;--muted:#7A8BAA;--radius:20px;--radius-sm:12px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+    body.zh{font-family:'Noto Sans SC',sans-serif}
+
+    /* LANG TOGGLE */
+    .lang-toggle{display:flex;align-items:center;background:var(--off);border-radius:999px;border:2px solid #E8EFF8;padding:4px;gap:2px}
+    .lang-btn{padding:6px 16px;border-radius:999px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;background:none;color:var(--muted);transition:all .18s}
+    .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
+
+    /* NAV */
+    .logo-svg{width:44px;height:44px;flex-shrink:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
+    .nav-left{display:flex;align-items:center;gap:24px}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo .wordmark{color:var(--sun);font-weight:900}
+    .nav-logo .wordmark .ca{color:var(--navy);-webkit-text-stroke:0}
+    .nav-links{display:flex;gap:18px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.current{color:var(--coral)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35);white-space:nowrap}
+
+    /* HERO */
+    .page-hero{background:linear-gradient(145deg,#1A2B4A 0%,#2C3F63 60%,#1A2B4A 100%);padding:140px 24px 80px;text-align:center;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;top:-60px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,210,63,.12) 0%,transparent 70%)}
+    .page-hero::after{content:'';position:absolute;bottom:-40px;right:-40px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(79,195,247,.1) 0%,transparent 70%)}
+    .page-hero .pill{display:inline-block;background:var(--sun);border-radius:999px;padding:7px 20px;font-weight:800;font-size:.82rem;color:var(--navy);margin-bottom:20px;position:relative;z-index:1}
+    .page-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:white;margin-bottom:12px;position:relative;z-index:1}
+    .page-hero h1 span{color:var(--sun)}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto;line-height:1.7;position:relative;z-index:1}
+
+    /* PLATFORM INDICATOR */
+    .platform-bar{max-width:1100px;margin:0 auto 48px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+    .platform-badge{display:flex;align-items:center;gap:10px;background:var(--off);border-radius:999px;padding:10px 22px;font-weight:800;font-size:.9rem;border:2.5px solid #E8EFF8;transition:all .2s}
+    .platform-badge.active-platform{border-color:var(--coral);background:white;box-shadow:0 4px 16px rgba(255,107,107,.15)}
+    .platform-badge .p-dot{width:10px;height:10px;border-radius:50%}
+
+    /* MAIN */
+    main{max-width:1100px;margin:0 auto;padding:64px 24px 96px}
+
+    /* VIDEO PANELS — only one shown at a time */
+    .video-panel{display:none}
+    .video-panel.active{display:block}
+
+    /* SECTION HEADER */
+    .vid-section{margin-bottom:56px}
+    .vid-section-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:16px;border-bottom:2.5px solid #E8EFF8}
+    .vid-section-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+    .vid-section-header h2{font-size:1.2rem;font-weight:900;color:var(--navy)}
+    .vid-section-header p{font-size:.88rem;color:var(--muted);margin-top:3px}
+
+    /* VIDEO GRID */
+    .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+
+    /* VIDEO CARD */
+    .video-card{background:var(--off);border-radius:var(--radius);overflow:hidden;border:2.5px solid transparent;transition:border-color .2s,transform .2s,box-shadow .2s}
+    .video-card:hover{border-color:var(--sky);transform:translateY(-4px);box-shadow:0 16px 40px rgba(26,43,74,.1)}
+
+    /* EMBED WRAPPER — 16:9 */
+    .embed-wrap{position:relative;width:100%;padding-bottom:56.25%;background:var(--navy);overflow:hidden}
+    .embed-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+    /* PLACEHOLDER (no video yet) */
+    .vid-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+    .vid-placeholder .play-icon{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:2px solid rgba(255,255,255,.25);transition:background .2s}
+    .video-card:hover .play-icon{background:rgba(255,255,255,.25)}
+    .vid-placeholder .ph-label{font-size:.78rem;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em}
+
+    /* YT placeholder tint */
+    .yt-ph{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%)}
+    /* Douyin placeholder tint */
+    .dy-ph{background:linear-gradient(135deg,#010101 0%,#1a0a1e 100%)}
+
+    /* CARD INFO */
+    .video-info{padding:20px 20px 22px}
+    .video-tag{display:inline-block;border-radius:999px;padding:3px 12px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+    .yt-tag{background:#FFE8E8;color:#c0392b}
+    .dy-tag{background:#1a0a1e;color:#ff6ed8}
+    .video-info h3{font-size:1rem;font-weight:900;color:var(--navy);margin-bottom:6px;line-height:1.35}
+    .video-info p{font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:14px}
+    .video-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:800;text-decoration:none;border-radius:999px;padding:7px 16px;transition:all .15s}
+    .yt-link{background:#FF0000;color:white}
+    .yt-link:hover{background:#cc0000;transform:translateY(-1px)}
+    .dy-link{background:#010101;color:white}
+    .dy-link:hover{background:#2a2a2a;transform:translateY(-1px)}
+
+    /* CTA */
+    .cta-box{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:36px 40px;text-align:center;margin-top:16px}
+    .cta-box h3{font-size:1.3rem;font-weight:900;color:var(--navy);margin-bottom:10px}
+    .cta-box p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .btn-primary{background:var(--coral);color:white;padding:14px 32px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(255,107,107,.35);display:inline-block}
+
+    footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:28px 24px;font-size:.82rem;font-weight:600}
+    footer strong{color:rgba(255,255,255,.7)}
+    .fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:900px){.video-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){
+      nav{padding:14px 16px;flex-wrap:wrap}
+      .nav-links{display:none}
+      .video-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark"><span class="ca">CA</span>Voice</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="videos.html" class="current" data-en="Videos" data-zh="视频">Videos</a></li>
+      <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="index.html#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="pill" id="hero-pill">🎬 Class Videos</div>
+  <h1 id="hero-title">Watch <span>CAVoice</span> in Action</h1>
+  <p id="hero-sub">See what a real CAVoice session looks like — before you commit to anything.</p>
+</div>
+
+<main>
+
+  <!-- PLATFORM INDICATOR -->
+  <div class="platform-bar fade-up">
+    <div class="platform-badge active-platform" id="badge-yt">
+      <div class="p-dot" style="background:#FF0000"></div>
+      <span id="badge-yt-label">Showing YouTube videos</span>
+    </div>
+    <div class="platform-badge" id="badge-dy" style="display:none">
+      <div class="p-dot" style="background:#ff6ed8"></div>
+      <span id="badge-dy-label">正在显示抖音视频</span>
+    </div>
+    <span id="switch-hint" style="font-size:.82rem;color:var(--muted);font-weight:700">Switch language above to change platform</span>
+  </div>
+
+  <!-- ══════ ENGLISH / YOUTUBE PANEL ══════ -->
+  <div class="video-panel active" id="panel-en">
+
+    <div class="vid-section fade-up">
+      <div class="vid-section-header">
+        <div class="vid-section-icon" style="background:#FFE8E8">🎒</div>
+        <div>
+          <h2>Beginner Class Highlights</h2>
+          <p>Ages 9–12 · Daily speaking, Canadian classroom activities & culture</p>
+        </div>
+      </div>
+      <div class="video-grid">
+
+        <!-- SLOT 1 -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- Replace VIDEO_ID_1 with your YouTube video ID e.g. dQw4w9WgXcQ -->
+            <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe> -->
+            <div class="vid-placeholder yt-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">YouTube · Coming Soon</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag yt-tag">YouTube</span>
+            <h3>Lesson Preview — Getting to Know Each Other</h3>
+            <p>A peek inside Lesson 1: introductions, Circle Time, and first speaking activities.</p>
+            <!-- Replace # with your YouTube video URL -->
+            <a href="#" class="video-link yt-link" target="_blank">▶ Watch on YouTube</a>
+          </div>
+        </div>
+
+        <!-- SLOT 2 -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe> -->
+            <div class="vid-placeholder yt-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">YouTube · Coming Soon</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag yt-tag">YouTube</span>
+            <h3>Show & Tell — Student Presentations</h3>
+            <p>Students presenting their favourite objects to the class — a classic Canadian activity.</p>
+            <a href="#" class="video-link yt-link" target="_blank">▶ Watch on YouTube</a>
+          </div>
+        </div>
+
+        <!-- SLOT 3 -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe> -->
+            <div class="vid-placeholder yt-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">YouTube · Coming Soon</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag yt-tag">YouTube</span>
+            <h3>Final Speech Showcase — Beginner Class</h3>
+            <p>End-of-program 2–3 minute individual speeches from our beginner students.</p>
+            <a href="#" class="video-link yt-link" target="_blank">▶ Watch on YouTube</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="vid-section fade-up">
+      <div class="vid-section-header">
+        <div class="vid-section-icon" style="background:#E2FBF2">🏫</div>
+        <div>
+          <h2>Advanced Class Highlights</h2>
+          <p>Ages 13–16 · Debate, critical thinking & public speaking</p>
+        </div>
+      </div>
+      <div class="video-grid">
+
+        <!-- SLOT 4 -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe> -->
+            <div class="vid-placeholder yt-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">YouTube · Coming Soon</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag yt-tag">YouTube</span>
+            <h3>Informal Debate — Should Students Have Homework?</h3>
+            <p>Students argue both sides of a hot classroom topic — natural, energetic discussion.</p>
+            <a href="#" class="video-link yt-link" target="_blank">▶ Watch on YouTube</a>
+          </div>
+        </div>
+
+        <!-- SLOT 5 -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID_5" allowfullscreen></iframe> -->
+            <div class="vid-placeholder yt-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">YouTube · Coming Soon</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag yt-tag">YouTube</span>
+            <h3>Group Discussion — AI in Human Life</h3>
+            <p>A simulated Canadian classroom group discussion on one of today's biggest topics.</p>
+            <a href="#" class="video-link yt-link" target="_blank">▶ Watch on YouTube</a>
+          </div>
+        </div>
+
+        <!-- SLOT 6 -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID_6" allowfullscreen></iframe> -->
+            <div class="vid-placeholder yt-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">YouTube · Coming Soon</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag yt-tag">YouTube</span>
+            <h3>Formal Debate — Social Media in Schools</h3>
+            <p>Advanced students go head-to-head in a structured formal debate with rules and etiquette.</p>
+            <a href="#" class="video-link yt-link" target="_blank">▶ Watch on YouTube</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end EN panel -->
+
+
+  <!-- ══════ CHINESE / DOUYIN PANEL ══════ -->
+  <div class="video-panel" id="panel-zh">
+
+    <div class="vid-section fade-up">
+      <div class="vid-section-header">
+        <div class="vid-section-icon" style="background:#FFE8E8">🎒</div>
+        <div>
+          <h2>基础班课堂精彩片段</h2>
+          <p>9–12岁 · 日常口语、加拿大课堂活动与文化体验</p>
+        </div>
+      </div>
+      <div class="video-grid">
+
+        <!-- SLOT 1 ZH -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- Douyin embed — replace SRC with your Douyin embed URL -->
+            <!-- <iframe src="https://www.douyin.com/video/DOUYIN_VIDEO_ID" allowfullscreen></iframe> -->
+            <div class="vid-placeholder dy-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">抖音 · 即将上线</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag dy-tag">抖音</span>
+            <h3>课程预览 — 互相认识</h3>
+            <p>第一节课片段：自我介绍、Circle Time以及首次口语活动。</p>
+            <!-- Replace # with your Douyin video URL -->
+            <a href="#" class="video-link dy-link" target="_blank">▶ 在抖音观看</a>
+          </div>
+        </div>
+
+        <!-- SLOT 2 ZH -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.douyin.com/video/DOUYIN_VIDEO_ID_2" allowfullscreen></iframe> -->
+            <div class="vid-placeholder dy-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">抖音 · 即将上线</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag dy-tag">抖音</span>
+            <h3>展示与讲述 — 学生演讲</h3>
+            <p>学生向全班展示自己最喜爱的物品——加拿大经典课堂活动。</p>
+            <a href="#" class="video-link dy-link" target="_blank">▶ 在抖音观看</a>
+          </div>
+        </div>
+
+        <!-- SLOT 3 ZH -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.douyin.com/video/DOUYIN_VIDEO_ID_3" allowfullscreen></iframe> -->
+            <div class="vid-placeholder dy-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">抖音 · 即将上线</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag dy-tag">抖音</span>
+            <h3>结业演讲展示 — 基础班</h3>
+            <p>基础班学生2–3分钟个人演讲结业展示。</p>
+            <a href="#" class="video-link dy-link" target="_blank">▶ 在抖音观看</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="vid-section fade-up">
+      <div class="vid-section-header">
+        <div class="vid-section-icon" style="background:#E2FBF2">🏫</div>
+        <div>
+          <h2>高阶班课堂精彩片段</h2>
+          <p>13–16岁 · 辩论、批判性思维与演讲技巧</p>
+        </div>
+      </div>
+      <div class="video-grid">
+
+        <!-- SLOT 4 ZH -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.douyin.com/video/DOUYIN_VIDEO_ID_4" allowfullscreen></iframe> -->
+            <div class="vid-placeholder dy-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">抖音 · 即将上线</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag dy-tag">抖音</span>
+            <h3>非正式辩论 — 学生应该有家庭作业吗？</h3>
+            <p>学生就热门课堂话题进行双方辩论——自然、充满活力的讨论。</p>
+            <a href="#" class="video-link dy-link" target="_blank">▶ 在抖音观看</a>
+          </div>
+        </div>
+
+        <!-- SLOT 5 ZH -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.douyin.com/video/DOUYIN_VIDEO_ID_5" allowfullscreen></iframe> -->
+            <div class="vid-placeholder dy-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">抖音 · 即将上线</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag dy-tag">抖音</span>
+            <h3>小组讨论 — 人工智能与人类生活</h3>
+            <p>模拟加拿大课堂，就当今最热门话题之一展开小组讨论。</p>
+            <a href="#" class="video-link dy-link" target="_blank">▶ 在抖音观看</a>
+          </div>
+        </div>
+
+        <!-- SLOT 6 ZH -->
+        <div class="video-card">
+          <div class="embed-wrap">
+            <!-- <iframe src="https://www.douyin.com/video/DOUYIN_VIDEO_ID_6" allowfullscreen></iframe> -->
+            <div class="vid-placeholder dy-ph">
+              <div class="play-icon">▶</div>
+              <div class="ph-label">抖音 · 即将上线</div>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag dy-tag">抖音</span>
+            <h3>正式辩论 — 校园中的社交媒体</h3>
+            <p>高阶班学生按规则和礼仪进行结构化正式辩论对决。</p>
+            <a href="#" class="video-link dy-link" target="_blank">▶ 在抖音观看</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end ZH panel -->
+
+  <div class="cta-box fade-up">
+    <h3 id="cta-title">Want to See More?</h3>
+    <p id="cta-sub">More videos coming soon. In the meantime, add me on WeChat and I can share clips directly.</p>
+    <a href="index.html#contact" class="btn-primary" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+
+</main>
+
+<footer><p>© 2026 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p></footer>
+
+<script>
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.classList.toggle('zh', lang === 'zh');
+
+    // toggle buttons
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.trim() === (lang === 'en' ? 'EN' : '中文'));
+    });
+
+    // data-en/data-zh elements
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const v = el.getAttribute('data-' + lang);
+      if (!v) return;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = v;
+      else el.innerHTML = v;
+    });
+
+    // switch video panels
+    document.getElementById('panel-en').classList.toggle('active', lang === 'en');
+    document.getElementById('panel-zh').classList.toggle('active', lang === 'zh');
+
+    // platform badges
+    document.getElementById('badge-yt').style.display = lang === 'en' ? '' : 'none';
+    document.getElementById('badge-dy').style.display = lang === 'zh' ? '' : 'none';
+    document.getElementById('badge-yt').classList.toggle('active-platform', lang === 'en');
+    document.getElementById('badge-dy').classList.toggle('active-platform', lang === 'zh');
+
+    // hero text
+    if (lang === 'zh') {
+      document.getElementById('hero-pill').textContent = '🎬 课堂视频';
+      document.getElementById('hero-title').innerHTML = '观看 <span>CAVoice</span> 真实课堂';
+      document.getElementById('hero-sub').textContent = '在正式报名前，先感受一下真实的CAVoice课堂是什么样的。';
+      document.getElementById('switch-hint').textContent = '切换上方语言以更换平台';
+      document.getElementById('cta-title').textContent = '想看更多视频？';
+      document.getElementById('cta-sub').textContent = '更多视频即将上线。与此同时，添加我的微信，我可以直接分享课堂片段。';
+    } else {
+      document.getElementById('hero-pill').textContent = '🎬 Class Videos';
+      document.getElementById('hero-title').innerHTML = 'Watch <span>CAVoice</span> in Action';
+      document.getElementById('hero-sub').textContent = 'See what a real CAVoice session looks like — before you commit to anything.';
+      document.getElementById('switch-hint').textContent = 'Switch language above to change platform';
+      document.getElementById('cta-title').textContent = 'Want to See More?';
+      document.getElementById('cta-sub').textContent = 'More videos coming soon. In the meantime, add me on WeChat and I can share clips directly.';
+    }
+  }
+
+  const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: .1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+<script src="auth.js"></script>
+</body>
+</html>

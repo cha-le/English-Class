@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Achievements | CAVoice English Tutoring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--sun:#FFD23F;--coral:#FF6B6B;--sky:#4FC3F7;--mint:#43D9A2;--navy:#1A2B4A;--navy-soft:#2C3F63;--white:#FFFFFF;--off:#F7F9FC;--muted:#7A8BAA;--radius:20px;--radius-sm:12px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+    body.zh{font-family:'Noto Sans SC',sans-serif}
+
+    .lang-toggle{display:flex;align-items:center;background:var(--off);border-radius:999px;border:2px solid #E8EFF8;padding:4px;gap:2px}
+    .lang-btn{padding:6px 16px;border-radius:999px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;background:none;color:var(--muted);transition:all .18s}
+    .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
+
+    .logo-svg{width:44px;height:44px;flex-shrink:0}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
+    .nav-left{display:flex;align-items:center;gap:24px}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo .wordmark{color:var(--sun);font-weight:900}
+    .nav-logo .wordmark .ca{color:var(--navy);-webkit-text-stroke:0}
+    .nav-links{display:flex;gap:18px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.current{color:var(--coral)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35);white-space:nowrap}
+
+    /* HERO */
+    .page-hero{background:linear-gradient(145deg,#1A2B4A 0%,#2C3F63 100%);padding:140px 24px 72px;text-align:center;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,210,63,.1) 0%,transparent 70%)}
+    .page-hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(79,195,247,.08) 0%,transparent 70%)}
+    .hero-inner{position:relative;z-index:1}
+    .hero-pill{display:inline-block;background:var(--sun);border-radius:999px;padding:7px 20px;font-weight:800;font-size:.82rem;color:var(--navy);margin-bottom:20px}
+    .hero-name{font-size:clamp(2rem,5vw,3rem);font-weight:900;color:white;margin-bottom:8px}
+    .hero-name span{color:var(--sun)}
+    .hero-sub{font-size:1rem;color:rgba(255,255,255,.55);margin-bottom:20px}
+    .hero-meta{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+    .meta-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:7px 16px;font-size:.82rem;font-weight:700;color:rgba(255,255,255,.8)}
+
+    main{max-width:900px;margin:0 auto;padding:56px 24px 96px}
+
+
+    /* ACHIEVEMENTS HEADER */
+    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+    .section-header h2{font-size:1.2rem;font-weight:900;color:var(--navy)}
+    .unlock-count{font-size:.85rem;font-weight:800;color:var(--muted)}
+
+    /* BADGES GRID */
+    .badges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:40px}
+
+    .badge-card{border-radius:var(--radius-sm);padding:24px 20px;border:2.5px solid transparent;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+    .badge-card.unlocked{background:white;border-color:#E8EFF8}
+    .badge-card.unlocked:hover{border-color:var(--sky);transform:translateY(-3px);box-shadow:0 12px 32px rgba(26,43,74,.08)}
+    .badge-card.locked{background:var(--off);border-color:#E8EFF8;opacity:.55}
+
+    .badge-icon{font-size:2.2rem;margin-bottom:12px;display:block;line-height:1}
+    .badge-locked-icon{font-size:2.2rem;margin-bottom:12px;display:block;line-height:1;filter:grayscale(1)}
+
+    .badge-title{font-size:.97rem;font-weight:900;color:var(--navy);margin-bottom:5px}
+    .badge-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
+
+    .badge-card.unlocked .badge-stamp{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:var(--mint);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:white;font-weight:900}
+    .badge-card.locked .badge-lock{position:absolute;top:12px;right:12px;font-size:.9rem;color:var(--muted)}
+
+    /* DOWNLOAD BUTTON */
+    .download-section{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:36px 40px;text-align:center}
+    .download-section h3{font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:8px}
+    .download-section p{font-size:.92rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .dl-btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:white;padding:14px 32px;border-radius:999px;font-weight:800;font-size:.95rem;border:none;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 6px 20px rgba(26,43,74,.25);transition:transform .15s,box-shadow .15s}
+    .dl-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,43,74,.32)}
+
+    footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:28px 24px;font-size:.82rem;font-weight:600}
+    footer strong{color:rgba(255,255,255,.7)}
+
+    .fade-up{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:768px){
+      nav{padding:14px 16px;flex-wrap:wrap}
+      .nav-links{display:none}
+      .badges-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:480px){.badges-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="22" fill="#FFD23F"/><path d="M22 6L25.5 18.5L38 22L25.5 25.5L22 38L18.5 25.5L6 22L18.5 18.5Z" fill="#1A2B4A"/></svg>
+      <div class="wordmark"><span class="ca">CA</span>Voice</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
+      <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
+      <li><a href="videos.html" data-en="Videos" data-zh="视频">Videos</a></li>
+      <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <a href="index.html#contact" class="nav-cta" data-en="Add on WeChat 💬" data-zh="微信联系 💬">Add on WeChat 💬</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-pill" id="hero-pill">⭐ My Achievements</div>
+    <h1 class="hero-name" id="hero-name">Welcome, <span id="hero-username">—</span></h1>
+    <p class="hero-sub" id="hero-sub">Here's a look at your progress and milestones so far.</p>
+    <div class="hero-meta">
+      <div class="meta-pill">🪪 <span id="meta-id">—</span></div>
+      <div class="meta-pill">📚 <span id="meta-program">—</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- BADGES -->
+  <div class="section-header fade-up">
+    <h2 id="badges-title">Achievements</h2>
+    <span class="unlock-count" id="unlock-count"></span>
+  </div>
+  <div class="badges-grid fade-up" id="badges-grid"></div>
+
+  <!-- DOWNLOAD -->
+  <div class="download-section fade-up">
+    <h3 id="dl-title">Download Your Certificate</h3>
+    <p id="dl-desc">Get a PDF summary of your achievements to keep or share.</p>
+    <button class="dl-btn" id="dl-btn">⬇ Download Certificate PDF</button>
+  </div>
+
+</main>
+
+<footer><p>© 2026 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p></footer>
+
+<!-- Auth module first -->
+<script src="auth.js"></script>
+
+<script>
+  // ── redirect if not logged in ─────────────────────────────────────────────
+  const user = window.CAVoiceAuth && window.CAVoiceAuth.getUser();
+  if (!user) { window.location.href = 'index.html'; }
+
+  // ── language ──────────────────────────────────────────────────────────────
+  let currentLang = 'en';
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.classList.toggle('zh', lang === 'zh');
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === (lang === 'en' ? 'EN' : '中文')));
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const v = el.getAttribute('data-' + lang);
+      if (!v) return;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = v;
+      else el.innerHTML = v;
+    });
+    if (user) renderPage(lang);
+  }
+
+  // ── render ────────────────────────────────────────────────────────────────
+  function renderPage(lang) {
+    const zh = lang === 'zh';
+
+    // Hero
+    document.getElementById('hero-pill').textContent     = zh ? '⭐ 我的成就' : '⭐ My Achievements';
+    document.getElementById('hero-username').textContent  = zh ? user.nameZh : user.name;
+    document.getElementById('hero-sub').textContent       = zh ? '以下是您目前的学习进度和里程碑。' : "Here's a look at your progress and milestones so far.";
+    document.getElementById('meta-id').textContent        = user.id;
+    document.getElementById('meta-program').textContent   = zh ? user.programZh : user.program;
+
+    // Badges
+    const unlocked = user.achievements.filter(a => a.unlocked).length;
+    document.getElementById('badges-title').textContent  = zh ? '成就徽章' : 'Achievements';
+    document.getElementById('unlock-count').textContent  = zh ? `已解锁 ${unlocked} / ${user.achievements.length}` : `${unlocked} of ${user.achievements.length} unlocked`;
+
+    const grid = document.getElementById('badges-grid');
+    grid.innerHTML = user.achievements.map(a => `
+      <div class="badge-card ${a.unlocked ? 'unlocked' : 'locked'}">
+        ${a.unlocked ? '<div class="badge-stamp">✓</div>' : '<div class="badge-lock">🔒</div>'}
+        <span class="${a.unlocked ? 'badge-icon' : 'badge-locked-icon'}">${a.icon}</span>
+        <div class="badge-title">${zh ? a.titleZh : a.title}</div>
+        <div class="badge-desc">${zh ? a.descZh : a.desc}</div>
+      </div>
+    `).join('');
+
+    // Download section
+    document.getElementById('dl-title').textContent = zh ? '下载您的证书' : 'Download Your Certificate';
+    document.getElementById('dl-desc').textContent  = zh ? '祝贺你顺利完成2026年夏季英语夏令营！' : 'Congratulations on completing the 2026 summer English Camp!';
+    document.getElementById('dl-btn').innerHTML     = zh ? '⬇ 下载成就证书 PDF' : '⬇ Download Certificate PDF';
+  }
+
+  if (user) renderPage('en');
+
+  // ── Certificate download ──────────────────────────────────────────────────
+  document.getElementById('dl-btn').addEventListener('click', function() {
+    const a = document.createElement('a');
+    a.href = user.certificateFile || 'placeholder.pdf';
+    a.download = `CAVoice_${user.name.replace(' ', '_')}_Certificate.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+
+  // ── scroll observer ───────────────────────────────────────────────────────
+  const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: .1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -15,11 +15,11 @@
     .lang-btn.active{background:var(--navy);color:white;box-shadow:0 2px 8px rgba(26,43,74,.18)}
     .logo-svg{width:44px;height:44px;flex-shrink:0}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(255,210,63,.2);gap:16px}
-    .nav-left{display:flex;align-items:center;gap:32px}
+    .nav-left{display:flex;align-items:center;gap:24px}
     .nav-logo{font-size:1.3rem;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;text-decoration:none}
     .nav-logo .wordmark span{color:var(--sun);-webkit-text-stroke:0.5px #c9a800}
-    .nav-links{display:flex;gap:24px;list-style:none}
-    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s}
+    .nav-links{display:flex;gap:18px;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--navy-soft);font-weight:700;font-size:.9rem;transition:color .2s;white-space:nowrap}
     .nav-links a:hover,.nav-links a.current{color:var(--coral)}
     .nav-right{display:flex;align-items:center;gap:12px}
     .nav-cta{background:var(--coral);color:white;padding:10px 22px;border-radius:999px;font-weight:800;font-size:.88rem;text-decoration:none;box-shadow:0 4px 14px rgba(255,107,107,.35);white-space:nowrap}
@@ -61,12 +61,12 @@
       <div class="wordmark"><span class="ca">CA</span>Voice</div>
     </a>
     <ul class="nav-links">
-      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
-      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
       <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
       <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
-      <li><a href="reviews.html" class="current" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="videos.html" data-en="Videos" data-zh="视频">Videos</a></li>
       <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
     </ul>
   </div>
   <div class="nav-right">
@@ -148,5 +148,6 @@
   const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
   document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 </script>
+<script src="auth.js"></script>
 </body>
 </html>

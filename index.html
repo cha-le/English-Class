@@ -70,7 +70,7 @@
 
     /* NAV-OUT PROMO CARDS */
     #explore { background:var(--white); }
-    .explore-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1100px; margin:0 auto; }
+    .explore-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:860px; margin:0 auto; }
     .explore-card { background:var(--off); border-radius:var(--radius); padding:32px 26px; text-decoration:none; border:2.5px solid transparent; transition:border-color .2s,transform .2s,box-shadow .2s; display:block; }
     .explore-card:hover { border-color:var(--sky); transform:translateY(-4px); box-shadow:0 16px 40px rgba(26,43,74,.08); }
     .explore-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:18px; }
@@ -116,12 +116,12 @@
       <div class="wordmark"><span class="ca">CA</span>Voice</div>
     </a>
     <ul class="nav-links">
-      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
-      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
       <li><a href="course-outline.html" data-en="Course" data-zh="课程">Course</a></li>
+      <li><a href="how-it-works.html" data-en="How It Works" data-zh="如何开始">How It Works</a></li>
       <li><a href="pricing.html" data-en="Pricing" data-zh="价格">Pricing</a></li>
-      <li><a href="reviews.html" data-en="Reviews" data-zh="评价">Reviews</a></li>
+      <li><a href="videos.html" data-en="Videos" data-zh="视频">Videos</a></li>
       <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
     </ul>
   </div>
   <div class="nav-right">
@@ -207,12 +207,6 @@
       <p data-en="Simple per-session pricing with bundle discounts." data-zh="简单透明的单节课定价及套餐折扣。">Simple per-session pricing with bundle discounts.</p>
       <div class="explore-arrow" data-en="View Plans →" data-zh="查看方案 →">View Plans →</div>
     </a>
-    <a href="reviews.html" class="explore-card">
-      <div class="explore-icon" style="background:#E2FBF2">⭐</div>
-      <h3 data-en="Reviews" data-zh="家长评价">Reviews</h3>
-      <p data-en="Hear what students and parents have to say." data-zh="听听学生和家长怎么说。">Hear what students and parents have to say.</p>
-      <div class="explore-arrow" data-en="Read Reviews →" data-zh="查看评价 →">Read Reviews →</div>
-    </a>
     <a href="faq.html" class="explore-card">
       <div class="explore-icon" style="background:#FFF3D0">❓</div>
       <h3 data-en="FAQ" data-zh="常见问题">FAQ</h3>
@@ -256,5 +250,6 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
+<script src="auth.js"></script>
 </body>
 </html>
