@@ -46,6 +46,48 @@
         { icon: '🎙️', title: 'First Presentation', titleZh: '首次演讲', desc: 'Delivered your first class presentation', descZh: '完成第一次课堂演讲', unlocked: true  },
       ]
     },
+    'CV-6412': {
+      name: 'William', nameZh: 'William',
+      program: 'Advanced', programZh: '高阶班',
+      sessionsCompleted: 11, totalSessions: 11,
+      certificateFile: 'CV-6412.pdf',
+      achievements: [
+        { icon: '📚', title: 'Week 1 Module',   titleZh: '第一周模块', desc: 'Natural English Speaking lessons', descZh: '自然英语表达课程', unlocked: true },
+        { icon: '🏫', title: 'Week 2 Module',   titleZh: '第二周模块', desc: 'Canadian Classroom Experience lessons', descZh: '加拿大课堂体验课程', unlocked: true },
+        { icon: '🎓', title: 'Course Graduate',   titleZh: '结业毕业生', desc: 'Completed the full 2-week Advanced English & Canadian Classroom program', descZh: '完成了完整的两周高阶英语与加拿大课堂项目', unlocked: true },
+        { icon: '🌟', title: 'Final Showcase',   titleZh: '结业展示', desc: 'Performed in the final class showcase in front of friends and family', descZh: '在结业展示中于亲友面前完成表演', unlocked: true },
+        { icon: '🗓️', title: 'Perfect Week',    titleZh: '全勤周',     desc: 'Attended all 5 sessions in one week', descZh: '一周内出席全部5节课', unlocked: true },
+        { icon: '🎙️', title: 'First Presentation', titleZh: '首次演讲', desc: 'Delivered your first class presentation', descZh: '完成第一次课堂演讲', unlocked: true },
+      ]
+    },
+    'CV-7853': {
+      name: 'Emily', nameZh: 'Emily',
+      program: 'Advanced', programZh: '高阶班',
+      sessionsCompleted: 11, totalSessions: 11,
+      certificateFile: 'CV-7853.pdf',
+      achievements: [
+        { icon: '📚', title: 'Week 1 Module',   titleZh: '第一周模块', desc: 'Natural English Speaking lessons', descZh: '自然英语表达课程', unlocked: true },
+        { icon: '🏫', title: 'Week 2 Module',   titleZh: '第二周模块', desc: 'Canadian Classroom Experience lessons', descZh: '加拿大课堂体验课程', unlocked: true },
+        { icon: '🎓', title: 'Course Graduate',   titleZh: '结业毕业生', desc: 'Completed the full 2-week Advanced English & Canadian Classroom program', descZh: '完成了完整的两周高阶英语与加拿大课堂项目', unlocked: true },
+        { icon: '🌟', title: 'Final Showcase',   titleZh: '结业展示', desc: 'Performed in the final class showcase in front of friends and family', descZh: '在结业展示中于亲友面前完成表演', unlocked: true },
+        { icon: '🗓️', title: 'Perfect Week',    titleZh: '全勤周',     desc: 'Attended all 5 sessions in one week', descZh: '一周内出席全部5节课', unlocked: true },
+        { icon: '🎙️', title: 'First Presentation', titleZh: '首次演讲', desc: 'Delivered your first class presentation', descZh: '完成第一次课堂演讲', unlocked: true },
+      ]
+    },
+    'CV-9126': {
+      name: 'Zorro', nameZh: 'Zorro',
+      program: 'Advanced', programZh: '高阶班',
+      sessionsCompleted: 11, totalSessions: 11,
+      certificateFile: 'CV-9126.pdf',
+      achievements: [
+        { icon: '📚', title: 'Week 1 Module',   titleZh: '第一周模块', desc: 'Natural English Speaking lessons', descZh: '自然英语表达课程', unlocked: true },
+        { icon: '🏫', title: 'Week 2 Module',   titleZh: '第二周模块', desc: 'Canadian Classroom Experience lessons', descZh: '加拿大课堂体验课程', unlocked: true },
+        { icon: '🎓', title: 'Course Graduate',   titleZh: '结业毕业生', desc: 'Completed the full 2-week Advanced English & Canadian Classroom program', descZh: '完成了完整的两周高阶英语与加拿大课堂项目', unlocked: true },
+        { icon: '🌟', title: 'Final Showcase',   titleZh: '结业展示', desc: 'Performed in the final class showcase in front of friends and family', descZh: '在结业展示中于亲友面前完成表演', unlocked: true },
+        { icon: '🗓️', title: 'Perfect Week',    titleZh: '全勤周',     desc: 'Attended all 5 sessions in one week', descZh: '一周内出席全部5节课', unlocked: true },
+        { icon: '🎙️', title: 'First Presentation', titleZh: '首次演讲', desc: 'Delivered your first class presentation', descZh: '完成第一次课堂演讲', unlocked: true },
+      ]
+    },
   };
 
   // ── HELPERS ────────────────────────────────────────────────────────────────
