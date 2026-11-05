@@ -74,6 +74,35 @@
     .lesson h4{font-size:.95rem;font-weight:900;color:var(--navy);margin-bottom:7px}
     .lesson p{font-size:.82rem;color:var(--muted);line-height:1.55}
 
+
+    /* PROGRAM SWITCHER (KET / Summer) */
+    .program-bar{display:flex;gap:8px;background:var(--off);border-radius:999px;padding:6px;max-width:520px;margin:0 auto 40px;border:2px solid #E8EFF8}
+    .prog-btn{flex:1;padding:14px 0;border-radius:999px;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:.95rem;background:none;color:var(--muted);transition:all .2s}
+    .prog-btn.active{background:var(--coral);color:white;box-shadow:0 4px 14px rgba(255,107,107,.35)}
+    .program-content{display:none}
+    .program-content.active{display:block}
+    .program-hero{display:none}
+    .program-hero.active{display:block}
+
+    /* KET EXTRAS */
+    .flow-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .flow-card:nth-child(5){border-color:#FF6B6B}
+    .flow-card:nth-child(6){border-color:#4FC3F7}
+    .intro-card{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius);padding:28px 32px}
+    .intro-card p{font-size:.95rem;color:var(--navy-soft);line-height:1.85}
+    .lesson.focus{background:#FFF8E1;border-color:#FFE59A}
+    .lesson.focus:hover{border-color:var(--sun)}
+    .goal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .goal{display:flex;gap:14px;align-items:flex-start;background:var(--off);border-radius:var(--radius-sm);padding:18px 20px}
+    .goal-check{width:26px;height:26px;border-radius:50%;background:var(--mint);color:white;font-weight:900;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .goal p{font-size:.88rem;color:var(--navy-soft);line-height:1.6;font-weight:600}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .why-card{background:var(--off);border-radius:var(--radius-sm);padding:24px 20px;border:2px solid transparent;transition:border-color .2s,transform .15s}
+    .why-card:hover{border-color:var(--sky);transform:translateY(-2px)}
+    .why-icon{font-size:1.8rem;margin-bottom:10px}
+    .why-card h4{font-size:.98rem;font-weight:900;color:var(--navy);margin-bottom:8px}
+    .why-card p{font-size:.82rem;color:var(--muted);line-height:1.65}
+
     /* NOTE */
     .outline-note{background:linear-gradient(120deg,#FFF8E1,#E8F7FF);border-radius:var(--radius-sm);border:2px dashed var(--sun);padding:24px 28px;margin-top:48px;text-align:center}
     .outline-note p{font-size:.92rem;color:var(--navy-soft);line-height:1.7}
@@ -87,7 +116,8 @@
 
     @media(max-width:700px){
       nav{padding:12px 16px}
-      .flow-grid{grid-template-columns:repeat(2,1fr)}
+      .flow-grid,.flow-grid.cols-3{grid-template-columns:repeat(2,1fr)}
+      .goal-grid,.why-grid{grid-template-columns:1fr}
       .lessons{grid-template-columns:1fr}
       .structure-strip{gap:16px}
       .s-sep{display:none}
@@ -108,7 +138,7 @@
       <li><a href="showcase.html" data-en="Showcase" data-zh="展示">Showcase</a></li>
       <li><a href="teachers.html" data-en="Teachers" data-zh="教师团队">Teachers</a></li>
       <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
-      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="about.html" data-en="About" data-zh="关于我们">About</a></li>
     </ul>
   </div>
   <div class="nav-right">
@@ -121,17 +151,138 @@
 </nav>
 
 <div class="page-hero">
-  <div class="pill" data-en="📋 Summer Camp Curriculum" data-zh="📋 暑期课程大纲">📋 Summer Camp Curriculum</div>
-  <h1 data-en="加拿大英语口语<br><span>夏令营</span>" data-zh="加拿大英语口语<br><span>夏令营</span>">Canadian English Speaking<br><span>Summer Camp</span></h1>
-  <p data-en="20 lessons · 1 hour each · International classroom experience · English mindset upgrade" data-zh="20节课 · 每节1小时 · 国际化课堂体验 · 英语思维升级">20 lessons · 1 hour each · International classroom experience · English mindset upgrade</p>
+  <div class="program-hero active" id="hero-ket">
+    <div class="pill" data-en="🎯 Cambridge KET Course" data-zh="🎯 剑桥KET课程">🎯 Cambridge KET Course</div>
+    <h1 data-en="Cambridge <span>KET Speaking</span><br>Bootcamp" data-zh="剑桥<span>KET口语</span><br>训练营">Cambridge <span>KET Speaking</span><br>Bootcamp</h1>
+    <p data-en="15 lessons · 1 hour each · KET Part 1 &amp; Part 2 practice · Taught by tutors raised in Canada" data-zh="15节课 · 每节1小时 · KET口语 Part 1 &amp; Part 2 专项训练 · 加拿大成长的导师授课">15 lessons · 1 hour each · KET Part 1 &amp; Part 2 practice · Taught by tutors raised in Canada</p>
+  </div>
+  <div class="program-hero" id="hero-summer">
+    <div class="pill" data-en="📋 Summer Camp Curriculum" data-zh="📋 暑期课程大纲">📋 Summer Camp Curriculum</div>
+    <h1 data-en="Canadian English Speaking<br><span>Summer Camp</span>" data-zh="加拿大英语口语<br><span>夏令营</span>">Canadian English Speaking<br><span>Summer Camp</span></h1>
+    <p data-en="20 lessons · 1 hour each · International classroom experience · English mindset upgrade" data-zh="20节课 · 每节1小时 · 国际化课堂体验 · 英语思维升级">20 lessons · 1 hour each · International classroom experience · English mindset upgrade</p>
+  </div>
 </div>
 
 <main>
 
+  <!-- PROGRAM SWITCHER -->
+  <div class="program-bar fade-up">
+    <button class="prog-btn active" data-program="ket" onclick="switchProgram('ket')" data-en="🎯 Cambridge KET" data-zh="🎯 剑桥KET">🎯 Cambridge KET</button>
+    <button class="prog-btn" data-program="summer" onclick="switchProgram('summer')" data-en="🍁 Summer Program" data-zh="🍁 暑期课程">🍁 Summer Program</button>
+  </div>
+
+
+  <!-- ══════════ CAMBRIDGE KET ══════════ -->
+  <div id="program-ket" class="program-content active">
+
+    <div class="structure-strip fade-up">
+      <div class="s-item"><div class="s-num">15</div><div class="s-label" data-en="Total Lessons" data-zh="课程总节数">Total Lessons</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num">60<span style="font-size:1rem">min</span></div><div class="s-label" data-en="Per Lesson" data-zh="每节课时长">Per Lesson</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num">2</div><div class="s-label" data-en="KET Speaking Parts" data-zh="KET 口语题型">KET Speaking Parts</div></div>
+      <div class="s-sep"></div>
+      <div class="s-item"><div class="s-num">1</div><div class="s-label" data-en="Full Mock Test" data-zh="完整模拟考试">Full Mock Test</div></div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#FFF3D0">🎯</div>
+        <div><h2 data-en="About the Course" data-zh="课程介绍">About the Course</h2></div>
+      </div>
+      <div class="intro-card"><p data-en="CAVoice Cambridge KET Speaking Bootcamp is a course focused on raising KET speaking ability, taught by outstanding Chinese-Canadian high school and university students who grew up in Canada. The course has 15 lessons of 1 hour each and is built around the core topics of the official KET syllabus, following the two KET Speaking task types: Part 1 (individual questions) and Part 2 (pair / examiner interaction). Every student gets plenty of speaking practice and ongoing personalised guidance in class." data-zh="CAVoice·剑桥KET口语训练营是一门专注于 KET 口语能力提升的课程，由从小在加拿大长大的优秀华裔高中生和大学生授课。整个课程包含15节课，每节课1小时，课程围绕 KET 官方考纲核心话题，配合口语考试的两大题型（Part 1 独立回答 & Part 2 双人/考官互动）展开。每位学生都会获得充分的口语练习机会，并在课堂中不断得到个性化指导。">CAVoice Cambridge KET Speaking Bootcamp is a course focused on raising KET speaking ability, taught by outstanding Chinese-Canadian high school and university students who grew up in Canada. The course has 15 lessons of 1 hour each and is built around the core topics of the official KET syllabus, following the two KET Speaking task types: Part 1 (individual questions) and Part 2 (pair / examiner interaction). Every student gets plenty of speaking practice and ongoing personalised guidance in class.</p></div>
+    </div>
+
+    <!-- LESSON FLOW -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E3F8FF">⏱️</div>
+        <div><h2 data-en="Each 60-Minute Lesson" data-zh="每节60分钟课程安排">Each 60-Minute Lesson</h2></div>
+      </div>
+      <div class="flow-grid cols-3">
+        <div class="flow-card"><div class="flow-time">5 min</div><div class="flow-name" data-en="Warm-up" data-zh="热身">Warm-up</div><div class="flow-desc" data-en="Daily greeting &amp; review of the last lesson" data-zh="日常问候；复习上节课的内容">Daily greeting &amp; review of the last lesson</div></div>
+        <div class="flow-card"><div class="flow-time">10 min</div><div class="flow-name" data-en="Vocabulary &amp; Useful Phrases" data-zh="词汇及有用表达">Vocabulary &amp; Useful Phrases</div><div class="flow-desc" data-en="Core vocab + sentence patterns, teacher modelling &amp; pronunciation coaching" data-zh="核心词汇 + 句型；老师示范地道表达并指导发音">Core vocab + sentence patterns, teacher modelling &amp; pronunciation coaching</div></div>
+        <div class="flow-card"><div class="flow-time">15 min</div><div class="flow-name" data-en="KET Part 1 Practice" data-zh="KET Part 1 练习">KET Part 1 Practice</div><div class="flow-desc" data-en="Personal information &amp; everyday-life Q&amp;A" data-zh="个人信息与日常生活问答">Personal information &amp; everyday-life Q&amp;A</div></div>
+        <div class="flow-card"><div class="flow-time">15 min</div><div class="flow-name" data-en="KET Part 2 Practice" data-zh="KET Part 2 练习">KET Part 2 Practice</div><div class="flow-desc" data-en="Picture-based discussion &amp; collaborative communication" data-zh="看图讨论与协作交流">Picture-based discussion &amp; collaborative communication</div></div>
+        <div class="flow-card"><div class="flow-time">10 min</div><div class="flow-name" data-en="Game Time" data-zh="游戏时间">Game Time</div><div class="flow-desc" data-en="Games or role play to reinforce today's lesson in a fun way" data-zh="做游戏或角色扮演，寓教于乐地巩固所学">Games or role play to reinforce today's lesson in a fun way</div></div>
+        <div class="flow-card"><div class="flow-time">5 min</div><div class="flow-name" data-en="Wrap-up" data-zh="总结与评价">Wrap-up</div><div class="flow-desc" data-en="Students recap the lesson; teacher gives instant feedback" data-zh="学生总结今天所学；老师随堂反馈">Students recap the lesson; teacher gives instant feedback</div></div>
+      </div>
+    </div>
+
+    <!-- CORE TOPICS -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#FFE8E8">💬</div>
+        <div><h2 data-en="Core Topics · Lessons 1–13" data-zh="核心话题 · 第1–13课">Core Topics · Lessons 1–13</h2><div class="mod-sub" data-en="Official KET syllabus topics" data-zh="KET 官方考纲话题">Official KET syllabus topics</div></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson"><div class="lesson-num">Lesson 1</div><h4 data-en="Getting to Know You" data-zh="Getting to Know You">Getting to Know You</h4><p data-en="Basic greetings and self-introductions." data-zh="基本问候与自我介绍">Basic greetings and self-introductions.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 2</div><h4 data-en="Family" data-zh="Family">Family</h4><p data-en="Family members, who you live with, family activities, and what you like doing with your family." data-zh="家庭成员、和谁住、家庭活动、喜欢和家人做什么">Family members, who you live with, family activities, and what you like doing with your family.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 3</div><h4 data-en="Friends" data-zh="Friends">Friends</h4><p data-en="Who your friends are, how often you meet, what you do together, and the personality traits you like in a friend." data-zh="朋友是谁、多久见面、和朋友做什么、喜欢的朋友特质（Personality）">Who your friends are, how often you meet, what you do together, and the personality traits you like in a friend.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 4</div><h4 data-en="House &amp; Home" data-zh="House &amp; Home">House &amp; Home</h4><p data-en="Where you live (house/condo), rooms, furniture, and what you do at home (daily chores)." data-zh="住在哪里（house/condo）、房间、家具、在家做什么（Daily chores）">Where you live (house/condo), rooms, furniture, and what you do at home (daily chores).</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 5</div><h4 data-en="Hobbies &amp; Free Time Activities" data-zh="Hobbies &amp; Free Time Activities">Hobbies &amp; Free Time Activities</h4><p data-en="Hobbies and after-school activities, and the reasons you enjoy them." data-zh="兴趣爱好与课外活动，喜欢的理由">Hobbies and after-school activities, and the reasons you enjoy them.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 6</div><h4 data-en="Sports &amp; Exercise" data-zh="Sports &amp; Exercise">Sports &amp; Exercise</h4><p data-en="Sports and exercise, and your favourite sports." data-zh="体育运动，喜欢的运动">Sports and exercise, and your favourite sports.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 7</div><h4 data-en="School Life" data-zh="School Life">School Life</h4><p data-en="School life, favourite subjects, school uniforms, and more." data-zh="学校生活、喜欢的科目、校服等">School life, favourite subjects, school uniforms, and more.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 8</div><h4 data-en="Daily Life &amp; Daily Routines" data-zh="Daily Life &amp; Daily Routines">Daily Life &amp; Daily Routines</h4><p data-en="Daily schedule, weekend activities, and everyday habits." data-zh="日常作息、周末做什么、每天的习惯">Daily schedule, weekend activities, and everyday habits.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 9</div><h4 data-en="Food, Drinks &amp; Healthy Living" data-zh="Food, Drinks &amp; Healthy Living">Food, Drinks &amp; Healthy Living</h4><p data-en="Diet and health: favourite foods, what you eat at school and at home, and healthy habits." data-zh="饮食与健康：最喜欢的食物、在学校/家里吃什么、健康习惯">Diet and health: favourite foods, what you eat at school and at home, and healthy habits.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 10</div><h4 data-en="Clothes &amp; Shopping" data-zh="Clothes &amp; Shopping">Clothes &amp; Shopping</h4><p data-en="Clothes, what you like to wear, and where and how you shop." data-zh="衣服、喜欢穿的衣服、购物地点和习惯">Clothes, what you like to wear, and where and how you shop.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 11</div><h4 data-en="Holidays, Travel &amp; Transport" data-zh="Holidays, Travel &amp; Transport">Holidays, Travel &amp; Transport</h4><p data-en="Holidays and travel: types of holidays, where you go, favourite holiday activities, and which transport you prefer and why." data-zh="假期、旅游与交通：有哪些假期、去哪里度假、喜欢的假期活动、喜欢乘坐什么交通工具及原因">Holidays and travel: types of holidays, where you go, favourite holiday activities, and which transport you prefer and why.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 12</div><h4 data-en="Weather, Seasons &amp; Nature" data-zh="Weather, Seasons &amp; Nature">Weather, Seasons &amp; Nature</h4><p data-en="Weather, seasons and nature: your favourite season and what you choose to do in different weather." data-zh="天气、四季与自然：喜欢什么季节、不同天气的活动选择">Weather, seasons and nature: your favourite season and what you choose to do in different weather.</p></div>
+        <div class="lesson"><div class="lesson-num">Lesson 13</div><h4 data-en="Technology &amp; Entertainment" data-zh="Technology &amp; Entertainment">Technology &amp; Entertainment</h4><p data-en="Technology and entertainment: TV and movies, phones and computers, social media and games." data-zh="科技与娱乐：看电视/电影、使用手机/电脑、社交媒体与游戏">Technology and entertainment: TV and movies, phones and computers, social media and games.</p></div>
+      </div>
+    </div>
+
+    <!-- EXAM FOCUS -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E2FBF2">🏆</div>
+        <div><h2 data-en="Exam Focus · Lessons 14–15" data-zh="考试冲刺 · 第14–15课">Exam Focus · Lessons 14–15</h2><div class="mod-sub" data-en="Part 2 skills and a full mock exam" data-zh="Part 2 专项与完整模拟考试">Part 2 skills and a full mock exam</div></div>
+      </div>
+      <div class="lessons">
+        <div class="lesson focus"><div class="lesson-num">Lesson 14</div><h4 data-en="KET Part 2 Focus: Collaborative Discussion, Opinions &amp; Preferences" data-zh="KET Part 2 Focus: Collaborative Discussion, Opinions &amp; Preferences">KET Part 2 Focus: Collaborative Discussion, Opinions &amp; Preferences</h4><p data-en="How to give opinions on pictures and topics, ask questions and respond; how to express agreement, disagreement and preference with full reasons." data-zh="Part 2 专项攻坚：如何对图片/话题发表看法、提问与回应；如何表达“赞成/反对/偏好”，给出充分的理由">How to give opinions on pictures and topics, ask questions and respond; how to express agreement, disagreement and preference with full reasons.</p></div>
+        <div class="lesson focus"><div class="lesson-num">Lesson 15</div><h4 data-en="Mock KET Speaking Test" data-zh="Mock KET Speaking Test">Mock KET Speaking Test</h4><p data-en="A full mock KET Speaking exam, plus a wrap-up of test-taking tips." data-zh="完整的KET口语模拟考试，考试技巧总结">A full mock KET Speaking exam, plus a wrap-up of test-taking tips.</p></div>
+      </div>
+    </div>
+
+    <!-- GOALS -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#E3F8FF">✅</div>
+        <div><h2 data-en="Course Goals" data-zh="课程目标">Course Goals</h2><div class="mod-sub" data-en="After completing the course, students will be able to:" data-zh="完成课程后，学生将能够：">After completing the course, students will be able to:</div></div>
+      </div>
+      <div class="goal-grid">
+        <div class="goal"><div class="goal-check">✓</div><p data-en="Master the common KET Speaking question types and answering techniques." data-zh="掌握 KET 口语的常见题型及回答技巧。">Master the common KET Speaking question types and answering techniques.</p></div>
+        <div class="goal"><div class="goal-check">✓</div><p data-en="Learn to answer naturally in the exam instead of reciting memorised answers." data-zh="学会如何在考试中自然地回答问题，而不是机械背诵。">Learn to answer naturally in the exam instead of reciting memorised answers.</p></div>
+        <div class="goal"><div class="goal-check">✓</div><p data-en="Give longer, more complete and more logical answers." data-zh="提高回答长度，使表达更加完整、有逻辑。">Give longer, more complete and more logical answers.</p></div>
+        <div class="goal"><div class="goal-check">✓</div><p data-en="Improve pronunciation, intonation and fluency." data-zh="改善发音、语调和表达流畅度。">Improve pronunciation, intonation and fluency.</p></div>
+        <div class="goal"><div class="goal-check">✓</div><p data-en="Reduce common Chinglish expressions and sound more natural." data-zh="减少常见的中式英语表达，提高英语自然度。">Reduce common Chinglish expressions and sound more natural.</p></div>
+        <div class="goal"><div class="goal-check">✓</div><p data-en="Build speaking confidence and the courage to share your own ideas." data-zh="建立英语口语自信，敢于主动表达自己的想法。">Build speaking confidence and the courage to share your own ideas.</p></div>
+      </div>
+    </div>
+
+    <!-- WHY -->
+    <div class="outline-section fade-up">
+      <div class="module-header">
+        <div class="module-icon" style="background:#FFE8E8">⭐</div>
+        <div><h2 data-en="Why Choose This Course?" data-zh="为什么选择这门课程？">Why Choose This Course?</h2></div>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-icon">🍁</div><h4 data-en="Raised in Canada" data-zh="在加拿大长大">Raised in Canada</h4><p data-en="Our tutors grew up in Canada and coach with native-speaker pronunciation and expressions. Real-life examples are woven into every class, so students learn authentic English, not memorised answers." data-zh="在加拿大长大的老师，能用 native speaker 的纯正英文发音和表达来指导学生，并在上课时自然地融入真实的生活交流例子，让孩子们学到地道、真实的英语交流，而不是背答案。">Our tutors grew up in Canada and coach with native-speaker pronunciation and expressions. Real-life examples are woven into every class, so students learn authentic English, not memorised answers.</p></div>
+        <div class="why-card"><div class="why-icon">🌏</div><h4 data-en="Bilingual &amp; Bicultural" data-zh="双语双文化">Bilingual &amp; Bicultural</h4><p data-en="A Chinese-Canadian background means our tutors understand how Chinese students think and express themselves, and where the pain points in spoken English are, so they can target difficulties precisely." data-zh="华裔老师的双语/双文化背景，使之能懂中国孩子的思维和表达习惯，并了解他们在英语口语学习过程中的痛点，从而有的放矢，轻松突破难点。">A Chinese-Canadian background means our tutors understand how Chinese students think and express themselves, and where the pain points in spoken English are, so they can target difficulties precisely.</p></div>
+        <div class="why-card"><div class="why-icon">🤝</div><h4 data-en="Like an Older Sibling" data-zh="邻家哥哥/姐姐">Like an Older Sibling</h4><p data-en="With a small age gap, tutors feel like friendly older siblings who encourage kids to speak up, and who can explain English from the student's point of view, not just say &quot;this is the right way.&quot;" data-zh="老师和学生年龄差不大，像充满亲和力的邻家哥哥/姐姐一样鼓励孩子，更容易帮助孩子大胆开口，并能够从学生的角度解释英语，而不仅仅是告诉学生“这样说才对”。">With a small age gap, tutors feel like friendly older siblings who encourage kids to speak up, and who can explain English from the student's point of view, not just say &quot;this is the right way.&quot;</p></div>
+      </div>
+    </div>
+
+  </div><!-- end ket -->
+
+  <!-- ══════════ SUMMER PROGRAM ══════════ -->
+  <div id="program-summer" class="program-content">
+
   <!-- TAB SWITCHER -->
   <div class="tab-bar fade-up">
-    <button class="tab-btn active" onclick="switchTab('beginner')" data-en-inner="🎒 Beginner (Ages 9–12)" data-zh-inner="🎒 基础班（9–12岁）">🎒 Beginner (Ages 9–12)</button>
-    <button class="tab-btn" onclick="switchTab('advanced')" data-en-inner="🏫 Advanced (Ages 13–16)" data-zh-inner="🏫 高阶班（13–16岁）">🏫 Advanced (Ages 13–16)</button>
+    <button class="tab-btn active" onclick="switchTab('beginner', this)" data-en-inner="🎒 Beginner (Ages 7–11)" data-zh-inner="🎒 基础班（7–11岁）">🎒 Beginner (Ages 7–11)</button>
+    <button class="tab-btn" onclick="switchTab('advanced', this)" data-en-inner="🏫 Advanced (Ages 12–16)" data-zh-inner="🏫 高阶班（12–16岁）">🏫 Advanced (Ages 12–16)</button>
   </div>
 
   <!-- ══════════ BEGINNER ══════════ -->
@@ -144,7 +295,7 @@
       <div class="s-sep"></div>
       <div class="s-item"><div class="s-num">60<span style="font-size:1rem">min</span></div><div class="s-label" data-en="Per Lesson" data-zh="每节课时长">Per Lesson</div></div>
       <div class="s-sep"></div>
-      <div class="s-item"><div class="s-num" style="font-size:1.1rem;padding-top:4px" data-en="Ages 9–12" data-zh="9–12岁">Ages 9–12</div><div class="s-label" data-en="Target Group" data-zh="适合年龄段">Target Group</div></div>
+      <div class="s-item"><div class="s-num" style="font-size:1.1rem;padding-top:4px" data-en="Ages 7–11" data-zh="7–11岁">Ages 7–11</div><div class="s-label" data-en="Target Group" data-zh="适合年龄段">Target Group</div></div>
     </div>
 
     <!-- LESSON FLOW -->
@@ -181,7 +332,7 @@
     <div class="outline-section fade-up">
       <div class="module-header">
         <div class="module-icon" style="background:#FFE8E8">💬</div>
-        <div><h2 data-en="Module 1 · Daily Speaking" data-zh="模块1 · 日常口语">Module 1 · Daily Speaking</div>
+        <div><h2 data-en="Module 1 · Daily Speaking" data-zh="模块1 · 日常口语">Module 1 · Daily Speaking</h2></div>
       </div>
       <div class="lessons">
         <div class="lesson"><div class="lesson-num">Lesson 1</div><h4 data-en="Getting to Know Each Other" data-zh="互相了解">Getting to Know Each Other</h4><p data-en="Self-introductions, hobbies, and a Canadian-style Circle Time to meet classmates." data-zh="自我介绍、兴趣爱好，模拟加拿大班级首日Circle Time。">Self-introductions, hobbies, and a Canadian-style Circle Time to meet classmates.</p></div>
@@ -249,7 +400,7 @@
       <div class="s-sep"></div>
       <div class="s-item"><div class="s-num">60<span style="font-size:1rem">min</span></div><div class="s-label" data-en="Per Lesson" data-zh="每节课时长">Per Lesson</div></div>
       <div class="s-sep"></div>
-      <div class="s-item"><div class="s-num" style="font-size:1.1rem;padding-top:4px" data-en="Ages 13–16" data-zh="13–16岁">Ages 13–16</div><div class="s-label" data-en="Target Group" data-zh="适合年龄段">Target Group</div></div>
+      <div class="s-item"><div class="s-num" style="font-size:1.1rem;padding-top:4px" data-en="Ages 12–16" data-zh="12–16岁">Ages 12–16</div><div class="s-label" data-en="Target Group" data-zh="适合年龄段">Target Group</div></div>
     </div>
 
     <!-- MODULE 1 -->
@@ -314,14 +465,16 @@
 
   </div><!-- end advanced -->
 
+  </div><!-- end summer -->
+
   <div class="outline-note fade-up">
-    <p data-en="Lesson topics may be adjusted to suit student needs and interests. <a href='index.html#contact'>Contact Charlie on WeChat</a> to discuss the right program for your child." data-zh="课程主题可根据学生需求和兴趣灵活调整。<a href='index.html#contact'>通过微信联系 Charlie</a>，了解适合您孩子的课程方案。">Lesson topics may be adjusted to suit student needs and interests. <a href='index.html#contact'>Contact Charlie on WeChat</a> to discuss the right program for your child.</p>
+    <p data-en="Lesson topics may be adjusted to suit student needs and interests. <a href='index.html#contact'>Contact us on WeChat</a> to discuss the right program for your child." data-zh="课程主题可根据学生需求和兴趣灵活调整。<a href='index.html#contact'>通过微信联系我们</a>，了解适合您孩子的课程方案。">Lesson topics may be adjusted to suit student needs and interests. <a href='index.html#contact'>Contact us on WeChat</a> to discuss the right program for your child.</p>
   </div>
 
 </main>
 
 <footer>
-  <p>© 2025 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p>
+  <p>© 2026 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p>
 </footer>
 
 <script>
@@ -346,12 +499,27 @@
     });
   }
 
-  function switchTab(tab) {
+  // Sub-tabs inside the Summer Program (Beginner / Advanced)
+  function switchTab(tab, btn) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + tab).classList.add('active');
-    event.currentTarget.classList.add('active');
+    if (btn) btn.classList.add('active');
   }
+
+  // Top-level program switch (Cambridge KET / Summer Program)
+  function switchProgram(name) {
+    document.querySelectorAll('.program-content').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.program-hero').forEach(h => h.classList.remove('active'));
+    document.querySelectorAll('.prog-btn').forEach(b => b.classList.toggle('active', b.dataset.program === name));
+    document.getElementById('program-' + name).classList.add('active');
+    document.getElementById('hero-' + name).classList.add('active');
+    history.replaceState(null, '', name === 'summer' ? '#summer' : location.pathname);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Deep link: course-outline.html#summer opens the Summer Program directly
+  if (location.hash === '#summer') switchProgram('summer');
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });

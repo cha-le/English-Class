@@ -39,7 +39,9 @@
     .teachers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px}
     .teacher-card{background:var(--off);border-radius:var(--radius);padding:32px 24px;text-align:center;border:2.5px solid transparent;transition:border-color .2s,transform .15s,box-shadow .2s}
     .teacher-card:hover{border-color:var(--sky);transform:translateY(-4px);box-shadow:0 14px 36px rgba(26,43,74,.1)}
-    .teacher-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#4FC3F7,#43D9A2);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 18px;color:white;font-weight:900;box-shadow:0 8px 24px rgba(79,195,247,.3)}
+    .teacher-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#4FC3F7,#43D9A2);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 18px;color:white;font-weight:900;box-shadow:0 8px 24px rgba(79,195,247,.3);position:relative;overflow:hidden}
+    .teacher-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+    .teacher-avatar.has-photo{font-size:0;background:var(--off)}
     .teacher-name{font-size:1.1rem;font-weight:900;color:var(--navy);margin-bottom:4px}
     .teacher-role{font-size:.82rem;color:var(--coral);font-weight:800;margin-bottom:14px}
     .teacher-bio{font-size:.87rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
@@ -85,7 +87,7 @@
       <li><a href="showcase.html" data-en="Showcase" data-zh="展示">Showcase</a></li>
       <li><a href="teachers.html" class="current" data-en="Teachers" data-zh="教师团队">Teachers</a></li>
       <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
-      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="about.html" data-en="About" data-zh="关于我们">About</a></li>
     </ul>
   </div>
   <div class="nav-right">
@@ -100,7 +102,7 @@
 <div class="page-hero">
   <div class="pill" data-en="🍎 Our Teachers" data-zh="🍎 我们的教师">🍎 Our Teachers</div>
   <h1 data-en="Meet the <span>Teaching Team</span>" data-zh="认识<span>教学团队</span>">Meet the <span>Teaching Team</span></h1>
-  <p data-en="Native English-speaking, Canadian-trained tutors dedicated to helping your child speak with confidence." data-zh="来自加拿大的英语母语教师，致力于帮助您的孩子自信地说英语。">Native English-speaking, Canadian-trained tutors dedicated to helping your child speak with confidence.</p>
+  <p data-en="Chinese-Canadian tutors who grew up in Canada — bilingual, bicultural, and close in age to our students — dedicated to helping your child speak with confidence." data-zh="在加拿大长大的华裔导师——双语双文化，与学生年龄相近——致力于帮助您的孩子自信地说英语。">Chinese-Canadian tutors who grew up in Canada — bilingual, bicultural, and close in age to our students — dedicated to helping your child speak with confidence.</p>
 </div>
 
 <main>
@@ -108,19 +110,19 @@
   <div class="teachers-grid">
 
     <div class="teacher-card fade-up">
-      <div class="teacher-avatar">C</div>
+      <div class="teacher-avatar" data-photo="charlie">C</div>
       <div class="teacher-name">Charlie L.</div>
       <div class="teacher-role" data-en="Founder & Lead Tutor" data-zh="创始人兼主讲教师">Founder & Lead Tutor</div>
-      <p class="teacher-bio" data-en="Native English speaker from Canada, designed the CAVoice curriculum around real Canadian classroom experiences." data-zh="来自加拿大的英语母语教师，设计了还原真实加拿大课堂体验的 CAVoice 课程。">Native English speaker from Canada, designed the CAVoice curriculum around real Canadian classroom experiences.</p>
+      <p class="teacher-bio" data-en="Grew up in Canada. Founded CAVoice and designed the curriculum around real Canadian classroom experiences." data-zh="在加拿大长大，创立了 CAVoice，并围绕真实的加拿大课堂体验设计课程。">Grew up in Canada. Founded CAVoice and designed the curriculum around real Canadian classroom experiences.</p>
       <div class="teacher-chips">
         <div class="teacher-chip" data-en="🇨🇦 Canada" data-zh="🇨🇦 加拿大">🇨🇦 Canada</div>
-        <div class="teacher-chip" data-en="🎓 ESL Specialist" data-zh="🎓 英语教学专家">🎓 ESL Specialist</div>
+        <div class="teacher-chip" data-en="📚 Curriculum Lead" data-zh="📚 课程设计">📚 Curriculum Lead</div>
       </div>
     </div>
 
     <div class="teacher-card fade-up">
-      <div class="teacher-avatar">D</div>
-      <div class="teacher-name">Daniel X.</div>
+      <div class="teacher-avatar" data-photo="daniel">D</div>
+      <div class="teacher-name">Darwin Z.</div>
       <div class="teacher-role" data-en="English Tutor" data-zh="英语教师">English Tutor</div>
       <p class="teacher-bio" data-en="Specialises in building speaking confidence with younger learners through games, stories, and daily conversation." data-zh="擅长通过游戏、故事和日常对话，帮助低龄学生建立口语自信。">Specialises in building speaking confidence with younger learners through games, stories, and daily conversation.</p>
       <div class="teacher-chips">
@@ -130,8 +132,8 @@
     </div>
 
     <div class="teacher-card fade-up">
-      <div class="teacher-avatar">E</div>
-      <div class="teacher-name">Ethan T.</div>
+      <div class="teacher-avatar" data-photo="ethan">E</div>
+      <div class="teacher-name">Yuecheng T.</div>
       <div class="teacher-role" data-en="English Tutor" data-zh="英语教师">English Tutor</div>
       <p class="teacher-bio" data-en="Focuses on public speaking and presentation skills, helping students shine in front of a class or crowd." data-zh="专注于演讲与展示技巧，帮助学生在课堂或公众场合中自信闪耀。">Focuses on public speaking and presentation skills, helping students shine in front of a class or crowd.</p>
       <div class="teacher-chips">
@@ -141,8 +143,8 @@
     </div>
 
     <div class="teacher-card fade-up">
-      <div class="teacher-avatar">S</div>
-      <div class="teacher-name">Sophie M.</div>
+      <div class="teacher-avatar" data-photo="sophie">S</div>
+      <div class="teacher-name">Cici Z.</div>
       <div class="teacher-role" data-en="English Tutor" data-zh="英语教师">English Tutor</div>
       <p class="teacher-bio" data-en="Brings a warm, patient teaching style with a focus on grammar that actually makes sense in conversation." data-zh="教学风格温暖耐心，注重让语法在实际对话中真正被理解和运用。">Brings a warm, patient teaching style with a focus on grammar that actually makes sense in conversation.</p>
       <div class="teacher-chips">
@@ -152,8 +154,8 @@
     </div>
 
     <div class="teacher-card fade-up">
-      <div class="teacher-avatar">O</div>
-      <div class="teacher-name">Oliver W.</div>
+      <div class="teacher-avatar" data-photo="oliver">O</div>
+      <div class="teacher-name">Helen Z.</div>
       <div class="teacher-role" data-en="English Tutor" data-zh="英语教师">English Tutor</div>
       <p class="teacher-bio" data-en="Loves discussion-based lessons — debates, current events, and group projects that get students talking." data-zh="热衷于讨论式教学——辩论、时事话题与小组项目，让学生开口交流。">Loves discussion-based lessons — debates, current events, and group projects that get students talking.</p>
       <div class="teacher-chips">
@@ -163,8 +165,8 @@
     </div>
 
     <div class="teacher-card fade-up">
-      <div class="teacher-avatar">A</div>
-      <div class="teacher-name">Ava P.</div>
+      <div class="teacher-avatar" data-photo="ava">A</div>
+      <div class="teacher-name">Erica Y.</div>
       <div class="teacher-role" data-en="English Tutor" data-zh="英语教师">English Tutor</div>
       <p class="teacher-bio" data-en="Combines Canadian culture lessons with storytelling to make every class feel like a mini adventure." data-zh="将加拿大文化课程与讲故事结合，让每节课都像一次小小的冒险。">Combines Canadian culture lessons with storytelling to make every class feel like a mini adventure.</p>
       <div class="teacher-chips">
@@ -206,6 +208,21 @@
       else el.innerHTML = val;
     });
   }
+  // ── Teacher photos ─────────────────────────────────────────────────────────
+  // Drop a photo into images/teachers/ named after the data-photo value
+  // (e.g. charlie.jpg). If none is found, the letter circle stays as a fallback.
+  document.querySelectorAll('.teacher-avatar[data-photo]').forEach(av => {
+    const base = 'images/teachers/' + av.dataset.photo;
+    const exts = ['jpg', 'jpeg', 'png', 'webp'];
+    const name = av.parentElement.querySelector('.teacher-name');
+    let i = 0;
+    const img = new Image();
+    img.alt = name ? name.textContent : '';
+    img.onload = () => { av.appendChild(img); av.classList.add('has-photo'); };
+    img.onerror = () => { i++; if (i < exts.length) img.src = base + '.' + exts[i]; };
+    img.src = base + '.' + exts[0];
+  });
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });

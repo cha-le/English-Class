@@ -95,6 +95,12 @@
       .stats-row{grid-template-columns:repeat(2,1fr)}
       .philosophy-block{padding:32px 24px}
     }
+  
+    /* PROGRAM TOGGLE (KET / Summer) */
+    .mini-toggle{display:flex;gap:6px;background:var(--off);border-radius:999px;padding:5px;max-width:420px;margin:0 auto 28px;border:2px solid #E8EFF8}
+    .mini-btn{flex:1;padding:11px 0;border-radius:999px;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:.88rem;background:none;color:var(--muted);transition:all .2s}
+    .mini-btn.active{background:var(--coral);color:white;box-shadow:0 4px 14px rgba(255,107,107,.35)}
+    .prog-panel:not(.active){display:none}
   </style>
 </head>
 <body>
@@ -111,7 +117,7 @@
       <li><a href="showcase.html" data-en="Showcase" data-zh="展示">Showcase</a></li>
       <li><a href="teachers.html" data-en="Teachers" data-zh="教师团队">Teachers</a></li>
       <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
-      <li><a href="about.html" class="current" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="about.html" class="current" data-en="About" data-zh="关于我们">About</a></li>
     </ul>
   </div>
   <div class="nav-right">
@@ -126,7 +132,7 @@
 <div class="page-hero">
   <div class="pill" data-en="🍁 About CAVoice" data-zh="🍁 关于 CAVoice">🍁 About CAVoice</div>
   <h1 data-en="Bringing the <span>Canadian Classroom</span> to You" data-zh="把<span>加拿大课堂</span>带到你身边">Bringing the <span>Canadian Classroom</span> to You</h1>
-  <p data-en="CAVoice was founded to give Chinese students real, live access to native English tutors and an authentic Canadian learning experience — not just textbook English." data-zh="CAVoice 的使命是让中国学生真正接触到英语母语教师，体验真实的加拿大课堂——而不只是课本英语。">CAVoice was founded to give Chinese students real, live access to native English tutors and an authentic Canadian learning experience — not just textbook English.</p>
+  <p data-en="CAVoice was founded to give Chinese students real, live access to tutors who grew up in Canada and an authentic Canadian learning experience — not just textbook English." data-zh="CAVoice 的使命是让中国学生真正接触到在加拿大长大的导师，体验真实的加拿大课堂——而不只是课本英语。">CAVoice was founded to give Chinese students real, live access to tutors who grew up in Canada and an authentic Canadian learning experience — not just textbook English.</p>
 </div>
 
 <main>
@@ -137,19 +143,42 @@
     <div class="profile-info">
       <h2 data-en="Our Mission" data-zh="我们的使命">Our Mission</h2>
       <div class="profile-title" data-en="Real Tutors · Real Conversation · Real Confidence" data-zh="真实教师 · 真实对话 · 真实自信">Real Tutors · Real Conversation · Real Confidence</div>
-      <p data-en="CAVoice was founded on a simple belief: the fastest way for a student to become fluent in English is to actually speak it, every day, with someone who speaks it natively. We built a program — and a team — around that idea." data-zh="CAVoice 的信念很简单：让学生流利掌握英语最快的方式，就是每天与英语母语者真实对话。我们围绕这个理念打造了课程，也打造了这支团队。">CAVoice was founded on a simple belief: the fastest way for a student to become fluent in English is to actually speak it, every day, with someone who speaks it natively. We built a program — and a team — around that idea.</p>
-      <p data-en="Every CAVoice tutor is a native English speaker trained to run an interactive, student-centred classroom in the Canadian style — collaborative, encouraging, and focused on real communication over rote memorisation." data-zh="每一位 CAVoice 教师都是英语母语者，并接受过培训，能够以加拿大课堂风格开展互动式、以学生为中心的教学——注重协作、鼓励与真实交流，而非死记硬背。">Every CAVoice tutor is a native English speaker trained to run an interactive, student-centred classroom in the Canadian style — collaborative, encouraging, and focused on real communication over rote memorisation.</p>
+      <p data-en="CAVoice was founded on a simple belief: the fastest way for a student to become fluent in English is to actually speak it, every day, with someone who grew up speaking it. We built a program — and a team — around that idea." data-zh="CAVoice 的信念很简单：让学生流利掌握英语最快的方式，就是每天与在加拿大长大、从小说英语的导师真实对话。我们围绕这个理念打造了课程，也打造了这支团队。">CAVoice was founded on a simple belief: the fastest way for a student to become fluent in English is to actually speak it, every day, with someone who grew up speaking it. We built a program — and a team — around that idea.</p>
+      <p data-en="Every CAVoice tutor is a Chinese-Canadian who grew up in Canada, trained to run an interactive, student-centred classroom in the Canadian style — collaborative, encouraging, and focused on real communication over rote memorisation." data-zh="每一位 CAVoice 导师都是在加拿大长大的华裔，并接受过培训，能够以加拿大课堂风格开展互动式、以学生为中心的教学——注重协作、鼓励与真实交流，而非死记硬背。">Every CAVoice tutor is a Chinese-Canadian who grew up in Canada, trained to run an interactive, student-centred classroom in the Canadian style — collaborative, encouraging, and focused on real communication over rote memorisation.</p>
       <div class="profile-chips">
-        <div class="chip" data-en="🇨🇦 Canadian Educators" data-zh="🇨🇦 加拿大教育团队">🇨🇦 Canadian Educators</div>
-        <div class="chip" data-en="🗣️ Native English Speakers" data-zh="🗣️ 英语母语者">🗣️ Native English Speakers</div>
-        <div class="chip" data-en="📚 ESL Specialists" data-zh="📚 英语教学专家">📚 ESL Specialists</div>
+        <div class="chip" data-en="🇨🇦 Raised in Canada" data-zh="🇨🇦 在加拿大长大">🇨🇦 Raised in Canada</div>
+        <div class="chip" data-en="🌏 Bilingual &amp; Bicultural" data-zh="🌏 双语双文化">🌏 Bilingual &amp; Bicultural</div>
+        <div class="chip" data-en="🤝 Like Older Siblings" data-zh="🤝 邻家哥哥姐姐">🤝 Like Older Siblings</div>
         <div class="chip" data-en="🎓 Student-Centred Teaching" data-zh="🎓 以学生为中心">🎓 Student-Centred Teaching</div>
       </div>
     </div>
   </div>
 
-  <!-- STATS -->
-  <div class="stats-row fade-up">
+  <!-- STATS (KET / Summer toggle) -->
+  <div class="mini-toggle fade-up">
+    <button class="mini-btn active" data-prog="ket" onclick="setProg('ket')" data-en="🎯 Cambridge KET" data-zh="🎯 剑桥KET">🎯 Cambridge KET</button>
+    <button class="mini-btn" data-prog="summer" onclick="setProg('summer')" data-en="🍁 Summer Program" data-zh="🍁 暑期课程">🍁 Summer Program</button>
+  </div>
+  <div class="stats-row prog-panel active fade-up" data-prog="ket">
+    <div class="stat-card">
+      <div class="s-num">15</div>
+      <div class="s-label" data-en="Lessons in the Course" data-zh="课程总节数">Lessons in the Course</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">60<span style="font-size:1rem">min</span></div>
+      <div class="s-label" data-en="Per Lesson" data-zh="每节课时长">Per Lesson</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">2</div>
+      <div class="s-label" data-en="KET Speaking Parts" data-zh="KET 口语题型">KET Speaking Parts</div>
+    </div>
+    <div class="stat-card">
+      <div class="s-num">100%</div>
+      <div class="s-label" data-en="Live &amp; Interactive" data-zh="全程直播互动">Live &amp; Interactive</div>
+    </div>
+  </div>
+  
+  <div class="stats-row prog-panel fade-up" data-prog="summer">
     <div class="stat-card">
       <div class="s-num">20</div>
       <div class="s-label" data-en="Lessons per Program" data-zh="每期课程节数">Lessons per Program</div>
@@ -218,8 +247,8 @@
       <h2 data-en="Our Tutors" data-zh="我们的教师">Our Tutors</h2>
     </div>
     <div class="philosophy-block" style="background:var(--off);color:var(--navy)">
-      <h3 style="color:var(--navy)" data-en="A team of native English speakers, ready to teach" data-zh="一支随时准备授课的英语母语教师团队">A team of native English speakers, ready to teach</h3>
-      <p style="color:var(--navy-soft)" data-en="CAVoice is more than one teacher — it's a growing team of Canadian educators, each trained in our speaking-first, student-centred style." data-zh="CAVoice 不只是一位老师——而是一支不断壮大的加拿大教师团队，每位老师都接受过我们口语优先、以学生为中心教学风格的培训。">CAVoice is more than one teacher — it's a growing team of Canadian educators, each trained in our speaking-first, student-centred style.</p>
+      <h3 style="color:var(--navy)" data-en="A team of Chinese-Canadian tutors, ready to teach" data-zh="一支随时准备授课的华裔导师团队">A team of Chinese-Canadian tutors, ready to teach</h3>
+      <p style="color:var(--navy-soft)" data-en="CAVoice is more than one teacher — it's a growing team of tutors who grew up in Canada, each trained in our speaking-first, student-centred style." data-zh="CAVoice 不只是一位老师——而是一支不断壮大的在加拿大长大的导师团队，每位老师都接受过我们口语优先、以学生为中心教学风格的培训。">CAVoice is more than one teacher — it's a growing team of tutors who grew up in Canada, each trained in our speaking-first, student-centred style.</p>
       <div class="cta-btns" style="justify-content:flex-start;margin-top:8px">
         <a href="teachers.html" class="btn-outline" data-en="Meet the Team →" data-zh="认识我们的团队 →">Meet the Team →</a>
       </div>
@@ -239,7 +268,7 @@
 </main>
 
 <footer>
-  <p>© 2025 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p>
+  <p>© 2026 <strong>CAVoice</strong> · <span data-en="English Tutoring for Chinese Students" data-zh="专为中国学生提供的英语辅导">English Tutoring for Chinese Students</span> · All rights reserved</p>
 </footer>
 
 <script>
@@ -261,6 +290,12 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+<script>
+  // KET / Summer Program toggle (shows the matching .prog-panel blocks)
+  function setProg(name) {
+    document.querySelectorAll('[data-prog]').forEach(el => el.classList.toggle('active', el.dataset.prog === name));
+  }
 </script>
 <script src="auth.js"></script>
 </body>

@@ -105,6 +105,12 @@
       .explore-grid { grid-template-columns:1fr 1fr; }
       .contact-card { padding:36px 24px; }
     }
+  
+    /* PROGRAM TOGGLE (KET / Summer) */
+    .mini-toggle{display:flex;gap:6px;background:var(--off);border-radius:999px;padding:5px;max-width:420px;margin:0 auto 28px;border:2px solid #E8EFF8}
+    .mini-btn{flex:1;padding:11px 0;border-radius:999px;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:.88rem;background:none;color:var(--muted);transition:all .2s}
+    .mini-btn.active{background:var(--coral);color:white;box-shadow:0 4px 14px rgba(255,107,107,.35)}
+    .prog-panel:not(.active){display:none}
   </style>
 </head>
 <body>
@@ -121,7 +127,7 @@
       <li><a href="showcase.html" data-en="Showcase" data-zh="展示">Showcase</a></li>
       <li><a href="teachers.html" data-en="Teachers" data-zh="教师团队">Teachers</a></li>
       <li><a href="faq.html" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
-      <li><a href="about.html" data-en="About" data-zh="关于我">About</a></li>
+      <li><a href="about.html" data-en="About" data-zh="关于我们">About</a></li>
     </ul>
   </div>
   <div class="nav-right">
@@ -137,7 +143,7 @@
   <div class="hero-inner">
     <div class="hero-badge"><span>🌟</span> <span data-en="Online English Tutoring — Now Enrolling!" data-zh="在线英语辅导 — 现在招生！">Online English Tutoring — Now Enrolling!</span></div>
     <h1 data-en="Learn English with<br><em>Confidence & Fun</em>" data-zh="自信开口<br><em>快乐学英语</em>">Learn English with<br><em>Confidence & Fun</em></h1>
-    <p data-en="Live online tutoring with a native English speaker, built for Chinese elementary and high school students who want to speak, read, and write English with real confidence." data-zh="与英语母语教师进行在线辅导，专为希望自信开口、阅读和写作的中国中小学生打造。">Live online tutoring with a native English speaker, built for Chinese elementary and high school students who want to speak, read, and write English with real confidence.</p>
+    <p data-en="Live online tutoring with tutors who grew up in Canada, built for Chinese elementary and high school students who want to speak, read, and write English with real confidence." data-zh="与在加拿大长大的导师进行在线辅导，专为希望自信开口、阅读和写作的中国中小学生打造。">Live online tutoring with tutors who grew up in Canada, built for Chinese elementary and high school students who want to speak, read, and write English with real confidence.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary" data-en="Start Tutoring Today 🚀" data-zh="立即开始学习 🚀">Start Tutoring Today 🚀</a>
       <a href="showcase.html" class="btn-secondary" data-en="See Preview →" data-zh="查看预览 →">See Preview →</a>
@@ -146,7 +152,7 @@
       <div class="stat"><div class="stat-num">5×</div><div class="stat-label" data-en="Sessions per Week" data-zh="每周课程次数">Sessions per Week</div></div>
       <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-en="Live & Interactive" data-zh="全程在线互动">Live & Interactive</div></div>
       <div class="stat"><div class="stat-num">2</div><div class="stat-label" data-en="Age Groups" data-zh="适合年龄段">Age Groups</div></div>
-      <div class="stat"><div class="stat-num" data-en="Native" data-zh="母语">Native</div><div class="stat-label" data-en="English Tutor" data-zh="英语教师">English Tutor</div></div>
+      <div class="stat"><div class="stat-num" data-en="Bilingual" data-zh="双语">Bilingual</div><div class="stat-label" data-en="Canadian Tutors" data-zh="加拿大导师">Canadian Tutors</div></div>
     </div>
   </div>
 </section>
@@ -157,8 +163,8 @@
     <div class="about-visual">🎓</div>
     <div class="about-text fade-up">
       <span class="section-label" data-en="Meet the Teachers" data-zh="认识我们的老师">Meet the Teachers</span>
-      <h2 class="section-title" data-en="A Team of Native<br>English Tutors" data-zh="一支英语母语<br>教师团队">A Team of Native<br>English Tutors</h2>
-      <p data-en="Led by founder Charlie, our team of native English speakers from Canada is passionate about helping Chinese students unlock their English potential. Every tutor brings the same warm, structured, and — most importantly — fun approach to every session." data-zh="在创始人 Charlie 的带领下，我们这支来自加拿大的英语母语教师团队，致力于帮助中国学生发挥英语潜能。每一位老师都以温暖、有条理，最重要的是——有趣的方式授课。">Led by founder Charlie, our team of native English speakers from Canada is passionate about helping Chinese students unlock their English potential. Every tutor brings the same warm, structured, and — most importantly — fun approach to every session.</p>
+      <h2 class="section-title" data-en="A Team of Chinese-Canadian<br>Tutors" data-zh="一支在加拿大长大的<br>华裔导师团队">A Team of Chinese-Canadian<br>Tutors</h2>
+      <p data-en="CAVoice is a team of Chinese-Canadian tutors who grew up in Canada, passionate about helping Chinese students unlock their English potential. Every tutor brings the same warm, structured, and — most importantly — fun approach to every session." data-zh="CAVoice 是一支在加拿大长大的华裔导师团队，致力于帮助中国学生发挥英语潜能。每一位导师都以温暖、有条理，最重要的是——有趣的方式授课。">CAVoice is a team of Chinese-Canadian tutors who grew up in Canada, passionate about helping Chinese students unlock their English potential. Every tutor brings the same warm, structured, and — most importantly — fun approach to every session.</p>
       <div class="about-chips">
         <div class="chip" data-en="📚 Grammar & Writing" data-zh="📚 语法与写作">📚 Grammar & Writing</div>
         <div class="chip" data-en="🗣️ Speaking Practice" data-zh="🗣️ 口语练习">🗣️ Speaking Practice</div>
@@ -177,13 +183,24 @@
   <div class="section-head fade-up">
     <span class="section-label" data-en="Course Outline" data-zh="课程大纲">Course Outline</span>
     <h2 class="section-title" data-en="See What We Cover" data-zh="了解课程内容">See What We Cover</h2>
-    <p class="section-sub" data-en="20 sessions of live speaking practice, Canadian classroom culture, and public speaking — for both beginner and advanced students." data-zh="20节直播课，涵盖口语练习、加拿大课堂文化与演讲技巧，分基础班和高阶班。">20 sessions of live speaking practice, Canadian classroom culture, and public speaking — for both beginner and advanced students.</p>
+    <p class="section-sub prog-panel active" data-prog="ket" data-en="15 lessons of live speaking practice, built around the official Cambridge KET Speaking exam." data-zh="15节直播口语课，围绕剑桥KET口语考试官方考纲展开。">15 lessons of live speaking practice, built around the official Cambridge KET Speaking exam.</p>
+    <p class="section-sub prog-panel" data-prog="summer" data-en="20 sessions of live speaking practice, Canadian classroom culture, and public speaking — for both beginner and advanced students." data-zh="20节直播课，涵盖口语练习、加拿大课堂文化与演讲技巧，分基础班和高阶班。">20 sessions of live speaking practice, Canadian classroom culture, and public speaking — for both beginner and advanced students.</p>
   </div>
-  <div class="course-card fade-up">
+  <div class="mini-toggle fade-up">
+    <button class="mini-btn active" data-prog="ket" onclick="setProg('ket')" data-en="🎯 Cambridge KET" data-zh="🎯 剑桥KET">🎯 Cambridge KET</button>
+    <button class="mini-btn" data-prog="summer" onclick="setProg('summer')" data-en="🍁 Summer Program" data-zh="🍁 暑期课程">🍁 Summer Program</button>
+  </div>
+  <div class="course-card prog-panel active fade-up" data-prog="ket">
+    <div class="course-icon">🎯</div>
+    <h3 data-en="Cambridge KET Speaking Bootcamp" data-zh="剑桥KET口语训练营">Cambridge KET Speaking Bootcamp</h3>
+    <p data-en="15 lessons, 1 hour each — KET Part 1 &amp; Part 2 practice, 13 core topics, and a full mock exam." data-zh="15节课，每节1小时——KET口语 Part 1 &amp; Part 2 专项训练、13个核心话题，以及完整模拟考试。">15 lessons, 1 hour each — KET Part 1 &amp; Part 2 practice, 13 core topics, and a full mock exam.</p>
+    <a href="course-outline.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;padding:13px 28px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(26,43,74,.2);" data-en="View Full Curriculum →" data-zh="查看完整课程 →">View Full Curriculum →</a>
+  </div>
+  <div class="course-card prog-panel fade-up" data-prog="summer">
     <div class="course-icon">📋</div>
     <h3 data-en="CAVoice Summer Camp Curriculum" data-zh="CAVoice 暑期课程大纲">CAVoice Summer Camp Curriculum</h3>
     <p data-en="4 modules, 20 lessons — covering daily speaking, Canadian classroom experience, culture, and public speaking skills." data-zh="4个模块，20节课——涵盖日常口语、加拿大课堂体验、文化知识与演讲技能。">4 modules, 20 lessons — covering daily speaking, Canadian classroom experience, culture, and public speaking skills.</p>
-    <a href="course-outline.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;padding:13px 28px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(26,43,74,.2);" data-en="View Full Curriculum →" data-zh="查看完整课程 →">View Full Curriculum →</a>
+    <a href="course-outline.html#summer" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;padding:13px 28px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(26,43,74,.2);" data-en="View Full Curriculum →" data-zh="查看完整课程 →">View Full Curriculum →</a>
   </div>
 </section>
 
@@ -221,7 +238,7 @@
   <div class="contact-card fade-up">
     <div class="wechat-icon">💬</div>
     <h3 data-en="Ready to Get Started?" data-zh="准备好开始了吗？">Ready to Get Started?</h3>
-    <p data-en="Add me on WeChat and send a quick message about your child's grade and English level. I'll get back to you within 24 hours!" data-zh="添加我们的微信，发一条简短消息告诉我孩子的年级和英语水平，我们会在24小时内回复您！">Add us on WeChat and send a quick message about your child's grade and English level. We'll get back to you within 24 hours!</p>
+    <p data-en="Add us on WeChat and send a quick message about your child's grade and English level. We'll get back to you within 24 hours!" data-zh="添加我们的微信，发一条简短消息告诉我们孩子的年级和英语水平，我们会在24小时内回复您！">Add us on WeChat and send a quick message about your child's grade and English level. We'll get back to you within 24 hours!</p>
     <img src="QRcode.jpg" alt="WeChat QR Code" width="250">
   </div>
 </section>
@@ -249,6 +266,12 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+<script>
+  // KET / Summer Program toggle (shows the matching .prog-panel blocks)
+  function setProg(name) {
+    document.querySelectorAll('[data-prog]').forEach(el => el.classList.toggle('active', el.dataset.prog === name));
+  }
 </script>
 <script src="auth.js"></script>
 </body>
